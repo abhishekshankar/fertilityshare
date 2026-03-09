@@ -100,9 +100,13 @@ JSON:"""
     response = llm.invoke(prompt)
     blocks = _parse_blocks(response.content)
     if citations and blocks:
-        cite_models = [Citation(source=c.get("source"), snippet=c.get("snippet")) for c in citations]
+        cite_models = [
+            Citation(source=c.get("source"), snippet=c.get("snippet")) for c in citations
+        ]
         first = blocks[0]
-        blocks = [ContentBlock(type=first.type, content=first.content, citations=cite_models)] + blocks[1:]
+        blocks = [
+            ContentBlock(type=first.type, content=first.content, citations=cite_models)
+        ] + blocks[1:]
     return Lesson(
         id=lesson_outline.id,
         title=lesson_outline.title,
@@ -126,7 +130,9 @@ def run_content(
         for lec_out in mod_out.lessons:
             facts = research.get(str(lec_out.id), "")
             citations = research_citations.get(str(lec_out.id), [])
-            lesson = run_content_for_lesson(lec_out, facts, parsed, llm=llm, citations=citations or None)
+            lesson = run_content_for_lesson(
+                lec_out, facts, parsed, llm=llm, citations=citations or None
+            )
             lessons.append(lesson)
         modules.append(
             Module(

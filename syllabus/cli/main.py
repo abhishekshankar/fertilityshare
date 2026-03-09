@@ -119,6 +119,7 @@ def index_rag(
         typer.echo("Error: OPENAI_API_KEY not set.", err=True)
         raise typer.Exit(1)
     from syllabus.rag.index import index_directory
+
     n = index_directory(path)
     typer.echo(f"Indexed {n} chunks from {path}.")
 

@@ -25,7 +25,9 @@ def get_status(job_id: str) -> dict[str, Any] | None:
     return _job_status.get(job_id)
 
 
-def set_status(job_id: str, status: str, course_id: str | None = None, error: str | None = None) -> None:
+def set_status(
+    job_id: str, status: str, course_id: str | None = None, error: str | None = None
+) -> None:
     if job_id in _job_status:
         _job_status[job_id]["status"] = status
         if course_id is not None:
