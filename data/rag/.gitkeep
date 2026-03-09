@@ -1,0 +1,1 @@
+# Keeps data/rag in git so Dockerfile COPY data works. Add .txt/.md for RAG indexing.

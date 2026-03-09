@@ -83,6 +83,8 @@ The pipeline’s ResearchNode grounds each lesson in evidence from a vector stor
 pytest syllabus/tests -v
 ```
 
+**E2E (Playwright):** From `web/`, run `npm run test:e2e`. Requires the backend running and a test user in `ALLOWED_EMAILS`; set `E2E_TEST_EMAIL` and `E2E_TEST_PASSWORD` to run the intake → course flow spec.
+
 ## Manual eval
 
 See [docs/V0_EVAL.md](docs/V0_EVAL.md) for the 10 prompts, success criteria, and 5-dimension rubric.
