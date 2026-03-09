@@ -1,0 +1,55 @@
+# Env and secrets
+.env
+*.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual envs
+.venv/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Test and output
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+out/
+
+# RAG index (local Chroma data)
+.chroma_rag/
+
+# Node / Next.js
+web/node_modules/
+web/.next/
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
