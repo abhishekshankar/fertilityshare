@@ -130,7 +130,10 @@ def index_pubmed_cmd(
         None, "--max-per-query", "-n", help="Max abstracts per query (default: 50 for V1 ~500 docs)"
     ),
     query: list[str] = typer.Option(
-        None, "--query", "-q", help="PubMed search query (repeat for multiple); default: fertility set"
+        None,
+        "--query",
+        "-q",
+        help="PubMed search query (repeat for multiple); default: fertility set",
     ),
 ):
     """Index PubMed abstracts into the RAG vector store (PRD T-012). Uses default fertility queries if none given."""
@@ -140,7 +143,10 @@ def index_pubmed_cmd(
     from syllabus.rag.pubmed import DEFAULT_MAX_PER_QUERY, index_pubmed
 
     queries = query if query else None
-    n = index_pubmed(queries=queries, max_per_query=max_per_query if max_per_query is not None else DEFAULT_MAX_PER_QUERY)
+    n = index_pubmed(
+        queries=queries,
+        max_per_query=max_per_query if max_per_query is not None else DEFAULT_MAX_PER_QUERY,
+    )
     typer.echo(f"Indexed {n} chunks from PubMed.")
 
 
