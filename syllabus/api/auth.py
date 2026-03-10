@@ -17,10 +17,11 @@ _BCRYPT_MAX_BYTES = 72
 
 
 def _truncate_for_bcrypt(s: str) -> str:
+    """Truncate to 72 bytes; use latin-1 so bytes 0-71 are unchanged for bcrypt compatibility."""
     encoded = s.encode("utf-8")
     if len(encoded) <= _BCRYPT_MAX_BYTES:
         return s
-    return encoded[:_BCRYPT_MAX_BYTES].decode("utf-8", errors="replace")
+    return encoded[:_BCRYPT_MAX_BYTES].decode("latin-1")
 
 
 def hash_password(password: str) -> str:

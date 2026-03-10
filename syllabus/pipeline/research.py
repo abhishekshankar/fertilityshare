@@ -57,6 +57,6 @@ def research_node(state: dict) -> dict:
     try:
         research, research_citations = run_research(outline, intake_context)
         return {"research": research, "research_citations": research_citations, "error": None}
-    except Exception:
+    except Exception as e:
         research, research_citations = run_research_stub(outline)
-        return {"research": research, "research_citations": research_citations, "error": None}
+        return {"research": research, "research_citations": research_citations, "error": str(e)}

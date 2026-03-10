@@ -14,6 +14,13 @@ from syllabus.db.models import User
 BEARER_PREFIX = "Bearer "
 
 
+def parse_bearer_token(authorization: str | None) -> str | None:
+    """Extract Bearer token from Authorization header. Returns None if missing or not Bearer."""
+    if not authorization or not authorization.startswith(BEARER_PREFIX):
+        return None
+    return authorization.replace(BEARER_PREFIX, "").strip() or None
+
+
 async def get_db():
     async with async_session_factory() as session:
         yield session
@@ -34,9 +41,7 @@ async def get_current_user(
     session: Annotated[AsyncSession, Depends(get_db)],
     authorization: Annotated[str | None, Header(alias="Authorization")] = None,
 ) -> User:
-    token = None
-    if authorization and authorization.startswith(BEARER_PREFIX):
-        token = authorization.replace(BEARER_PREFIX, "").strip()
+    token = parse_bearer_token(authorization)
     if not token:
         raise HTTPException(status_code=401, detail="Missing or invalid authorization")
     user = await _token_to_user(session, token)
@@ -60,11 +65,7 @@ async def get_current_user_for_stream(
     token: Annotated[str | None, Query(alias="token")] = None,
 ) -> User:
     """Auth for SSE stream: accept Bearer header or ?token= for EventSource."""
-    auth_token = None
-    if authorization and authorization.startswith(BEARER_PREFIX):
-        auth_token = authorization.replace(BEARER_PREFIX, "").strip()
-    elif token:
-        auth_token = token
+    auth_token = parse_bearer_token(authorization) or token
     if not auth_token:
         raise HTTPException(status_code=401, detail="Missing or invalid authorization")
     user = await _token_to_user(session, auth_token)
