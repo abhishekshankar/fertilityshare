@@ -13,7 +13,9 @@ TOP_K = 5
 
 
 def _get_client():
-    return chromadb.PersistentClient(path=RAG_INDEX_PATH, settings=Settings(anonymized_telemetry=False))
+    return chromadb.PersistentClient(
+        path=RAG_INDEX_PATH, settings=Settings(anonymized_telemetry=False)
+    )
 
 
 def _get_embedding_function():
@@ -77,12 +79,18 @@ def query_facts(
             if doc:
                 facts_parts.append(doc.strip())
                 meta = metas[i] if i < len(metas) else {}
-                citations.append({
-                    "source": meta.get("source", "Source"),
-                    "snippet": doc.strip()[:300],
-                })
-        facts_str = "\n\n".join(facts_parts) if facts_parts else (
-            "Key concepts and evidence-based points for this topic (no close match in index)."
+                citations.append(
+                    {
+                        "source": meta.get("source", "Source"),
+                        "snippet": doc.strip()[:300],
+                    }
+                )
+        facts_str = (
+            "\n\n".join(facts_parts)
+            if facts_parts
+            else (
+                "Key concepts and evidence-based points for this topic (no close match in index)."
+            )
         )
         return facts_str, citations
     except Exception:

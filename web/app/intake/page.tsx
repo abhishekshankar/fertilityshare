@@ -1,8 +1,29 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../auth/context";
+
+function intakeErrorMessage(status: number, detail: unknown): string {
+  if (status === 401) return "Please sign in again.";
+  if (status === 403) {
+    if (typeof detail === "string") return detail;
+    return "You don't have access to create a course.";
+  }
+  if (status === 422) {
+    if (typeof detail === "string") return detail;
+    if (Array.isArray(detail) && detail.length > 0) {
+      const first = detail[0];
+      const msg = first?.msg ?? first?.message ?? JSON.stringify(first);
+      return typeof msg === "string" ? msg : JSON.stringify(msg);
+    }
+    return "Please check your answers and try again.";
+  }
+  if (status >= 500) return "Something went wrong. Please try again.";
+  if (typeof detail === "string") return detail;
+  return "Something went wrong. Please try again.";
+}
 
 const JOURNEY_OPTIONS = [
   "Newly diagnosed",
@@ -65,13 +86,25 @@ export default function IntakePage() {
         }),
       });
       if (!res.ok) {
-        const t = await res.text();
-        throw new Error(t || res.statusText);
+        const text = await res.text();
+        let detail: unknown = text;
+        try {
+          const j = JSON.parse(text);
+          detail = j.detail ?? text;
+        } catch {
+          // leave detail as text
+        }
+        const message = intakeErrorMessage(res.status, detail);
+        setError(message);
+        setLoading(false);
+        return;
       }
       const data = await res.json();
       router.push(`/generate/${data.job_id}`);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Request failed");
+      setError(
+        e instanceof Error ? e.message : "Something went wrong. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -94,6 +127,23 @@ export default function IntakePage() {
           />
         ))}
       </div>
+
+      {error && (
+        <div
+          className="rounded-lg border border-red-200 bg-red-50 p-4"
+          role="alert"
+        >
+          <p className="text-red-700 text-sm">{error}</p>
+          {error === "Please sign in again." && (
+            <Link
+              href="/login"
+              className="mt-2 inline-block text-sm font-medium text-amber-700 underline hover:text-amber-800"
+            >
+              Sign in again
+            </Link>
+          )}
+        </div>
+      )}
 
       {step === 1 && (
         <div className="space-y-4">
@@ -172,8 +222,6 @@ export default function IntakePage() {
           </div>
         </div>
       )}
-
-      {error && <p className="text-red-600">{error}</p>}
 
       <div className="flex gap-3">
         {step > 1 && (

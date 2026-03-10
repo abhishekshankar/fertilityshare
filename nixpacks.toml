@@ -1,0 +1,9 @@
+# Railway/Nixpacks: Python backend (FastAPI). Start command from Procfile.
+[phases.setup]
+nixPkgs = ["python311", "gcc", "postgresql"]
+
+[phases.install]
+cmds = ["pip install ."]
+
+[variables]
+PYTHON_VERSION = "3.11"
