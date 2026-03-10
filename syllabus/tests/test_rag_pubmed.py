@@ -66,9 +66,11 @@ def test_index_pubmed_calls_index_documents(monkeypatch):
     mock_cm = MagicMock()
     mock_cm.__enter__ = lambda s: mock_client_instance
     mock_cm.__exit__ = lambda s, *a: None
-    with patch("syllabus.rag.pubmed.httpx.Client", return_value=mock_cm):
-        with patch("syllabus.rag.pubmed.time.sleep"):
-            n = index_pubmed(queries=["dummy"], max_per_query=1)
+    with (
+        patch("syllabus.rag.pubmed.httpx.Client", return_value=mock_cm),
+        patch("syllabus.rag.pubmed.time.sleep"),
+    ):
+        n = index_pubmed(queries=["dummy"], max_per_query=1)
     assert n == 42
     mock_index.assert_called_once()
     call_args = mock_index.call_args[0][0]

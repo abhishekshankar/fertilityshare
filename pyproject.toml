@@ -58,6 +58,13 @@ ignore = ["E501", "B008"]  # E501 line length; B008 FastAPI Depends() in default
 
 [tool.ruff.lint.per-file-ignores]
 "syllabus/api/main.py" = ["E402"]  # load_dotenv() before imports
+# Graph/API nodes: catch Exception to return error state for any failure (Sonar: document or narrow in UI)
+"syllabus/api/routes/generate.py" = ["BLE001"]
+"syllabus/pipeline/content.py" = ["BLE001"]
+"syllabus/pipeline/intent.py" = ["BLE001"]
+"syllabus/pipeline/outline.py" = ["BLE001"]
+"syllabus/pipeline/research.py" = ["BLE001"]
+"syllabus/rag/store.py" = ["BLE001"]
 
 [tool.ruff.format]
 

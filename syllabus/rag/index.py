@@ -55,7 +55,7 @@ def index_directory(path: str, extensions: tuple[str, ...] = (".txt", ".md")) ->
                 text = f.read_text(encoding="utf-8", errors="replace")
                 source_id = str(f.relative_to(root))
                 documents.append((source_id, text))
-            except Exception:
+            except OSError:
                 continue
     return index_documents(documents)
 
@@ -69,5 +69,5 @@ def index_file(file_path: str, source_id: str | None = None) -> int:
         text = path.read_text(encoding="utf-8", errors="replace")
         sid = source_id or path.name
         return index_documents([(sid, text)])
-    except Exception:
+    except OSError:
         return 0

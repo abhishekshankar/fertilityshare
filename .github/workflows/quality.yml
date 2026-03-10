@@ -4,6 +4,9 @@ name: Code Quality & Security
 on:
   pull_request:
     branches: [staging, main, feat/v1-mvp]
+  push:
+    branches: [main, feat/v1-mvp]
+  workflow_dispatch:
 
 jobs:
   sonarcloud:
@@ -39,7 +42,6 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
-        continue-on-error: true  # Re-enable when Quality Gate passes at sonarcloud.io
 
   secrets-scan:
     runs-on: ubuntu-latest

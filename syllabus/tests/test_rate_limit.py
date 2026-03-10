@@ -49,7 +49,7 @@ async def test_v1_rate_limited_returns_429_and_retry_after(strict_limiter):
         # Third request should be rate limited
         r3 = await client.get("/v1/courses")
     assert r3.status_code == 429
-    assert "retry-after" in [k.lower() for k in r3.headers.keys()]
+    assert "retry-after" in [k.lower() for k in r3.headers]
 
 
 async def test_health_exempt_from_rate_limit(strict_limiter):
