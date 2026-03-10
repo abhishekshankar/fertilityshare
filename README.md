@@ -100,4 +100,8 @@ See [docs/V0_EVAL.md](docs/V0_EVAL.md) for the 10 prompts, success criteria, and
 - `web/` — Next.js app (intake, stream, course, dashboard, login, waitlist)
 - `syllabus/tests/` — Unit and integration tests
 
+## Production (Railway + Vercel)
+
+Set production env vars in Railway and Vercel, and add the production callback URL in Google OAuth. See **[docs/PRODUCTION-ENV.md](docs/PRODUCTION-ENV.md)** for the full list and Google Cloud steps.
+
 PRD: [prd.md](prd.md).
