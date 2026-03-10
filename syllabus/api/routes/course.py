@@ -1,6 +1,7 @@
 """GET /v1/course/{id}, GET /v1/courses, progress and feedback."""
 
 from datetime import datetime, timezone
+from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -13,6 +14,8 @@ from syllabus.db.models import Course, Progress, User, UserCourseState
 
 router = APIRouter(prefix="/v1", tags=["course"])
 
+_COURSE_NOT_FOUND = "Course not found"
+
 
 def _total_lessons(course_spec: dict) -> int:
     modules = course_spec.get("modules") or []
@@ -21,8 +24,8 @@ def _total_lessons(course_spec: dict) -> int:
 
 @router.get("/courses")
 async def list_courses(
-    session: AsyncSession = Depends(get_db),
-    user: User = Depends(get_current_user_allowed),
+    session: Annotated[AsyncSession, Depends(get_db)],
+    user: Annotated[User, Depends(get_current_user_allowed)],
 ) -> list[dict]:
     """List current user's courses with completion %."""
     result = await session.execute(
@@ -52,11 +55,11 @@ async def list_courses(
     return out
 
 
-@router.get("/course/{course_id}")
+@router.get("/course/{course_id}", responses={404: {"description": _COURSE_NOT_FOUND}})
 async def get_course(
     course_id: UUID,
-    session: AsyncSession = Depends(get_db),
-    user: User = Depends(get_current_user_allowed),
+    session: Annotated[AsyncSession, Depends(get_db)],
+    user: Annotated[User, Depends(get_current_user_allowed)],
 ) -> dict:
     """Return CourseSpec JSON for the course. User must own the course."""
     result = await session.execute(
@@ -64,15 +67,15 @@ async def get_course(
     )
     course = result.scalars().first()
     if course is None:
-        raise HTTPException(status_code=404, detail="Course not found")
+        raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
     return course.course_spec
 
 
-@router.get("/course/{course_id}/progress")
+@router.get("/course/{course_id}/progress", responses={404: {"description": _COURSE_NOT_FOUND}})
 async def get_course_progress(
     course_id: UUID,
-    session: AsyncSession = Depends(get_db),
-    user: User = Depends(get_current_user_allowed),
+    session: Annotated[AsyncSession, Depends(get_db)],
+    user: Annotated[User, Depends(get_current_user_allowed)],
 ) -> dict:
     """Return completed lesson ids and last_lesson_index for resume."""
     result = await session.execute(
@@ -80,7 +83,7 @@ async def get_course_progress(
     )
     course = result.scalars().first()
     if course is None:
-        raise HTTPException(status_code=404, detail="Course not found")
+        raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
     progress_result = await session.execute(
         select(Progress.lesson_id).where(
             Progress.user_id == user.id,
@@ -112,13 +115,16 @@ class FeedbackBody(BaseModel):
     feedback: str  # "up", "down", or free text
 
 
-@router.post("/course/{course_id}/lesson/{lesson_id}/complete")
+@router.post(
+    "/course/{course_id}/lesson/{lesson_id}/complete",
+    responses={404: {"description": _COURSE_NOT_FOUND}},
+)
 async def complete_lesson(
     course_id: UUID,
     lesson_id: UUID,
+    session: Annotated[AsyncSession, Depends(get_db)],
+    user: Annotated[User, Depends(get_current_user_allowed)],
     body: CompleteBody | None = None,
-    session: AsyncSession = Depends(get_db),
-    user: User = Depends(get_current_user_allowed),
 ) -> dict:
     """Record lesson completed; optionally update last_lesson_index for resume."""
     result = await session.execute(
@@ -126,7 +132,7 @@ async def complete_lesson(
     )
     course = result.scalars().first()
     if course is None:
-        raise HTTPException(status_code=404, detail="Course not found")
+        raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
     progress_result = await session.execute(
         select(Progress).where(
             Progress.user_id == user.id,
@@ -168,13 +174,16 @@ async def complete_lesson(
     return {"ok": True}
 
 
-@router.post("/course/{course_id}/lesson/{lesson_id}/feedback")
+@router.post(
+    "/course/{course_id}/lesson/{lesson_id}/feedback",
+    responses={404: {"description": _COURSE_NOT_FOUND}},
+)
 async def post_lesson_feedback(
     course_id: UUID,
     lesson_id: UUID,
     body: FeedbackBody,
-    session: AsyncSession = Depends(get_db),
-    user: User = Depends(get_current_user_allowed),
+    session: Annotated[AsyncSession, Depends(get_db)],
+    user: Annotated[User, Depends(get_current_user_allowed)],
 ) -> dict:
     """Store thumbs or free-text feedback for a lesson."""
     result = await session.execute(
@@ -182,7 +191,7 @@ async def post_lesson_feedback(
     )
     course = result.scalars().first()
     if course is None:
-        raise HTTPException(status_code=404, detail="Course not found")
+        raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
     progress_result = await session.execute(
         select(Progress).where(
             Progress.user_id == user.id,
@@ -206,19 +215,22 @@ async def post_lesson_feedback(
     return {"ok": True}
 
 
-@router.put("/course/{course_id}/state")
+@router.put(
+    "/course/{course_id}/state",
+    responses={404: {"description": _COURSE_NOT_FOUND}},
+)
 async def update_course_state(
     course_id: UUID,
     body: StateUpdateBody,
-    session: AsyncSession = Depends(get_db),
-    user: User = Depends(get_current_user_allowed),
+    session: Annotated[AsyncSession, Depends(get_db)],
+    user: Annotated[User, Depends(get_current_user_allowed)],
 ) -> dict:
     """Update last_lesson_index for resume position."""
     result = await session.execute(
         select(Course).where(Course.id == course_id, Course.user_id == user.id)
     )
     if result.scalars().first() is None:
-        raise HTTPException(status_code=404, detail="Course not found")
+        raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
     state_result = await session.execute(
         select(UserCourseState).where(
             UserCourseState.user_id == user.id,

@@ -1,5 +1,6 @@
 """Shared dependencies: DB session and current user."""
 
+from typing import Annotated
 from uuid import UUID
 
 from fastapi import Depends, Header, HTTPException, Query
@@ -9,6 +10,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from syllabus.api.auth import decode_access_token
 from syllabus.db.database import async_session_factory
 from syllabus.db.models import User
+
+BEARER_PREFIX = "Bearer "
 
 
 async def get_db():
@@ -28,12 +31,12 @@ async def _token_to_user(session: AsyncSession, token: str) -> User | None:
 
 
 async def get_current_user(
-    session: AsyncSession = Depends(get_db),
-    authorization: str | None = Header(None, alias="Authorization"),
+    session: Annotated[AsyncSession, Depends(get_db)],
+    authorization: Annotated[str | None, Header(alias="Authorization")] = None,
 ) -> User:
     token = None
-    if authorization and authorization.startswith("Bearer "):
-        token = authorization.replace("Bearer ", "").strip()
+    if authorization and authorization.startswith(BEARER_PREFIX):
+        token = authorization.replace(BEARER_PREFIX, "").strip()
     if not token:
         raise HTTPException(status_code=401, detail="Missing or invalid authorization")
     user = await _token_to_user(session, token)
@@ -43,7 +46,7 @@ async def get_current_user(
 
 
 async def get_current_user_allowed(
-    user: User = Depends(get_current_user),
+    user: Annotated[User, Depends(get_current_user)],
 ) -> User:
     """Require authenticated user with invite_allowed (for generate, courses, etc.)."""
     if not user.invite_allowed:
@@ -52,14 +55,14 @@ async def get_current_user_allowed(
 
 
 async def get_current_user_for_stream(
-    session: AsyncSession = Depends(get_db),
-    authorization: str | None = Header(None, alias="Authorization"),
-    token: str | None = Query(None, alias="token"),
+    session: Annotated[AsyncSession, Depends(get_db)],
+    authorization: Annotated[str | None, Header(alias="Authorization")] = None,
+    token: Annotated[str | None, Query(alias="token")] = None,
 ) -> User:
     """Auth for SSE stream: accept Bearer header or ?token= for EventSource."""
     auth_token = None
-    if authorization and authorization.startswith("Bearer "):
-        auth_token = authorization.replace("Bearer ", "").strip()
+    if authorization and authorization.startswith(BEARER_PREFIX):
+        auth_token = authorization.replace(BEARER_PREFIX, "").strip()
     elif token:
         auth_token = token
     if not auth_token:
@@ -71,7 +74,7 @@ async def get_current_user_for_stream(
 
 
 async def get_current_user_allowed_for_stream(
-    user: User = Depends(get_current_user_for_stream),
+    user: Annotated[User, Depends(get_current_user_for_stream)],
 ) -> User:
     """Require invite_allowed for SSE stream."""
     if not user.invite_allowed:

@@ -18,10 +18,7 @@ def _chunk_text(text: str, chunk_size: int = 800, overlap: int = 100) -> list[st
     return [c for c in chunks if c]
 
 
-def index_documents(
-    documents: list[tuple[str, str]],
-    collection_name: str | None = None,
-) -> int:
+def index_documents(documents: list[tuple[str, str]]) -> int:
     """
     Index (source_id, text) pairs into the store. Each document is chunked and embedded.
     Returns number of chunks added.
@@ -55,7 +52,7 @@ def index_directory(path: str, extensions: tuple[str, ...] = (".txt", ".md")) ->
                 text = f.read_text(encoding="utf-8", errors="replace")
                 source_id = str(f.relative_to(root))
                 documents.append((source_id, text))
-            except Exception:
+            except OSError:
                 continue
     return index_documents(documents)
 
@@ -69,5 +66,5 @@ def index_file(file_path: str, source_id: str | None = None) -> int:
         text = path.read_text(encoding="utf-8", errors="replace")
         sid = source_id or path.name
         return index_documents([(sid, text)])
-    except Exception:
+    except OSError:
         return 0

@@ -5,6 +5,7 @@ import json
 import queue
 import threading
 import uuid
+from typing import Annotated
 
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
@@ -16,6 +17,7 @@ from syllabus.api.job_store import (
     get_queue,
     get_status,
     put_event,
+    set_job_task,
     set_status,
 )
 from syllabus.db.database import async_session_factory
@@ -111,17 +113,21 @@ async def _run_job(job_id: str, intake: IntakeData, user_id: uuid.UUID | None = 
 
 
 @router.post("/generate")
-async def post_generate(intake: IntakeData, user: User = Depends(get_current_user_allowed)) -> dict:
+async def post_generate(
+    intake: IntakeData,
+    user: Annotated[User, Depends(get_current_user_allowed)],
+) -> dict:
     """Queue a generation job; return job_id. Requires auth."""
     job_id = create_job()
-    asyncio.create_task(_run_job(job_id, intake, user_id=user.id))
+    task = asyncio.create_task(_run_job(job_id, intake, user_id=user.id))
+    set_job_task(job_id, task)
     return {"job_id": job_id, "status": "queued"}
 
 
 @router.get("/generate/{job_id}/stream")
 async def stream_generate(
     job_id: str,
-    user: User = Depends(get_current_user_allowed_for_stream),
+    user: Annotated[User, Depends(get_current_user_allowed_for_stream)],
 ) -> StreamingResponse:
     """SSE stream of progress events for the job."""
 

@@ -1,5 +1,7 @@
 """LangGraph orchestration: Intent -> Outline -> Research -> Content -> QA (PRD 5.2)."""
 
+from collections.abc import Callable
+
 from langgraph.graph import END, START, StateGraph
 
 from syllabus.models.schemas import CourseSpec
@@ -53,7 +55,7 @@ STREAM_MESSAGES = {
 
 def stream_pipeline(
     raw_intake: str | dict,
-    callback: None = None,
+    callback: Callable[[str, dict], None] | None = None,
 ) -> dict | None:
     """
     Run pipeline with streaming; call callback(node_name, state) for each node.
@@ -65,7 +67,7 @@ def stream_pipeline(
     for chunk in graph.stream(initial):
         for node_name, state in chunk.items():
             last_state = dict(state) if state else last_state
-            if callback and node_name:
+            if callback is not None and node_name:
                 callback(node_name, last_state or {})
     if last_state and last_state.get("qa_passed") and last_state.get("course_spec"):
         spec = last_state["course_spec"]

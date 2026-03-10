@@ -6,6 +6,8 @@ from typing import Any
 
 # job_id -> asyncio.Queue that receives SSE events (dicts with stage, message, progress, etc.)
 _job_queues: dict[str, asyncio.Queue] = {}
+# job_id -> asyncio.Task (keep ref to avoid premature GC)
+_job_tasks: dict[str, asyncio.Task] = {}
 # job_id -> { "status": "queued"|"running"|"done"|"failed", "course_id"?: uuid, "error"?: str }
 _job_status: dict[str, dict[str, Any]] = {}
 
@@ -42,6 +44,13 @@ async def put_event(job_id: str, event: dict[str, Any]) -> None:
         await q.put(event)
 
 
+def set_job_task(job_id: str, task: asyncio.Task) -> None:
+    """Store task reference so it is not garbage collected."""
+    _job_tasks[job_id] = task
+    task.add_done_callback(lambda _: _job_tasks.pop(job_id, None))
+
+
 def cleanup_job(job_id: str) -> None:
     """Remove queue so no more events; keep status so late SSE clients can get course_id."""
     _job_queues.pop(job_id, None)
+    _job_tasks.pop(job_id, None)

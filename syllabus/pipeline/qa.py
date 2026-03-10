@@ -25,31 +25,28 @@ def _has_prescriptive_language(text: str) -> bool:
     if not text:
         return False
     lower = text.lower()
-    for pat in PRESCRIPTIVE_PATTERNS:
-        if re.search(pat, lower, re.IGNORECASE):
-            return True
-    return False
+    return any(re.search(pat, lower, re.IGNORECASE) for pat in PRESCRIPTIVE_PATTERNS)
 
 
 def _lesson_has_compliance_note(lesson: Lesson) -> bool:
     """Check lesson has at least one compliance_note block with RE question."""
     for b in lesson.blocks:
-        if b.type == ContentBlockType.compliance_note:
-            if b.content and (
+        if (
+            b.type == ContentBlockType.compliance_note
+            and b.content
+            and (
                 "ask" in b.content.lower()
                 or "re" in b.content.lower()
                 or "doctor" in b.content.lower()
-            ):
-                return True
+            )
+        ):
+            return True
     return False
 
 
 def _lesson_has_no_prescriptive(lesson: Lesson) -> bool:
     """Check no block contains prescriptive language."""
-    for b in lesson.blocks:
-        if _has_prescriptive_language(b.content):
-            return False
-    return True
+    return all(not _has_prescriptive_language(b.content) for b in lesson.blocks)
 
 
 def run_qa_rules(course_spec: CourseSpec) -> tuple[bool, str]:
