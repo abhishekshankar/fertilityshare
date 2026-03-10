@@ -1,17 +1,32 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { useAuth } from "../auth/context";
+
+const ERROR_MESSAGES: Record<string, string> = {
+  access_denied: "Google sign-in was cancelled or denied.",
+  token_exchange_failed: "Google sign-in failed (token exchange). Please try again.",
+  no_token: "Google sign-in failed (no token). Please try again.",
+  userinfo_failed: "Google sign-in failed (could not load profile). Please try again.",
+  missing_profile: "Google sign-in failed (missing email or profile). Please try again.",
+  google_signin_failed: "Sign-in with Google did not complete. Please try again.",
+};
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { signIn, user, loading } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const err = searchParams.get("error");
+    if (err && ERROR_MESSAGES[err]) setError(ERROR_MESSAGES[err]);
+  }, [searchParams]);
 
   const apiBase = "/api";
 
