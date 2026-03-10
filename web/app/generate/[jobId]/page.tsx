@@ -85,7 +85,10 @@ export default function GeneratePage() {
         if (data.done && data.course_id) {
           finishedRef.current = true;
           eventSource.close();
-          router.push(`/course/${data.course_id}`);
+          const courseId = String(data.course_id);
+          if (courseId && courseId !== "undefined") {
+            router.push(`/course/${courseId}`);
+          }
         } else if (data.done && data.error) {
           setErrorFriendly(data.error);
         }

@@ -120,10 +120,15 @@ async def auth_google() -> RedirectResponse:
 
 def _debug_log(payload: dict) -> None:
     import json
+    entry = {"sessionId": "41ee7a", "timestamp": __import__("time").time() * 1000, **payload}
+    line = json.dumps(entry) + "\n"
+    # Stdout so Railway/production logs capture it (Option B)
+    print(f"[oauth-debug] {line.strip()}", flush=True)
+    # Local file for cursor debug session (optional; may fail in containers)
     log_path = "/Users/abhi/Documents/GitHub/fertilityshare/.cursor/debug-41ee7a.log"
     try:
         with open(log_path, "a") as f:
-            f.write(json.dumps({"sessionId": "41ee7a", "timestamp": __import__("time").time() * 1000, **payload}) + "\n")
+            f.write(line)
     except Exception:
         pass
 
@@ -143,6 +148,9 @@ async def auth_google_callback(
         _debug_log({"location": "auth.py:google_callback", "message": "redirect_login_access_denied", "data": {}, "hypothesisId": "H1"})
         return RedirectResponse(url=f"{FRONTEND_URL}/login?error=access_denied")
     redirect_uri = f"{os.environ.get('API_URL', 'http://127.0.0.1:8000')}/v1/auth/google/callback"
+    # #region agent log
+    _debug_log({"location": "auth.py:google_callback", "message": "token_exchange_request", "data": {"redirect_uri": redirect_uri, "api_url_env": os.environ.get("API_URL"), "has_client_id": bool(GOOGLE_CLIENT_ID), "has_client_secret": bool(GOOGLE_CLIENT_SECRET)}, "hypothesisId": "H1"})
+    # #endregion
     async with httpx.AsyncClient() as client:
         token_resp = await client.post(
             "https://oauth2.googleapis.com/token",
@@ -156,7 +164,13 @@ async def auth_google_callback(
             headers={"Content-Type": "application/x-www-form-urlencoded"},
         )
     if token_resp.status_code != 200:
-        _debug_log({"location": "auth.py:google_callback", "message": "redirect_login_token_exchange_failed", "data": {"status": token_resp.status_code}, "hypothesisId": "H1"})
+        try:
+            err_body = token_resp.text
+            if len(err_body) > 500:
+                err_body = err_body[:500] + "..."
+        except Exception:
+            err_body = ""
+        _debug_log({"location": "auth.py:google_callback", "message": "redirect_login_token_exchange_failed", "data": {"status": token_resp.status_code, "response_body": err_body}, "hypothesisId": "H1"})
         return RedirectResponse(url=f"{FRONTEND_URL}/login?error=token_exchange_failed")
     token_data = token_resp.json()
     access_token = token_data.get("access_token")

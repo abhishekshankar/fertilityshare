@@ -107,6 +107,10 @@ export default function CoursePage() {
   }, [authLoading, token, user, router]);
 
   useEffect(() => {
+    if (!id || id === "undefined") {
+      router.replace("/");
+      return;
+    }
     if (!token) return;
     Promise.all([
       fetch(`/api/v1/course/${id}`, { headers: { Authorization: `Bearer ${token}` } }).then((r) => {
@@ -135,7 +139,7 @@ export default function CoursePage() {
       })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
-  }, [id, token]);
+  }, [id, token, router]);
 
   const flatLessonIndex = (moduleIndex: number, lessonIndex: number): number => {
     if (!course) return 0;
