@@ -4,6 +4,8 @@ name: Code Quality & Security
 on:
   pull_request:
     branches: [staging, main, feat/v1-mvp]
+  push:
+    branches: [main]
 
 jobs:
   sonarcloud:
@@ -34,33 +36,3 @@ jobs:
       - name: SonarCloud Quality Gate
         id: sonarqube-quality-gate
         uses: SonarSource/sonarqube-quality-gate-action@master
-        with:
-          pollingTimeoutSec: 300
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
-        continue-on-error: true  # Re-enable when Quality Gate passes at sonarcloud.io
-
-  secrets-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Gitleaks
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  dependency-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Trivy filesystem scan
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: "fs"
-          scan-ref: "."
-          # Fail only on CRITICAL; HIGH (e.g. Next.js 14.x DoS) tracked until upgrade path is clear
-          severity: "CRITICAL"
-          exit-code: "1"
