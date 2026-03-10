@@ -15,6 +15,9 @@ class Base(DeclarativeBase):
     pass
 
 
+_USERS_ID = "users.id"
+
+
 def utc_now() -> datetime:
     return datetime.now(timezone.utc)
 
@@ -38,7 +41,7 @@ class Course(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     user_id: Mapped[uuid.UUID | None] = mapped_column(
-        UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=True, index=True
+        UUID(as_uuid=True), ForeignKey(_USERS_ID, ondelete="CASCADE"), nullable=True, index=True
     )
     course_spec: Mapped[dict[str, Any]] = mapped_column(JSONB, nullable=False)
     title: Mapped[str] = mapped_column(Text, nullable=False)
@@ -54,7 +57,7 @@ class Progress(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     user_id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
+        UUID(as_uuid=True), ForeignKey(_USERS_ID, ondelete="CASCADE"), nullable=False, index=True
     )
     course_id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True), ForeignKey("courses.id", ondelete="CASCADE"), nullable=False, index=True
@@ -79,7 +82,7 @@ class UserCourseState(Base):
     __tablename__ = "user_course_state"
 
     user_id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), primary_key=True
+        UUID(as_uuid=True), ForeignKey(_USERS_ID, ondelete="CASCADE"), primary_key=True
     )
     course_id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True), ForeignKey("courses.id", ondelete="CASCADE"), primary_key=True

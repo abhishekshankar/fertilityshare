@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 # Load .env so OPENAI_API_KEY is set
 load_dotenv()
 
+_ERR_OPENAI_KEY = "Error: OPENAI_API_KEY not set."
+
 app = typer.Typer(help="Syllabus V0: generate course from intake (CLI only)")
 
 
@@ -79,7 +81,7 @@ def eval(
 ):
     """Run pipeline for each of the 10 V0 test prompts and write outputs to out_dir."""
     if not os.environ.get("OPENAI_API_KEY"):
-        typer.echo("Error: OPENAI_API_KEY not set.", err=True)
+        typer.echo(_ERR_OPENAI_KEY, err=True)
         raise typer.Exit(1)
     if prompts:
         with open(prompts) as f:
@@ -116,7 +118,7 @@ def index_rag(
 ):
     """Index documents from a directory into the RAG vector store (for research retrieval)."""
     if not os.environ.get("OPENAI_API_KEY"):
-        typer.echo("Error: OPENAI_API_KEY not set.", err=True)
+        typer.echo(_ERR_OPENAI_KEY, err=True)
         raise typer.Exit(1)
     from syllabus.rag.index import index_directory
 
@@ -138,7 +140,7 @@ def index_pubmed_cmd(
 ):
     """Index PubMed abstracts into the RAG vector store (PRD T-012). Uses default fertility queries if none given."""
     if not os.environ.get("OPENAI_API_KEY"):
-        typer.echo("Error: OPENAI_API_KEY not set.", err=True)
+        typer.echo(_ERR_OPENAI_KEY, err=True)
         raise typer.Exit(1)
     from syllabus.rag.pubmed import DEFAULT_MAX_PER_QUERY, index_pubmed
 

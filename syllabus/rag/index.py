@@ -18,10 +18,7 @@ def _chunk_text(text: str, chunk_size: int = 800, overlap: int = 100) -> list[st
     return [c for c in chunks if c]
 
 
-def index_documents(
-    documents: list[tuple[str, str]],
-    collection_name: str | None = None,
-) -> int:
+def index_documents(documents: list[tuple[str, str]]) -> int:
     """
     Index (source_id, text) pairs into the store. Each document is chunked and embedded.
     Returns number of chunks added.

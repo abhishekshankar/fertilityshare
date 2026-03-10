@@ -2,6 +2,7 @@
 
 import os
 import secrets
+from typing import Annotated
 
 import httpx
 from fastapi import APIRouter, Depends, HTTPException
@@ -50,8 +51,11 @@ class MeResponse(BaseModel):
     invite_allowed: bool = False
 
 
-@router.post("/auth/register", response_model=TokenResponse)
-async def register(body: RegisterBody, session: AsyncSession = Depends(get_db)) -> TokenResponse:
+@router.post("/auth/register", responses={400: {"description": "Email already registered"}})
+async def register(
+    body: RegisterBody,
+    session: Annotated[AsyncSession, Depends(get_db)],
+) -> TokenResponse:
     result = await session.execute(select(User).where(User.email == body.email))
     if result.scalars().first():
         raise HTTPException(status_code=400, detail="Email already registered")
@@ -67,8 +71,11 @@ async def register(body: RegisterBody, session: AsyncSession = Depends(get_db)) 
     return TokenResponse(access_token=token)
 
 
-@router.post("/auth/login", response_model=TokenResponse)
-async def login(body: LoginBody, session: AsyncSession = Depends(get_db)) -> TokenResponse:
+@router.post("/auth/login", responses={401: {"description": "Invalid email or password"}})
+async def login(
+    body: LoginBody,
+    session: Annotated[AsyncSession, Depends(get_db)],
+) -> TokenResponse:
     result = await session.execute(select(User).where(User.email == body.email))
     user = result.scalars().first()
     if not user or not user.password_hash or not verify_password(body.password, user.password_hash):
@@ -79,10 +86,10 @@ async def login(body: LoginBody, session: AsyncSession = Depends(get_db)) -> Tok
     return TokenResponse(access_token=token)
 
 
-@router.get("/auth/me", response_model=MeResponse)
+@router.get("/auth/me")
 async def me(
-    user: User = Depends(get_current_user),
-    session: AsyncSession = Depends(get_db),
+    user: Annotated[User, Depends(get_current_user)],
+    session: Annotated[AsyncSession, Depends(get_db)],
 ) -> MeResponse:
     # Re-sync invite_allowed from allowlist so adding an email takes effect without API restart
     allowed = user.email.lower() in _allowed_emails()
@@ -93,7 +100,7 @@ async def me(
     return MeResponse(id=str(user.id), email=user.email, invite_allowed=user.invite_allowed)
 
 
-@router.get("/auth/google")
+@router.get("/auth/google", responses={503: {"description": "Google OAuth not configured"}})
 async def auth_google() -> RedirectResponse:
     """Redirect to Google OAuth consent screen."""
     if not GOOGLE_CLIENT_ID:
@@ -113,10 +120,10 @@ async def auth_google() -> RedirectResponse:
 
 @router.get("/auth/google/callback")
 async def auth_google_callback(
+    session: Annotated[AsyncSession, Depends(get_db)],
     code: str | None = None,
     state: str | None = None,
     error: str | None = None,
-    session: AsyncSession = Depends(get_db),
 ) -> RedirectResponse:
     """Exchange code for tokens, get user info, create/link user, redirect to frontend with token."""
     if error or not code:
