@@ -1,13 +1,5 @@
 """Rate limiting tests: 429 + Retry-After, per-IP, /health exempt."""
 
-def _key_by_forwarded(request):
-    """Use X-Forwarded-For as key when present (for per-IP test without env reload)."""
-    forwarded = request.headers.get("X-Forwarded-For")
-    if forwarded:
-        return forwarded.split(",")[0].strip()
-    return request.client.host if request.client else "127.0.0.1"
-
-
 import pytest
 from httpx import ASGITransport, AsyncClient
 from slowapi import Limiter
@@ -15,9 +7,16 @@ from slowapi import Limiter
 from syllabus.api.main import app
 from syllabus.api.rate_limit import get_remote_address
 
-
 # Route name for /health so we can exempt it on a test limiter (middleware checks this)
 _HEALTH_ROUTE_NAME = "syllabus.api.main.health"
+
+
+def _key_by_forwarded(request):
+    """Use X-Forwarded-For as key when present (for per-IP test without env reload)."""
+    forwarded = request.headers.get("X-Forwarded-For")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.client.host if request.client else "127.0.0.1"
 
 
 @pytest.fixture

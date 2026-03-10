@@ -3,7 +3,7 @@ name: CodeQL
 
 on:
   pull_request:
-    branches: [staging, main]
+    branches: [staging, main, feat/v1-mvp]
 
 jobs:
   analyze:
