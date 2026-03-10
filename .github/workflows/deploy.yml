@@ -16,6 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check Railway secrets
+        run: |
+          if [ -z "$RAILWAY_TOKEN" ] || [ -z "$RAILWAY_SERVICE_ID" ]; then
+            echo "::error::Missing GitHub secrets. In repo Settings → Secrets and variables → Actions, add RAILWAY_TOKEN and RAILWAY_SERVICE_ID (from Railway project → Settings → Tokens / service URL)."
+            exit 1
+          fi
+
       - name: Install Railway CLI
         run: npm install -g @railway/cli
 
