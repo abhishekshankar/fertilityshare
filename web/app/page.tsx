@@ -63,7 +63,7 @@ export default function HomePage() {
           {courses.map((c) => (
             <li key={c.id}>
               <Link
-                href={`/course/${c.id}`}
+                href={c?.id ? `/course/${c.id}` : "#"}
                 className="block rounded-lg border border-stone-200 bg-white p-4 shadow-sm transition hover:border-amber-300"
               >
                 <span className="font-medium text-stone-800">{c.title}</span>
