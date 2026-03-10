@@ -153,9 +153,7 @@ async def test_get_courses_returns_list_with_auth(mock_user, mock_session_empty_
         app.dependency_overrides.clear()
 
 
-async def test_get_course_returns_404_when_not_found(
-    mock_user, mock_session_course_not_found
-):
+async def test_get_course_returns_404_when_not_found(mock_user, mock_session_course_not_found):
     """GET /v1/course/{id} with valid auth but unknown course returns 404."""
     from syllabus.api.deps import get_current_user_allowed, get_db
 
@@ -205,5 +203,3 @@ async def test_post_generate_invalid_payload_returns_422():
         assert r.status_code == 422
     finally:
         app.dependency_overrides.clear()
-
-

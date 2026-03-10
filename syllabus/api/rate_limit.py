@@ -5,7 +5,6 @@ import re
 
 from fastapi import Request
 from slowapi import Limiter
-from slowapi.util import get_remote_address
 
 # Simple IPv4 and IPv6 patterns for validation (avoid header injection)
 _IPV4_RE = re.compile(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$")
