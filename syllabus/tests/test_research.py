@@ -101,12 +101,13 @@ def test_research_node_error_passthrough():
 
 
 def test_research_node_run_research_raises_uses_stub():
+    """When run_research raises, stub is used and error is propagated for downstream/operators."""
     lesson1 = LessonOutline(title="L1", objective="O1")
     outline = [ModuleOutline(title="M1", objective="O1", lessons=[lesson1])]
     state = {"outline": outline, "parsed_intake": None, "error": None}
     with patch("syllabus.pipeline.research.run_research", side_effect=Exception("RAG error")):
         result = research_node(state)
-    assert result.get("error") is None
+    assert result.get("error") == "RAG error"
     assert result["research"][str(lesson1.id)] == (
         "Key concepts and evidence-based points for this topic (RAG fallback)."
     )

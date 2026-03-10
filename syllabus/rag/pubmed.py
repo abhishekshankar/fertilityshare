@@ -1,11 +1,14 @@
 """Fetch PubMed abstracts and index them into the RAG vector store (PRD T-012)."""
 
+import logging
 import time
 from typing import Any
 
 import httpx
 
 from syllabus.rag.index import index_documents
+
+logger = logging.getLogger(__name__)
 
 BASE_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 # Rate limit: 3 requests/sec without API key
@@ -117,8 +120,16 @@ def index_pubmed(
     documents: list[tuple[str, str]] = []
     with httpx.Client() as client:
         for q in queries:
-            docs = fetch_abstracts_for_query(q, max_per_query, client=client)
-            documents.extend(docs)
+            try:
+                docs = fetch_abstracts_for_query(q, max_per_query, client=client)
+                documents.extend(docs)
+            except httpx.HTTPError as exc:
+                logger.warning(
+                    "Failed to fetch PubMed abstracts for query %r: %s",
+                    q,
+                    exc,
+                )
+                continue
     if not documents:
         return 0
     return index_documents(documents)

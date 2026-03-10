@@ -36,7 +36,7 @@ jobs:
 
       - name: SonarCloud Quality Gate
         id: sonarqube-quality-gate
-        uses: SonarSource/sonarqube-quality-gate-action@master
+        uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
         with:
           pollingTimeoutSec: 300
         env:

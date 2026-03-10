@@ -100,8 +100,9 @@ export default function IntakePage() {
         return;
       }
       const data = await res.json();
-      const jobId = data.job_id != null ? String(data.job_id) : null;
-      if (jobId && jobId !== "undefined") {
+      const rawJobId = data.job_id;
+      const jobId = rawJobId != null ? String(rawJobId).trim() : null;
+      if (jobId && jobId.length > 0) {
         router.push(`/generate/${jobId}`);
       } else {
         setError("Something went wrong. Please try again.");

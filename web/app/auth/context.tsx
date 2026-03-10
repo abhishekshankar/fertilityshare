@@ -29,9 +29,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         headers: { Authorization: `Bearer ${t}` },
         cache: "no-store",
       });
-      // #region agent log
-      fetch('http://127.0.0.1:7783/ingest/cc850ea7-3322-438b-a856-c76e4d0f2158',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'41ee7a'},body:JSON.stringify({sessionId:'41ee7a',location:'auth/context.tsx:fetchUser',message:'fetchUser_result',data:{status:res.status,ok:res.ok},timestamp:Date.now(),hypothesisId:'H3'})}).catch(()=>{});
-      // #endregion
+      if (process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_DEBUG_INGEST === "1") {
+        fetch("http://127.0.0.1:7783/ingest/cc850ea7-3322-438b-a856-c76e4d0f2158", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "41ee7a" },
+          body: JSON.stringify({
+            sessionId: "41ee7a",
+            location: "auth/context.tsx:fetchUser",
+            message: "fetchUser_result",
+            data: { status: res.status, ok: res.ok },
+            timestamp: Date.now(),
+            hypothesisId: "H3",
+          }),
+        }).catch(() => {});
+      }
       if (res.ok) {
         const data = await res.json();
         setUser({ id: data.id, email: data.email, invite_allowed: data.invite_allowed ?? false });
@@ -41,8 +52,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (typeof window !== "undefined") window.localStorage.removeItem(TOKEN_KEY);
       }
     } catch (e) {
-      if (typeof window !== "undefined") {
-        fetch('http://127.0.0.1:7783/ingest/cc850ea7-3322-438b-a856-c76e4d0f2158',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'41ee7a'},body:JSON.stringify({sessionId:'41ee7a',location:'auth/context.tsx:fetchUser',message:'fetchUser_catch',data:{err:String(e)},timestamp:Date.now(),hypothesisId:'H3'})}).catch(()=>{});
+      if (
+        typeof window !== "undefined" &&
+        process.env.NODE_ENV === "development" &&
+        process.env.NEXT_PUBLIC_DEBUG_INGEST === "1"
+      ) {
+        fetch("http://127.0.0.1:7783/ingest/cc850ea7-3322-438b-a856-c76e4d0f2158", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "41ee7a" },
+          body: JSON.stringify({
+            sessionId: "41ee7a",
+            location: "auth/context.tsx:fetchUser",
+            message: "fetchUser_catch",
+            data: { err: String(e) },
+            timestamp: Date.now(),
+            hypothesisId: "H3",
+          }),
+        }).catch(() => {});
       }
       setUser(null);
       setToken(null);

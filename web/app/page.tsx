@@ -60,23 +60,25 @@ export default function HomePage() {
         <p className="text-stone-600">No courses yet. Create your first one.</p>
       ) : (
         <ul className="list-none grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {courses.map((c) => (
-            <li key={c.id}>
-              <Link
-                href={c?.id ? `/course/${c.id}` : "#"}
-                className="block rounded-lg border border-stone-200 bg-white p-4 shadow-sm transition hover:border-amber-300"
-              >
-                <span className="font-medium text-stone-800">{c.title}</span>
-                <p className="mt-1 text-sm text-stone-500">{c.completion_pct}% complete</p>
-                <div className="mt-2 h-1.5 w-full rounded-full bg-stone-200">
-                  <div
-                    className="h-1.5 rounded-full bg-amber-600"
-                    style={{ width: `${Math.min(100, Math.max(0, c.completion_pct))}%` }}
-                  />
-                </div>
-              </Link>
-            </li>
-          ))}
+          {courses
+            .filter((c) => c.id)
+            .map((c) => (
+              <li key={c.id}>
+                <Link
+                  href={`/course/${c.id}`}
+                  className="block rounded-lg border border-stone-200 bg-white p-4 shadow-sm transition hover:border-amber-300"
+                >
+                  <span className="font-medium text-stone-800">{c.title}</span>
+                  <p className="mt-1 text-sm text-stone-500">{c.completion_pct}% complete</p>
+                  <div className="mt-2 h-1.5 w-full rounded-full bg-stone-200">
+                    <div
+                      className="h-1.5 rounded-full bg-amber-600"
+                      style={{ width: `${Math.min(100, Math.max(0, c.completion_pct))}%` }}
+                    />
+                  </div>
+                </Link>
+              </li>
+            ))}
         </ul>
       )}
       <Link

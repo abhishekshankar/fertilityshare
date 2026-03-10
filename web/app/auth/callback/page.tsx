@@ -12,9 +12,20 @@ function AuthCallbackContent() {
 
   useEffect(() => {
     const token = searchParams.get("token");
-    // #region agent log
-    fetch('http://127.0.0.1:7783/ingest/cc850ea7-3322-438b-a856-c76e4d0f2158',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'41ee7a'},body:JSON.stringify({sessionId:'41ee7a',location:'callback/page.tsx:effect1',message:'callback_effect1',data:{hasToken:!!token,tokenLen:token?.length??0,done},timestamp:Date.now(),hypothesisId:'H2'})}).catch(()=>{});
-    // #endregion
+    if (process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_DEBUG_INGEST === "1") {
+      fetch("http://127.0.0.1:7783/ingest/cc850ea7-3322-438b-a856-c76e4d0f2158", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "41ee7a" },
+        body: JSON.stringify({
+          sessionId: "41ee7a",
+          location: "callback/page.tsx:effect1",
+          message: "callback_effect1",
+          data: { hasToken: !!token, tokenLen: token?.length ?? 0, done },
+          timestamp: Date.now(),
+          hypothesisId: "H2",
+        }),
+      }).catch(() => {});
+    }
     if (token && !done) {
       setTokenFromCallback(token);
       setDone(true);
