@@ -39,6 +39,7 @@ ENV/
 .pytest_cache/
 web/test-results/
 .coverage
+.coverage*
 coverage.xml
 htmlcov/
 out/
