@@ -63,7 +63,11 @@ class Progress(Base):
     completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     feedback: Mapped[str | None] = mapped_column(Text, nullable=True)  # thumbs or free text
 
-    __table_args__ = (UniqueConstraint("user_id", "course_id", "lesson_id", name="uq_progress_user_course_lesson"),)
+    __table_args__ = (
+        UniqueConstraint(
+            "user_id", "course_id", "lesson_id", name="uq_progress_user_course_lesson"
+        ),
+    )
 
     user = relationship("User", back_populates="progress")
     course = relationship("Course", back_populates="progress")
@@ -81,4 +85,6 @@ class UserCourseState(Base):
         UUID(as_uuid=True), ForeignKey("courses.id", ondelete="CASCADE"), primary_key=True
     )
     last_lesson_index: Mapped[int] = mapped_column(nullable=False, default=0)
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, onupdate=utc_now)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=utc_now, onupdate=utc_now
+    )

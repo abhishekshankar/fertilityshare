@@ -3,12 +3,12 @@
 import os
 import secrets
 
+import httpx
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-import httpx
 
 from syllabus.api.auth import create_access_token, hash_password, verify_password
 from syllabus.api.deps import get_current_user, get_db

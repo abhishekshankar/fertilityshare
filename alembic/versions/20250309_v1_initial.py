@@ -5,11 +5,13 @@ Revises:
 Create Date: 2025-03-09
 
 """
+
 from typing import Sequence, Union
 
-from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
+
+from alembic import op
 
 revision: str = "20250309_v1"
 down_revision: Union[str, None] = None
@@ -56,7 +58,9 @@ def upgrade() -> None:
         sa.ForeignKeyConstraint(["course_id"], ["courses.id"], ondelete="CASCADE"),
         sa.ForeignKeyConstraint(["user_id"], ["users.id"], ondelete="CASCADE"),
         sa.PrimaryKeyConstraint("id"),
-        sa.UniqueConstraint("user_id", "course_id", "lesson_id", name="uq_progress_user_course_lesson"),
+        sa.UniqueConstraint(
+            "user_id", "course_id", "lesson_id", name="uq_progress_user_course_lesson"
+        ),
     )
     op.create_index("ix_progress_user_id", "progress", ["user_id"], unique=False)
     op.create_index("ix_progress_course_id", "progress", ["course_id"], unique=False)

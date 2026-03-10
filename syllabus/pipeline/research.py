@@ -15,7 +15,9 @@ def run_research_stub(outline: list[ModuleOutline]) -> tuple[dict[str, str], dic
     return facts, {}
 
 
-def run_research(outline: list[ModuleOutline], intake_context: str) -> tuple[dict[str, str], dict[str, list[dict]]]:
+def run_research(
+    outline: list[ModuleOutline], intake_context: str
+) -> tuple[dict[str, str], dict[str, list[dict]]]:
     """
     For each lesson, query RAG with title/objective + intake context.
     Returns (lesson_id -> facts string, lesson_id -> list of {source, snippet}).
@@ -55,6 +57,6 @@ def research_node(state: dict) -> dict:
     try:
         research, research_citations = run_research(outline, intake_context)
         return {"research": research, "research_citations": research_citations, "error": None}
-    except Exception as e:
+    except Exception:
         research, research_citations = run_research_stub(outline)
         return {"research": research, "research_citations": research_citations, "error": None}

@@ -10,11 +10,18 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 
 from syllabus.api.deps import get_current_user_allowed, get_current_user_allowed_for_stream
-from syllabus.api.job_store import create_job, get_queue, get_status, put_event, set_status, cleanup_job
+from syllabus.api.job_store import (
+    cleanup_job,
+    create_job,
+    get_queue,
+    get_status,
+    put_event,
+    set_status,
+)
 from syllabus.db.database import async_session_factory
 from syllabus.db.models import Course, User
 from syllabus.models.schemas import IntakeData
-from syllabus.pipeline.graph import stream_pipeline, STREAM_MESSAGES
+from syllabus.pipeline.graph import STREAM_MESSAGES, stream_pipeline
 
 router = APIRouter(prefix="/v1", tags=["generate"])
 
@@ -22,6 +29,7 @@ router = APIRouter(prefix="/v1", tags=["generate"])
 def _run_streaming_job_sync(payload: dict, sync_queue: queue.Queue) -> None:
     """Run pipeline in a thread; put node names then ('__done__', result) to sync_queue."""
     try:
+
         def callback(node_name: str, state: dict) -> None:
             sync_queue.put(node_name)
 
@@ -81,7 +89,12 @@ async def _run_job(job_id: str, intake: IntakeData, user_id: uuid.UUID | None = 
             set_status(job_id, "done", course_id=course_id)
             await put_event(
                 job_id,
-                {"stage": "done", "message": "Course ready.", "progress": 100, "course_id": course_id},
+                {
+                    "stage": "done",
+                    "message": "Course ready.",
+                    "progress": 100,
+                    "course_id": course_id,
+                },
             )
             await put_event(job_id, {"done": True, "course_id": course_id})
         else:
@@ -137,5 +150,9 @@ async def stream_generate(
     return StreamingResponse(
         event_generator(),
         media_type="text/event-stream",
-        headers={"Cache-Control": "no-cache", "Connection": "keep-alive", "X-Accel-Buffering": "no"},
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
     )

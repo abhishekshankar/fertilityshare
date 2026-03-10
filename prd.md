@@ -709,7 +709,7 @@ syllabus/
 | Method | Feature flags \+ rolling deploy | Canary deploys (10% → 50% → 100%) |
 | Environments | Dev → Production | Dev → Staging → Production |
 | CI/CD | GitHub Actions | GitHub Actions \+ automated rollback |
-| Infrastructure | Single server (Railway/Render) | Containerized (Docker) on AWS/GCP |
+| Infrastructure | Backend: Railway; frontend: Vercel (Next.js) | Containerized (Docker) on AWS/GCP |
 
 ## **10.2 Rollback Plan**
 

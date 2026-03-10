@@ -41,12 +41,14 @@ async def list_courses(
         )
         completed = count_result.scalar() or 0
         pct = round(100 * completed / total, 0) if total else 0
-        out.append({
-            "id": str(c.id),
-            "title": c.title,
-            "created_at": c.created_at.isoformat() if c.created_at else None,
-            "completion_pct": int(pct),
-        })
+        out.append(
+            {
+                "id": str(c.id),
+                "title": c.title,
+                "created_at": c.created_at.isoformat() if c.created_at else None,
+                "completion_pct": int(pct),
+            }
+        )
     return out
 
 
