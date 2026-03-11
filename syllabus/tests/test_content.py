@@ -10,6 +10,7 @@ from syllabus.models.schemas import (
 )
 from syllabus.pipeline.content import (
     _parse_blocks,
+    _strip_thinking,
     content_node,
     run_content,
     run_content_for_lesson,
@@ -22,41 +23,44 @@ def test_parse_blocks_well_formed_array():
         {"type": "example", "content": "For instance..."},
         {"type": "compliance_note", "content": "Ask your RE: ..."}
     ]"""
-    result = _parse_blocks(content)
-    assert len(result) == 3
-    assert result[0].type == ContentBlockType.explanation
-    assert result[0].content == "This is the intro."
-    assert result[1].type == ContentBlockType.example
-    assert result[2].type == ContentBlockType.compliance_note
+    blocks, key_takeaways = _parse_blocks(content)
+    assert len(blocks) == 3
+    assert blocks[0].type == ContentBlockType.explanation
+    assert blocks[0].content == "This is the intro."
+    assert blocks[1].type == ContentBlockType.example
+    assert blocks[2].type == ContentBlockType.compliance_note
+    assert isinstance(key_takeaways, list)
 
 
 def test_parse_blocks_with_blocks_key():
-    content = '{"blocks": [{"type": "explanation", "content": "Only block"}]}'
-    result = _parse_blocks(content)
-    assert len(result) >= 1
-    assert result[0].type == ContentBlockType.explanation
-    assert result[0].content == "Only block"
+    content = '{"blocks": [{"type": "explanation", "content": "Only block"}], "key_takeaways": ["One point"]}'
+    blocks, key_takeaways = _parse_blocks(content)
+    assert len(blocks) >= 1
+    assert blocks[0].type == ContentBlockType.explanation
+    assert blocks[0].content == "Only block"
+    assert key_takeaways == ["One point"]
 
 
 def test_parse_blocks_empty_adds_compliance_note():
     content = "[]"
-    result = _parse_blocks(content)
-    assert len(result) == 1
-    assert result[0].type == ContentBlockType.compliance_note
-    assert "RE" in result[0].content
+    blocks, key_takeaways = _parse_blocks(content)
+    assert len(blocks) == 1
+    assert blocks[0].type == ContentBlockType.compliance_note
+    assert "RE" in blocks[0].content
+    assert key_takeaways == []
 
 
 def test_parse_blocks_unknown_type_defaults_explanation():
     content = '[{"type": "unknown_thing", "content": "Text"}]'
-    result = _parse_blocks(content)
-    assert len(result) >= 1
-    assert result[0].type == ContentBlockType.explanation
+    blocks, _ = _parse_blocks(content)
+    assert len(blocks) >= 1
+    assert blocks[0].type == ContentBlockType.explanation
 
 
 def test_parse_blocks_missing_content_defaults():
     content = '[{"type": "explanation"}]'
-    result = _parse_blocks(content)
-    assert result[0].content == "(No content)"
+    blocks, _ = _parse_blocks(content)
+    assert blocks[0].content == "(No content)"
 
 
 def test_parse_blocks_markdown_code_block():
@@ -64,10 +68,20 @@ def test_parse_blocks_markdown_code_block():
     [{"type": "reflection", "content": "Reflect here"}]
     ```
     """
-    result = _parse_blocks(content)
-    assert len(result) >= 1
-    assert result[0].type == ContentBlockType.reflection
-    assert any(b.type == ContentBlockType.compliance_note for b in result)
+    blocks, _ = _parse_blocks(content)
+    assert len(blocks) >= 1
+    assert blocks[0].type == ContentBlockType.reflection
+    assert any(b.type == ContentBlockType.compliance_note for b in blocks)
+
+
+def test_strip_thinking_removes_tags():
+    raw = '<thinking>Step 1. The objective is X.</thinking>\n[{"type": "explanation", "content": "Body"}]'
+    out = _strip_thinking(raw)
+    assert "<thinking>" not in out
+    assert "Body" in out
+    blocks, _ = _parse_blocks(out)
+    assert len(blocks) >= 1
+    assert blocks[0].content == "Body"
 
 
 def test_parse_blocks_compliance_note_moved_to_end():
@@ -75,17 +89,17 @@ def test_parse_blocks_compliance_note_moved_to_end():
         {"type": "compliance_note", "content": "Ask RE first"},
         {"type": "explanation", "content": "Body"}
     ]"""
-    result = _parse_blocks(content)
-    assert result[-1].type == ContentBlockType.compliance_note
-    assert result[-1].content == "Ask RE first"
+    blocks, _ = _parse_blocks(content)
+    assert blocks[-1].type == ContentBlockType.compliance_note
+    assert blocks[-1].content == "Ask RE first"
 
 
 def test_run_content_for_lesson_mocked_llm():
     mock_llm = MagicMock()
-    mock_llm.invoke.return_value.content = """[
+    mock_llm.invoke.return_value.content = """{"key_takeaways": ["Takeaway 1"], "blocks": [
         {"type": "explanation", "content": "Lesson body."},
         {"type": "compliance_note", "content": "What should I ask my RE?"}
-    ]"""
+    ]}"""
     lesson_out = LessonOutline(title="IVF basics", objective="Understand protocol")
     parsed = ParsedIntake(
         journey_stage="Newly diagnosed",
@@ -99,6 +113,7 @@ def test_run_content_for_lesson_mocked_llm():
     assert result.objective == lesson_out.objective
     assert len(result.blocks) >= 2
     assert any(b.type == ContentBlockType.compliance_note for b in result.blocks)
+    assert result.key_takeaways == ["Takeaway 1"]
     mock_llm.invoke.assert_called_once()
 
 
@@ -111,7 +126,15 @@ def test_run_content_produces_modules():
     parsed = ParsedIntake(journey_stage="x", diagnosis=None, confusion="y", level="beginner")
 
     def make_lesson(lo, _f, _p, **kw):
-        return Lesson(id=lo.id, title=lo.title, objective=lo.objective, blocks=[])
+        return Lesson(
+            id=lo.id,
+            title=lo.title,
+            objective=lo.objective,
+            blocks=[],
+            key_takeaways=[],
+            knowledge_type=getattr(lo, "knowledge_type", "declarative"),
+            emotional_sensitivity_level=getattr(lo, "emotional_sensitivity_level", "low"),
+        )
 
     with patch("syllabus.pipeline.content.run_content_for_lesson", side_effect=make_lesson):
         result = run_content(outline, research, parsed)

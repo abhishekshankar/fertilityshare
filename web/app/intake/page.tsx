@@ -100,10 +100,12 @@ export default function IntakePage() {
         return;
       }
       const data = await res.json();
-      const rawJobId = data.job_id;
-      const jobId = rawJobId != null ? String(rawJobId).trim() : null;
-      if (jobId && jobId.length > 0) {
-        router.push(`/generate/${jobId}`);
+      const courseId = data.course_id ? String(data.course_id).trim() : null;
+      const rawJobId = data.job_id ? String(data.job_id).trim() : null;
+      if (courseId && courseId.length > 0 && rawJobId) {
+        router.push(`/course/${courseId}?job_id=${rawJobId}`);
+      } else if (rawJobId && rawJobId.length > 0) {
+        router.push(`/generate/${rawJobId}`);
       } else {
         setError("Something went wrong. Please try again.");
       }

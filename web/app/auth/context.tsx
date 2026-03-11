@@ -25,10 +25,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const fetchUser = useCallback(async (t: string) => {
     setLoading(true);
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
       const res = await fetch("/api/v1/auth/me", {
         headers: { Authorization: `Bearer ${t}` },
         cache: "no-store",
+        signal: controller.signal,
       });
+      clearTimeout(timeoutId);
       if (process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_DEBUG_INGEST === "1") {
         fetch("http://127.0.0.1:7783/ingest/cc850ea7-3322-438b-a856-c76e4d0f2158", {
           method: "POST",
@@ -86,6 +90,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } else {
       setLoading(false);
     }
+    // Safety: stop showing loading if still true after 10s (e.g. hydration or network issue)
+    const fallback = setTimeout(() => setLoading(false), 10000);
+    return () => clearTimeout(fallback);
   }, [fetchUser]);
 
   const signIn = useCallback((t: string) => {

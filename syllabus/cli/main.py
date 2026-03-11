@@ -7,7 +7,9 @@ from pathlib import Path
 import typer
 from dotenv import load_dotenv
 
-# Load .env so OPENAI_API_KEY is set
+# Load .env so OPENAI_API_KEY is set (try project root then cwd)
+_project_root = Path(__file__).resolve().parent.parent.parent
+load_dotenv(_project_root / ".env")
 load_dotenv()
 
 _ERR_OPENAI_KEY = "Error: OPENAI_API_KEY not set."
@@ -78,8 +80,24 @@ def eval(
         "-o",
         help="Directory to write one CourseSpec JSON per prompt",
     ),
+    rubric: bool = typer.Option(
+        False,
+        "--rubric",
+        "-r",
+        help="After eval, score courses on the 9-dimension rubric and show results",
+    ),
+    report: str = typer.Option(
+        None,
+        "--report",
+        help="With --rubric: write scorecard JSON to this path",
+    ),
+    markdown: str = typer.Option(
+        None,
+        "--markdown",
+        help="With --rubric: write scorecard markdown to this path",
+    ),
 ):
-    """Run pipeline for each of the 10 V0 test prompts and write outputs to out_dir."""
+    """Run pipeline for each of the 10 V0 test prompts and write outputs to out_dir. No time limit."""
     if not os.environ.get("OPENAI_API_KEY"):
         typer.echo(_ERR_OPENAI_KEY, err=True)
         raise typer.Exit(1)
@@ -110,6 +128,105 @@ def eval(
         if data is not None:
             success += 1
     typer.echo(f"Done: {success}/{len(prompt_list)} courses written to {out_dir}/")
+    if rubric:
+        from syllabus.eval.rubric import score_directory
+        result = score_directory(out_dir)
+        if result.get("error"):
+            typer.echo(result["error"], err=True)
+            raise typer.Exit(1)
+        summary = result.get("summary", {})
+        typer.echo("")
+        typer.echo("--- 9-dimension rubric ---")
+        typer.echo(f"Scored {summary.get('total', 0)} courses. Passed (no automated fails): {summary.get('passed_automated_plus_hr', 0)}")
+        for d in sorted(summary.get("by_dimension", {}).keys(), key=int):
+            by_d = summary["by_dimension"][d]
+            typer.echo(f"  Dim {d}: pass={by_d.get('pass_count', 0)} fail={by_d.get('fail_count', 0)} human_review={by_d.get('human_review_count', 0)}")
+        if report:
+            Path(report).parent.mkdir(parents=True, exist_ok=True)
+            with open(report, "w") as f:
+                json.dump(result, f, indent=2)
+            typer.echo(f"Report written to {report}")
+        if markdown:
+            Path(markdown).parent.mkdir(parents=True, exist_ok=True)
+            dim_names = {"1": "medical_accuracy", "2": "structural_coherence", "3": "tone", "4": "compliance", "5": "completeness", "6": "objective_coherence", "7": "scaffolding_quality", "8": "knowledge_topology_fit", "9": "emotional_calibration"}
+            lines = ["# Layer 1 Eval — 9-Dimension Rubric Scorecard", "", f"Total courses: {summary.get('total', 0)}", f"Passed (automated + human-review): {summary.get('passed_automated_plus_hr', 0)}", "", "## By dimension", "", "| Dim | Name | Pass | Fail | Human review |", "|-----|------|------|------|--------------|"]
+            for d in sorted(summary.get("by_dimension", {}).keys(), key=int):
+                by_d = summary["by_dimension"][d]
+                name = dim_names.get(d, "?")
+                lines.append(f"| {d} | {name} | {by_d.get('pass_count', 0)} | {by_d.get('fail_count', 0)} | {by_d.get('human_review_count', 0)} |")
+            with open(markdown, "w") as f:
+                f.write("\n".join(lines))
+            typer.echo(f"Markdown written to {markdown}")
+
+
+@app.command("eval-rubric")
+def eval_rubric(
+    out_dir: str = typer.Option(
+        "out",
+        "--out-dir",
+        "-o",
+        help="Directory containing course_01.json … course_10.json to score",
+    ),
+    report: str = typer.Option(
+        None,
+        "--report",
+        "-r",
+        help="Write scorecard JSON to this path",
+    ),
+    markdown: str = typer.Option(
+        None,
+        "--markdown",
+        "-m",
+        help="Write scorecard markdown to this path",
+    ),
+):
+    """Score course JSONs on the 9-dimension rubric (PRD Addendum E.1, E.3). Run after 'eval' to get before/after scores."""
+    from syllabus.eval.rubric import score_directory
+
+    result = score_directory(out_dir)
+    if result.get("error"):
+        typer.echo(result["error"], err=True)
+        raise typer.Exit(1)
+    summary = result.get("summary", {})
+    typer.echo(f"Scored {summary.get('total', 0)} courses. Passed (no automated fails): {summary.get('passed_automated_plus_hr', 0)}")
+    for d in sorted(summary.get("by_dimension", {}).keys(), key=int):
+        by_d = summary["by_dimension"][d]
+        typer.echo(f"  Dim {d}: pass={by_d.get('pass_count', 0)} fail={by_d.get('fail_count', 0)} human_review={by_d.get('human_review_count', 0)}")
+    if report:
+        Path(report).parent.mkdir(parents=True, exist_ok=True)
+        with open(report, "w") as f:
+            json.dump(result, f, indent=2)
+        typer.echo(f"Report written to {report}")
+    if markdown:
+        Path(markdown).parent.mkdir(parents=True, exist_ok=True)
+        lines = [
+            "# Layer 1 Eval — 9-Dimension Rubric Scorecard",
+            "",
+            f"Total courses: {summary.get('total', 0)}",
+            f"Passed (automated + human-review): {summary.get('passed_automated_plus_hr', 0)}",
+            "",
+            "## By dimension",
+            "",
+            "| Dim | Name | Pass | Fail | Human review |",
+            "|-----|------|------|------|--------------|",
+        ]
+        for d in sorted(summary.get("by_dimension", {}).keys(), key=int):
+            by_d = summary["by_dimension"][d]
+            name = {
+                "1": "medical_accuracy",
+                "2": "structural_coherence",
+                "3": "tone",
+                "4": "compliance",
+                "5": "completeness",
+                "6": "objective_coherence",
+                "7": "scaffolding_quality",
+                "8": "knowledge_topology_fit",
+                "9": "emotional_calibration",
+            }.get(d, "?")
+            lines.append(f"| {d} | {name} | {by_d.get('pass_count', 0)} | {by_d.get('fail_count', 0)} | {by_d.get('human_review_count', 0)} |")
+        with open(markdown, "w") as f:
+            f.write("\n".join(lines))
+        typer.echo(f"Markdown written to {markdown}")
 
 
 @app.command()

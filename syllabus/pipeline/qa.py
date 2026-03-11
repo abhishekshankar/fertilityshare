@@ -85,6 +85,15 @@ Answer:"""
     return True, "OK"
 
 
+def run_qa_for_lesson(lesson: Lesson) -> tuple[bool, str]:
+    """Run QA checks on a single lesson. Returns (passed, message)."""
+    if not _lesson_has_compliance_note(lesson):
+        return False, f"Lesson '{lesson.title}' missing compliance_note or RE question"
+    if not _lesson_has_no_prescriptive(lesson):
+        return False, f"Lesson '{lesson.title}' contains prescriptive language"
+    return True, "OK"
+
+
 def run_qa(course_spec: CourseSpec, use_llm: bool = False) -> tuple[bool, str]:
     """
     Run full QA: rules first, then optionally LLM per lesson.
@@ -114,7 +123,7 @@ def qa_node(state: dict) -> dict:
     from syllabus.models.schemas import IntakeData, Metadata
 
     if parsed is None:
-        intake = IntakeData(journey_stage="", diagnosis=None, confusion="", level="beginner")
+        intake = IntakeData(journey_stage="", diagnosis=None, confusion="", level="beginner", target_end_state="")
     elif isinstance(parsed, IntakeData):
         intake = parsed
     elif isinstance(parsed, dict):
@@ -123,15 +132,17 @@ def qa_node(state: dict) -> dict:
             diagnosis=parsed.get("diagnosis"),
             confusion=parsed.get("confusion", ""),
             level=parsed.get("level", "beginner"),
+            target_end_state=parsed.get("target_end_state", ""),
         )
     else:
-        # ParsedIntake or any model with same shape
+        # ParsedIntake or any model with same shape (P2: include target_end_state)
         d = parsed.model_dump() if hasattr(parsed, "model_dump") else parsed
         intake = IntakeData(
             journey_stage=d.get("journey_stage", ""),
             diagnosis=d.get("diagnosis"),
             confusion=d.get("confusion", ""),
             level=d.get("level", "beginner"),
+            target_end_state=d.get("target_end_state", ""),
         )
     title = "Your fertility learning course"
     if modules:

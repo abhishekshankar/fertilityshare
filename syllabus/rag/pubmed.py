@@ -11,11 +11,14 @@ from syllabus.rag.index import index_documents
 logger = logging.getLogger(__name__)
 
 BASE_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
-# Rate limit: 3 requests/sec without API key
-REQUEST_DELAY = 0.34
+# NCBI rate limit: 3 requests/sec without API key; use conservative delay to avoid 429
+REQUEST_DELAY = 0.5
+DELAY_BETWEEN_QUERIES = 1.0
+MAX_RETRIES_429 = 5
+RETRY_BACKOFF = 2.0
 
-# V1 target ~500 docs: DEFAULT_MAX_PER_QUERY × len(DEFAULT_QUERIES) ≈ 500 chunks
-DEFAULT_MAX_PER_QUERY = 50
+# V1 target ~500 docs: DEFAULT_MAX_PER_QUERY × len(DEFAULT_QUERIES); lower per-query to avoid 429
+DEFAULT_MAX_PER_QUERY = 25
 
 # Default fertility-related queries for V1 (ASRM/PubMed scope)
 DEFAULT_QUERIES = [
@@ -32,9 +35,38 @@ DEFAULT_QUERIES = [
 ]
 
 
+def _request_with_429_retry(
+    client: httpx.Client,
+    method: str,
+    url: str,
+    **kwargs: Any,
+) -> httpx.Response:
+    """Get with retries on 429 (rate limit)."""
+    last_exc: Exception | None = None
+    for attempt in range(MAX_RETRIES_429):
+        r = client.request(method, url, **kwargs)
+        if r.status_code != 429:
+            r.raise_for_status()
+            return r
+        last_exc = httpx.HTTPStatusError(
+            "429 Too Many Requests",
+            request=r.request,
+            response=r,
+        )
+        wait = RETRY_BACKOFF ** attempt
+        logger.warning("PubMed 429 rate limit; waiting %.1fs before retry %d/%d", wait, attempt + 1, MAX_RETRIES_429)
+        time.sleep(wait)
+    if last_exc:
+        raise last_exc
+    raise httpx.HTTPStatusError("429", request=None, response=None)  # type: ignore
+
+
 def _esearch(query: str, retmax: int, client: httpx.Client) -> list[str]:
     """Return list of PMIDs for the query."""
-    r = client.get(
+    time.sleep(REQUEST_DELAY)
+    r = _request_with_429_retry(
+        client,
+        "GET",
         f"{BASE_URL}/esearch.fcgi",
         params={
             "db": "pubmed",
@@ -44,7 +76,6 @@ def _esearch(query: str, retmax: int, client: httpx.Client) -> list[str]:
         },
         timeout=30.0,
     )
-    r.raise_for_status()
     data: dict[str, Any] = r.json()
     id_list = data.get("esearchresult", {}).get("idlist") or []
     return id_list
@@ -55,7 +86,9 @@ def _efetch_abstracts(pmids: list[str], client: httpx.Client) -> list[tuple[str,
     if not pmids:
         return []
     time.sleep(REQUEST_DELAY)
-    r = client.get(
+    r = _request_with_429_retry(
+        client,
+        "GET",
         f"{BASE_URL}/efetch.fcgi",
         params={
             "db": "pubmed",
@@ -65,7 +98,6 @@ def _efetch_abstracts(pmids: list[str], client: httpx.Client) -> list[tuple[str,
         },
         timeout=60.0,
     )
-    r.raise_for_status()
     text = r.text
     # efetch retmode=text returns blocks starting with "PMID: 12345" or similar
     out: list[tuple[str, str]] = []
@@ -119,7 +151,9 @@ def index_pubmed(
     queries = queries or DEFAULT_QUERIES
     documents: list[tuple[str, str]] = []
     with httpx.Client() as client:
-        for q in queries:
+        for i, q in enumerate(queries):
+            if i > 0:
+                time.sleep(DELAY_BETWEEN_QUERIES)
             try:
                 docs = fetch_abstracts_for_query(q, max_per_query, client=client)
                 documents.extend(docs)

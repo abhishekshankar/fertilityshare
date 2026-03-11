@@ -50,6 +50,7 @@ async def list_courses(
                 "title": c.title,
                 "created_at": c.created_at.isoformat() if c.created_at else None,
                 "completion_pct": int(pct),
+                "generation_status": getattr(c, "generation_status", "complete"),
             }
         )
     return out
@@ -68,7 +69,10 @@ async def get_course(
     course = result.scalars().first()
     if course is None:
         raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
-    return course.course_spec
+    spec = dict(course.course_spec)
+    spec["generation_status"] = getattr(course, "generation_status", "complete")
+    spec["job_id"] = course.job_id
+    return spec
 
 
 @router.get("/course/{course_id}/progress", responses={404: {"description": _COURSE_NOT_FOUND}})

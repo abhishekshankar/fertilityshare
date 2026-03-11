@@ -31,6 +31,7 @@ class ContentBlock(BaseModel):
     type: ContentBlockType
     content: str
     citations: list[Citation] = Field(default_factory=list)
+    emotional_sensitivity_level: Literal["low", "medium", "high"] = "low"  # PRD Addendum C: format selection (quiz vs reflection)
 
 
 # --- Intake (API request shape + parsed intent) ---
@@ -43,6 +44,7 @@ class IntakeData(BaseModel):
     diagnosis: Optional[str] = None
     confusion: str
     level: Literal["beginner", "intermediate", "advanced"] = "beginner"
+    target_end_state: str = ""  # PRD Addendum P2: one-sentence learner objective
 
 
 class ParsedIntake(BaseModel):
@@ -52,17 +54,20 @@ class ParsedIntake(BaseModel):
     diagnosis: Optional[str] = None
     confusion: str
     level: Literal["beginner", "intermediate", "advanced"] = "beginner"
+    target_end_state: str = ""  # PRD Addendum P2: extracted by IntentNode; injected into all nodes
 
 
 # --- Outline (output of OutlineNode; no full content yet) ---
 
 
 class LessonOutline(BaseModel):
-    """Lesson skeleton: title and objective only."""
+    """Lesson skeleton: title, objective, knowledge type, emotional sensitivity (PRD Addendum P3, P8)."""
 
     id: UUID = Field(default_factory=uuid4)
     title: str
     objective: str
+    knowledge_type: str = "declarative"  # declarative | procedural | conditional
+    emotional_sensitivity_level: Literal["low", "medium", "high"] = "low"  # V2: format selection (quiz vs reflection)
 
 
 class ModuleOutline(BaseModel):
@@ -101,12 +106,15 @@ class Quiz(BaseModel):
 
 
 class Lesson(BaseModel):
-    """Full lesson with blocks, optional flashcards and quiz."""
+    """Full lesson with blocks, optional flashcards and quiz (PRD Addendum C: key_takeaways, knowledge_type)."""
 
     id: UUID = Field(default_factory=uuid4)
     title: str
     objective: str
     blocks: list[ContentBlock] = Field(default_factory=list)
+    key_takeaways: list[str] = Field(default_factory=list)  # 3–5 items; rendered at top of lesson (D5)
+    knowledge_type: str = "declarative"  # declarative | procedural | conditional
+    emotional_sensitivity_level: Literal["low", "medium", "high"] = "low"  # V2: used for format selection
     flashcards: list[Flashcard] = Field(default_factory=list)
     quiz: Optional[Quiz] = None
 

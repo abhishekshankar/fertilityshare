@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useAuth } from "../auth/context";
 
 const ERROR_MESSAGES: Record<string, string> = {
@@ -14,7 +14,7 @@ const ERROR_MESSAGES: Record<string, string> = {
   google_signin_failed: "Sign-in with Google did not complete. Please try again.",
 };
 
-export default function LoginPage() {
+function LoginPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { signIn, user, loading } = useAuth();
@@ -22,11 +22,19 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [googleOAuthConfigured, setGoogleOAuthConfigured] = useState<boolean | null>(null);
 
   useEffect(() => {
     const err = searchParams.get("error");
     if (err && ERROR_MESSAGES[err]) setError(ERROR_MESSAGES[err]);
   }, [searchParams]);
+
+  useEffect(() => {
+    fetch("/api/v1/auth/google/status", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data: { configured?: boolean }) => setGoogleOAuthConfigured(Boolean(data?.configured)))
+      .catch(() => setGoogleOAuthConfigured(false));
+  }, []);
 
   const apiBase = "/api";
 
@@ -94,12 +102,20 @@ export default function LoginPage() {
     <div className="mx-auto max-w-sm space-y-6">
       <h1 className="text-2xl font-semibold text-stone-800">Sign in</h1>
 
-      <a
-        href={googleAuthUrl}
-        className="flex w-full items-center justify-center gap-2 rounded-lg border border-stone-300 bg-white px-4 py-2.5 text-stone-700 hover:bg-stone-50"
-      >
-        Sign in with Google
-      </a>
+      {googleOAuthConfigured === true && (
+        <a
+          href={googleAuthUrl}
+          className="flex w-full items-center justify-center gap-2 rounded-lg border border-stone-300 bg-white px-4 py-2.5 text-stone-700 hover:bg-stone-50"
+        >
+          Sign in with Google
+        </a>
+      )}
+      {googleOAuthConfigured === false && (
+        <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+          Sign in with Google is not configured. Set <code className="rounded bg-amber-100 px-1">GOOGLE_CLIENT_ID</code> and{" "}
+          <code className="rounded bg-amber-100 px-1">GOOGLE_CLIENT_SECRET</code> in the backend <code className="rounded bg-amber-100 px-1">.env</code>, and add the redirect URI in Google Cloud Console (see .env.example or docs).
+        </p>
+      )}
 
       <form className="space-y-4" onSubmit={handleLogin}>
         <div>
@@ -148,5 +164,13 @@ export default function LoginPage() {
         </Link>
       </p>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<p className="text-stone-600">Loading…</p>}>
+      <LoginPageContent />
+    </Suspense>
   );
 }

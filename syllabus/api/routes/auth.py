@@ -102,6 +102,14 @@ async def me(
     return MeResponse(id=str(user.id), email=user.email, invite_allowed=user.invite_allowed)
 
 
+@router.get("/auth/google/status")
+async def auth_google_status() -> dict:
+    """Return whether Google OAuth is configured (for frontend to show/hide or explain the button)."""
+    configured = bool(GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET)
+    redirect_uri = f"{os.environ.get('API_URL', 'http://127.0.0.1:8000')}/v1/auth/google/callback"
+    return {"configured": configured, "redirect_uri": redirect_uri if configured else None}
+
+
 @router.get("/auth/google", responses={503: {"description": "Google OAuth not configured"}})
 async def auth_google() -> RedirectResponse:
     """Redirect to Google OAuth consent screen."""

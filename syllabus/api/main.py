@@ -19,6 +19,13 @@ from syllabus.api.routes import auth, course, generate
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Log OAuth status so devs know what redirect URI to add in Google Cloud Console
+    client_id = os.getenv("GOOGLE_CLIENT_ID", "").strip()
+    api_url = os.getenv("API_URL", "http://127.0.0.1:8000").rstrip("/")
+    if client_id:
+        print(f"[auth] Google OAuth configured. Redirect URI: {api_url}/v1/auth/google/callback", flush=True)
+    else:
+        print("[auth] Google OAuth not configured (set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET for Sign in with Google)", flush=True)
     yield
     # shutdown: nothing to close for in-memory job store
 
