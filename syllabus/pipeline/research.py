@@ -1,7 +1,11 @@
 """ResearchNode: RAG retrieval per lesson with stub fallback (PRD T-013)."""
 
+import logging
+
 from syllabus.models.schemas import ModuleOutline
 from syllabus.rag.store import query_facts
+
+logger = logging.getLogger(__name__)
 
 
 def run_research_stub(outline: list[ModuleOutline]) -> tuple[dict[str, str], dict[str, list[dict]]]:
@@ -33,6 +37,12 @@ def run_research(
                 research[str(lesson.id)] = facts_str
                 citations[str(lesson.id)] = cites
             except Exception:
+                logger.warning(
+                    "RAG query failed for lesson %s (%s), using stub fallback",
+                    lesson.id,
+                    lesson.title,
+                    exc_info=True,
+                )
                 research[str(lesson.id)] = (
                     "Key concepts and evidence-based points for this topic (RAG fallback)."
                 )
@@ -57,10 +67,13 @@ def research_node(state: dict) -> dict:
         elif isinstance(parsed, dict):
             intake_context = f"Journey: {parsed.get('journey_stage', '')}. Diagnosis: {parsed.get('diagnosis') or 'Not specified'}."
             if parsed.get("target_end_state"):
-                intake_context = f"LEARNER OBJECTIVE: {parsed['target_end_state']}\n\n{intake_context}"
+                intake_context = (
+                    f"LEARNER OBJECTIVE: {parsed['target_end_state']}\n\n{intake_context}"
+                )
     try:
         research, research_citations = run_research(outline, intake_context)
         return {"research": research, "research_citations": research_citations, "error": None}
     except Exception as e:
+        logger.warning("run_research failed, using stub fallback: %s", e, exc_info=True)
         research, research_citations = run_research_stub(outline)
         return {"research": research, "research_citations": research_citations, "error": str(e)}

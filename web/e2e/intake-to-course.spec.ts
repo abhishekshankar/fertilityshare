@@ -7,8 +7,7 @@
  *   or the test will skip. Run from web/: npm run test:e2e
  */
 
-import { expect } from "@playwright/test";
-import { test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 const TEST_EMAIL = process.env.E2E_TEST_EMAIL;
 const TEST_PASSWORD = process.env.E2E_TEST_PASSWORD;

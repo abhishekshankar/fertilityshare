@@ -53,8 +53,13 @@ def _request_with_429_retry(
             request=r.request,
             response=r,
         )
-        wait = RETRY_BACKOFF ** attempt
-        logger.warning("PubMed 429 rate limit; waiting %.1fs before retry %d/%d", wait, attempt + 1, MAX_RETRIES_429)
+        wait = RETRY_BACKOFF**attempt
+        logger.warning(
+            "PubMed 429 rate limit; waiting %.1fs before retry %d/%d",
+            wait,
+            attempt + 1,
+            MAX_RETRIES_429,
+        )
         time.sleep(wait)
     if last_exc:
         raise last_exc
@@ -82,7 +87,7 @@ def _esearch(query: str, retmax: int, client: httpx.Client) -> list[str]:
 
 
 def _efetch_abstracts(pmids: list[str], client: httpx.Client) -> list[tuple[str, str]]:
-    """Fetch abstracts for PMIDs. Returns list of (source_id, text)."""
+    """Fetch abstracts for PMIDs via XML for robust parsing. Returns list of (source_id, text)."""
     if not pmids:
         return []
     time.sleep(REQUEST_DELAY)
@@ -94,12 +99,41 @@ def _efetch_abstracts(pmids: list[str], client: httpx.Client) -> list[tuple[str,
             "db": "pubmed",
             "id": ",".join(pmids),
             "rettype": "abstract",
-            "retmode": "text",
+            "retmode": "xml",
         },
         timeout=60.0,
     )
-    text = r.text
-    # efetch retmode=text returns blocks starting with "PMID: 12345" or similar
+    import xml.etree.ElementTree as ET
+
+    out: list[tuple[str, str]] = []
+    try:
+        root = ET.fromstring(r.text)
+    except ET.ParseError:
+        logger.warning("Failed to parse PubMed XML response; falling back to text splitting")
+        return _efetch_abstracts_text_fallback(r.text)
+    for article in root.iter("PubmedArticle"):
+        pmid_el = article.find(".//PMID")
+        if pmid_el is None or not (pmid_el.text or "").strip():
+            continue
+        pmid = pmid_el.text.strip()
+        abstract_parts = []
+        for at in article.findall(".//AbstractText"):
+            label = at.get("Label")
+            text = "".join(at.itertext()).strip()
+            if not text:
+                continue
+            if label:
+                abstract_parts.append(f"{label}: {text}")
+            else:
+                abstract_parts.append(text)
+        if not abstract_parts:
+            continue
+        out.append((f"PubMed:{pmid}", "\n".join(abstract_parts)))
+    return out
+
+
+def _efetch_abstracts_text_fallback(text: str) -> list[tuple[str, str]]:
+    """Fallback text-based parsing when XML is unavailable."""
     out: list[tuple[str, str]] = []
     blocks = text.split("PMID:")
     for block in blocks:
@@ -108,13 +142,12 @@ def _efetch_abstracts(pmids: list[str], client: httpx.Client) -> list[tuple[str,
             continue
         lines = block.splitlines()
         first = lines[0].strip()
-        # First line is the number (and possibly more); rest is title/abstract
         pmid = first.split()[0] if first else ""
         if not pmid or not pmid.isdigit():
             continue
         body = "\n".join(lines[1:]).strip() if len(lines) > 1 else ""
         if not body:
-            body = first
+            continue
         out.append((f"PubMed:{pmid}", body))
     return out
 

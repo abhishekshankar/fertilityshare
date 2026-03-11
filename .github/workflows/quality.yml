@@ -3,9 +3,9 @@ name: Code Quality & Security
 
 on:
   pull_request:
-    branches: [staging, main, feat/v1-mvp]
+    branches: [staging, main]
   push:
-    branches: [main, feat/v1-mvp]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -29,13 +29,14 @@ jobs:
         run: pytest syllabus/tests -v --cov=syllabus --cov-report=xml
 
       - name: SonarCloud
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: SonarCloud Quality Gate
         id: sonarqube-quality-gate
+        if: ${{ secrets.SONAR_TOKEN != '' }}
         uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
         with:
           pollingTimeoutSec: 300

@@ -3,6 +3,7 @@
 from unittest.mock import MagicMock, patch
 
 from syllabus.models.schemas import (
+    Citation,
     ContentBlockType,
     LessonOutline,
     ModuleOutline,
@@ -114,6 +115,36 @@ def test_run_content_for_lesson_mocked_llm():
     assert len(result.blocks) >= 2
     assert any(b.type == ContentBlockType.compliance_note for b in result.blocks)
     assert result.key_takeaways == ["Takeaway 1"]
+    mock_llm.invoke.assert_called_once()
+
+
+def test_run_content_for_lesson_with_citations():
+    mock_llm = MagicMock()
+    mock_llm.invoke.return_value.content = """{"key_takeaways": ["T1"], "blocks": [
+        {"type": "explanation", "content": "Lesson body."},
+        {"type": "compliance_note", "content": "Ask your RE."}
+    ]}"""
+    lesson_out = LessonOutline(title="IVF basics", objective="Understand protocol")
+    parsed = ParsedIntake(
+        journey_stage="Newly diagnosed",
+        diagnosis="PCOS",
+        confusion="Protocols",
+        level="beginner",
+    )
+    raw_citations = [
+        {"source": "PubMed:12345", "snippet": "Important finding"},
+        {"source": "PubMed:67890", "snippet": "Another finding"},
+    ]
+    result = run_content_for_lesson(
+        lesson_out, "Facts here", parsed, citations=raw_citations, llm=mock_llm
+    )
+    assert len(result.blocks) >= 2
+    first_block = result.blocks[0]
+    assert hasattr(first_block, "citations")
+    assert len(first_block.citations) == 2
+    assert all(isinstance(c, Citation) for c in first_block.citations)
+    for block in result.blocks[1:]:
+        assert not getattr(block, "citations", None)
     mock_llm.invoke.assert_called_once()
 
 

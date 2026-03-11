@@ -18,7 +18,7 @@ def parse_bearer_token(authorization: str | None) -> str | None:
     """Extract Bearer token from Authorization header. Returns None if missing or not Bearer."""
     if not authorization or not authorization.startswith(BEARER_PREFIX):
         return None
-    return authorization.replace(BEARER_PREFIX, "").strip() or None
+    return authorization[len(BEARER_PREFIX) :].strip() or None
 
 
 async def get_db():
