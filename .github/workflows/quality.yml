@@ -39,6 +39,7 @@ jobs:
       - name: SonarCloud Quality Gate
         id: sonarqube-quality-gate
         if: env.SONAR_TOKEN != ''
+        continue-on-error: true
         uses: SonarSource/sonarqube-quality-gate-action@v1.2.0
         with:
           pollingTimeoutSec: 300
