@@ -5,7 +5,14 @@ from collections.abc import Callable
 
 from langgraph.graph import END, START, StateGraph
 
-from syllabus.models.schemas import CourseSpec, IntakeData, Metadata, Module, ParsedIntake
+from syllabus.models.schemas import (
+    CourseSpec,
+    IntakeData,
+    Metadata,
+    Module,
+    ModuleOutline,
+    ParsedIntake,
+)
 from syllabus.pipeline.content import _flat_lessons, content_node, run_content_for_lesson
 from syllabus.pipeline.intent import intent_node
 from syllabus.pipeline.outline import outline_node
@@ -100,6 +107,57 @@ def _build_intake_data(parsed: object) -> IntakeData:
     )
 
 
+def _adjacent_lessons_context(
+    flat: list[tuple[ModuleOutline, object, int]], idx: int
+) -> list[tuple[str, str]]:
+    """Build adjacent lesson titles/objectives for arc context."""
+    result: list[tuple[str, str]] = []
+    if idx > 0:
+        _, prev_lec, _ = flat[idx - 1]
+        result.append((prev_lec.title, prev_lec.objective))
+    if idx < len(flat) - 1:
+        _, next_lec, _ = flat[idx + 1]
+        result.append((next_lec.title, next_lec.objective))
+    return result
+
+
+def _outline_to_data(outline: list[ModuleOutline]) -> list[dict]:
+    """Serialize outline modules for SSE delivery."""
+    return [
+        {
+            "id": str(mod.id),
+            "title": mod.title,
+            "objective": mod.objective,
+            "lessons": [
+                {
+                    "id": str(les.id),
+                    "title": les.title,
+                    "objective": les.objective,
+                    "status": "queued",
+                }
+                for les in mod.lessons
+            ],
+        }
+        for mod in outline
+    ]
+
+
+def _run_initial_nodes(state: dict, sync_queue: queue.Queue) -> bool:
+    """Run intent and outline nodes. Returns False if an error occurred."""
+    result = intent_node(state)
+    state.update(result)
+    sync_queue.put(("node", "intent"))
+    if state.get("error"):
+        sync_queue.put(("__error__", state["error"]))
+        return False
+    result = outline_node(state)
+    state.update(result)
+    if state.get("error"):
+        sync_queue.put(("__error__", state["error"]))
+        return False
+    return True
+
+
 def stream_pipeline_progressive(
     raw_intake: str | dict,
     sync_queue: queue.Queue,
@@ -117,40 +175,12 @@ def stream_pipeline_progressive(
     try:
         state: dict = {"raw_intake": raw_intake}
 
-        result = intent_node(state)
-        state.update(result)
-        sync_queue.put(("node", "intent"))
-        if state.get("error"):
-            sync_queue.put(("__error__", state["error"]))
-            return
-
-        result = outline_node(state)
-        state.update(result)
-        if state.get("error"):
-            sync_queue.put(("__error__", state["error"]))
+        if not _run_initial_nodes(state, sync_queue):
             return
 
         outline = state["outline"]
         parsed = state["parsed_intake"]
-
-        outline_data = [
-            {
-                "id": str(mod.id),
-                "title": mod.title,
-                "objective": mod.objective,
-                "lessons": [
-                    {
-                        "id": str(les.id),
-                        "title": les.title,
-                        "objective": les.objective,
-                        "status": "queued",
-                    }
-                    for les in mod.lessons
-                ],
-            }
-            for mod in outline
-        ]
-        sync_queue.put(("outline_ready", outline_data))
+        sync_queue.put(("outline_ready", _outline_to_data(outline)))
 
         result = research_node(state)
         state.update(result)
@@ -158,7 +188,6 @@ def stream_pipeline_progressive(
 
         research = state.get("research") or {}
         research_citations = state.get("research_citations") or {}
-
         if isinstance(parsed, dict):
             parsed = ParsedIntake.model_validate(parsed)
 
@@ -170,56 +199,30 @@ def stream_pipeline_progressive(
             mod_idx = next(i for i, m in enumerate(outline) if m.id == mod_out.id)
             les_idx = next(i for i, l_out in enumerate(mod_out.lessons) if l_out.id == lec_out.id)
 
-            position_in_arc = f"Lesson {one_based} of {total}"
-            adjacent_lessons: list[tuple[str, str]] = []
-            if idx > 0:
-                _, prev_lec, _ = flat[idx - 1]
-                adjacent_lessons.append((prev_lec.title, prev_lec.objective))
-            if idx < total - 1:
-                _, next_lec, _ = flat[idx + 1]
-                adjacent_lessons.append((next_lec.title, next_lec.objective))
-
-            facts = research.get(str(lec_out.id), "")
-            citations = research_citations.get(str(lec_out.id), [])
-
             lesson = run_content_for_lesson(
                 lec_out,
-                facts,
+                research.get(str(lec_out.id), ""),
                 parsed,
-                citations=citations or None,
-                position_in_arc=position_in_arc,
-                adjacent_lessons=adjacent_lessons,
+                citations=research_citations.get(str(lec_out.id), []) or None,
+                position_in_arc=f"Lesson {one_based} of {total}",
+                adjacent_lessons=_adjacent_lessons_context(flat, idx),
             )
+            run_qa_for_lesson(lesson)
 
-            passed, _msg = run_qa_for_lesson(lesson)
-            if not passed:
-                # V1.1: still emit; retry/refinement loop deferred to V3
-                pass
+            all_lessons.setdefault(str(mod_out.id), []).append(lesson)
+            sync_queue.put(("lesson_ready", mod_idx, les_idx, lesson.model_dump(mode="json")))
 
-            lesson_dict = lesson.model_dump(mode="json")
-
-            mod_id = str(mod_out.id)
-            if mod_id not in all_lessons:
-                all_lessons[mod_id] = []
-            all_lessons[mod_id].append(lesson)
-
-            sync_queue.put(("lesson_ready", mod_idx, les_idx, lesson_dict))
-
-        modules = []
-        for mod_out in outline:
-            mod_id = str(mod_out.id)
-            modules.append(
-                Module(
-                    id=mod_out.id,
-                    title=mod_out.title,
-                    objective=mod_out.objective,
-                    lessons=all_lessons.get(mod_id, []),
-                )
+        modules = [
+            Module(
+                id=mod_out.id,
+                title=mod_out.title,
+                objective=mod_out.objective,
+                lessons=all_lessons.get(str(mod_out.id), []),
             )
-
+            for mod_out in outline
+        ]
         intake_data = _build_intake_data(parsed)
         title = modules[0].title if len(modules) == 1 else "Your fertility learning course"
-
         course_spec = CourseSpec(
             title=title,
             intake=intake_data,

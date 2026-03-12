@@ -9,8 +9,8 @@ from syllabus.models.schemas import LessonOutline, ModuleOutline, ParsedIntake
 from syllabus.pipeline.prompts import PEDAGOGY_PREAMBLE, learner_objective_line
 
 
-def _parse_outline_response(content: str) -> list[ModuleOutline]:
-    """Parse LLM response into list of ModuleOutline."""
+def _extract_json_data(content: str) -> dict:
+    """Extract JSON dict from LLM response that may contain markdown code blocks."""
     content = content.strip()
     if "```" in content:
         for part in content.split("```"):
@@ -18,38 +18,42 @@ def _parse_outline_response(content: str) -> list[ModuleOutline]:
             if part.startswith("json"):
                 part = part[4:].strip()
             if part.startswith("{"):
-                data = json.loads(part)
-                break
-        else:
-            data = json.loads(content)
-    else:
-        data = json.loads(content)
-    modules = []
-    for m in data.get("modules", []):
-        lessons = []
-        for lev in m.get("lessons", []):
-            kt = (lev.get("knowledge_type") or "declarative").lower()
-            if kt not in ("declarative", "procedural", "conditional"):
-                kt = "declarative"
-            es = (lev.get("emotional_sensitivity_level") or "low").lower()
-            if es not in ("low", "medium", "high"):
-                es = "low"
-            lessons.append(
-                LessonOutline(
-                    title=lev.get("title", ""),
-                    objective=lev.get("objective", ""),
-                    knowledge_type=kt,
-                    emotional_sensitivity_level=es,
-                )
-            )
-        modules.append(
-            ModuleOutline(
-                title=m.get("title", ""),
-                objective=m.get("objective", ""),
-                lessons=lessons,
-            )
+                return json.loads(part)
+        return json.loads(content)
+    return json.loads(content)
+
+
+_VALID_KNOWLEDGE_TYPES = {"declarative", "procedural", "conditional"}
+_VALID_SENSITIVITY_LEVELS = {"low", "medium", "high"}
+
+
+def _parse_lesson_outline(lev: dict) -> LessonOutline:
+    """Parse a single lesson dict into a LessonOutline."""
+    kt = (lev.get("knowledge_type") or "declarative").lower()
+    if kt not in _VALID_KNOWLEDGE_TYPES:
+        kt = "declarative"
+    es = (lev.get("emotional_sensitivity_level") or "low").lower()
+    if es not in _VALID_SENSITIVITY_LEVELS:
+        es = "low"
+    return LessonOutline(
+        title=lev.get("title", ""),
+        objective=lev.get("objective", ""),
+        knowledge_type=kt,
+        emotional_sensitivity_level=es,
+    )
+
+
+def _parse_outline_response(content: str) -> list[ModuleOutline]:
+    """Parse LLM response into list of ModuleOutline."""
+    data = _extract_json_data(content)
+    return [
+        ModuleOutline(
+            title=m.get("title", ""),
+            objective=m.get("objective", ""),
+            lessons=[_parse_lesson_outline(lev) for lev in m.get("lessons", [])],
         )
-    return modules
+        for m in data.get("modules", [])
+    ]
 
 
 def run_outline(parsed: ParsedIntake, llm: ChatOpenAI | None = None) -> list[ModuleOutline]:

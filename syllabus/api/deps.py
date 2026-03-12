@@ -50,7 +50,7 @@ async def get_current_user(
     return user
 
 
-async def get_current_user_allowed(
+def get_current_user_allowed(
     user: Annotated[User, Depends(get_current_user)],
 ) -> User:
     """Require authenticated user with invite_allowed (for generate, courses, etc.)."""
@@ -74,7 +74,7 @@ async def get_current_user_for_stream(
     return user
 
 
-async def get_current_user_allowed_for_stream(
+def get_current_user_allowed_for_stream(
     user: Annotated[User, Depends(get_current_user_for_stream)],
 ) -> User:
     """Require invite_allowed for SSE stream."""

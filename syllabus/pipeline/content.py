@@ -46,50 +46,56 @@ def _extract_json(content: str) -> dict:
         return {}
 
 
-def _parse_blocks(
-    content: str,
-    default_emotional_sensitivity: str = "low",
-) -> tuple[list[ContentBlock], list[str]]:
-    """Parse LLM response into blocks and key_takeaways; ensure compliance_note at end. Returns (blocks, key_takeaways)."""
-    data = _extract_json(content)
-    raw = data.get("blocks", [])
-    if not raw and isinstance(data.get("blocks"), list):
-        raw = data["blocks"]
-    key_takeaways = data.get("key_takeaways") or []
-    if isinstance(key_takeaways, list):
-        key_takeaways = [str(x).strip() for x in key_takeaways if x][:5]
-    else:
-        key_takeaways = []
+_VALID_BLOCK_TYPES = {"explanation", "example", "exercise", "reflection", "compliance_note"}
+_VALID_ES_LEVELS = {"low", "medium", "high"}
 
-    blocks = []
-    for b in raw:
-        bt = (b.get("type") or "explanation").lower().replace(" ", "_")
-        if bt not in ("explanation", "example", "exercise", "reflection", "compliance_note"):
-            bt = "explanation"
-        es = (b.get("emotional_sensitivity_level") or default_emotional_sensitivity).lower()
-        if es not in ("low", "medium", "high"):
-            es = default_emotional_sensitivity
-        blocks.append(
-            ContentBlock(
-                type=ContentBlockType(bt),
-                content=(b.get("content") or "").strip() or "(No content)",
-                emotional_sensitivity_level=es,
-            )
-        )
-    # Ensure compliance_note at end (PRD F-003)
+
+def _to_content_block(b: dict, default_es: str) -> ContentBlock:
+    """Convert a raw block dict to a ContentBlock with validated type and sensitivity."""
+    bt = (b.get("type") or "explanation").lower().replace(" ", "_")
+    if bt not in _VALID_BLOCK_TYPES:
+        bt = "explanation"
+    es = (b.get("emotional_sensitivity_level") or default_es).lower()
+    if es not in _VALID_ES_LEVELS:
+        es = default_es
+    return ContentBlock(
+        type=ContentBlockType(bt),
+        content=(b.get("content") or "").strip() or "(No content)",
+        emotional_sensitivity_level=es,
+    )
+
+
+def _ensure_compliance_note(blocks: list[ContentBlock], default_es: str) -> list[ContentBlock]:
+    """Ensure exactly one compliance_note at end of blocks (PRD F-003)."""
     has_compliance = any(b.type == ContentBlockType.compliance_note for b in blocks)
     if not has_compliance:
         blocks.append(
             ContentBlock(
                 type=ContentBlockType.compliance_note,
                 content="Ask your RE: What should I focus on given my situation? What follow-up do you recommend?",
-                emotional_sensitivity_level=default_emotional_sensitivity,
+                emotional_sensitivity_level=default_es,
             )
         )
+        return blocks
+    compliance_blocks = [b for b in blocks if b.type == ContentBlockType.compliance_note]
+    others = [b for b in blocks if b.type != ContentBlockType.compliance_note]
+    return others + compliance_blocks[-1:]
+
+
+def _parse_blocks(
+    content: str,
+    default_emotional_sensitivity: str = "low",
+) -> tuple[list[ContentBlock], list[str]]:
+    """Parse LLM response into blocks and key_takeaways; ensure compliance_note at end."""
+    data = _extract_json(content)
+    raw = data.get("blocks", [])
+    key_takeaways = data.get("key_takeaways") or []
+    if isinstance(key_takeaways, list):
+        key_takeaways = [str(x).strip() for x in key_takeaways if x][:5]
     else:
-        compliance_blocks = [b for b in blocks if b.type == ContentBlockType.compliance_note]
-        others = [b for b in blocks if b.type != ContentBlockType.compliance_note]
-        blocks = others + compliance_blocks[-1:]
+        key_takeaways = []
+    blocks = [_to_content_block(b, default_emotional_sensitivity) for b in raw]
+    blocks = _ensure_compliance_note(blocks, default_emotional_sensitivity)
     return blocks, key_takeaways
 
 

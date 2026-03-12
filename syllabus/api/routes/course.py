@@ -17,6 +17,57 @@ router = APIRouter(prefix="/v1", tags=["course"])
 _COURSE_NOT_FOUND = "Course not found"
 
 
+async def _get_user_course(session: AsyncSession, course_id: UUID, user_id: UUID) -> Course:
+    """Fetch a course owned by the user, raising 404 if not found."""
+    result = await session.execute(
+        select(Course).where(Course.id == course_id, Course.user_id == user_id)
+    )
+    course = result.scalars().first()
+    if course is None:
+        raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
+    return course
+
+
+async def _get_or_create_progress(
+    session: AsyncSession, user_id: UUID, course_id: UUID, lesson_id: UUID
+) -> Progress:
+    """Get existing progress row or create a new one."""
+    progress_result = await session.execute(
+        select(Progress).where(
+            Progress.user_id == user_id,
+            Progress.course_id == course_id,
+            Progress.lesson_id == lesson_id,
+        )
+    )
+    progress = progress_result.scalars().first()
+    if progress:
+        return progress
+    progress = Progress(user_id=user_id, course_id=course_id, lesson_id=lesson_id)
+    session.add(progress)
+    return progress
+
+
+async def _upsert_course_state(
+    session: AsyncSession, user_id: UUID, course_id: UUID, last_lesson_index: int
+) -> None:
+    """Update or create UserCourseState for resume position."""
+    state_result = await session.execute(
+        select(UserCourseState).where(
+            UserCourseState.user_id == user_id,
+            UserCourseState.course_id == course_id,
+        )
+    )
+    state = state_result.scalars().first()
+    if state:
+        state.last_lesson_index = last_lesson_index
+    else:
+        session.add(
+            UserCourseState(
+                user_id=user_id, course_id=course_id, last_lesson_index=last_lesson_index
+            )
+        )
+
+
 def _total_lessons(course_spec: dict) -> int:
     modules = course_spec.get("modules") or []
     return sum(len(m.get("lessons") or []) for m in modules)
@@ -63,12 +114,7 @@ async def get_course(
     user: Annotated[User, Depends(get_current_user_allowed)],
 ) -> dict:
     """Return CourseSpec JSON for the course. User must own the course."""
-    result = await session.execute(
-        select(Course).where(Course.id == course_id, Course.user_id == user.id)
-    )
-    course = result.scalars().first()
-    if course is None:
-        raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
+    course = await _get_user_course(session, course_id, user.id)
     spec = dict(course.course_spec)
     spec["generation_status"] = getattr(course, "generation_status", "complete")
     spec["job_id"] = course.job_id
@@ -82,12 +128,7 @@ async def get_course_progress(
     user: Annotated[User, Depends(get_current_user_allowed)],
 ) -> dict:
     """Return completed lesson ids and last_lesson_index for resume."""
-    result = await session.execute(
-        select(Course).where(Course.id == course_id, Course.user_id == user.id)
-    )
-    course = result.scalars().first()
-    if course is None:
-        raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
+    await _get_user_course(session, course_id, user.id)
     progress_result = await session.execute(
         select(Progress.lesson_id).where(
             Progress.user_id == user.id,
@@ -131,49 +172,12 @@ async def complete_lesson(
     body: CompleteBody | None = None,
 ) -> dict:
     """Record lesson completed; optionally update last_lesson_index for resume."""
-    result = await session.execute(
-        select(Course).where(Course.id == course_id, Course.user_id == user.id)
-    )
-    course = result.scalars().first()
-    if course is None:
-        raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
-    progress_result = await session.execute(
-        select(Progress).where(
-            Progress.user_id == user.id,
-            Progress.course_id == course_id,
-            Progress.lesson_id == lesson_id,
-        )
-    )
-    progress = progress_result.scalars().first()
-    now = datetime.now(timezone.utc)
-    if progress:
-        if progress.completed_at is None:
-            progress.completed_at = now
-    else:
-        progress = Progress(
-            user_id=user.id,
-            course_id=course_id,
-            lesson_id=lesson_id,
-            completed_at=now,
-        )
-        session.add(progress)
+    await _get_user_course(session, course_id, user.id)
+    progress = await _get_or_create_progress(session, user.id, course_id, lesson_id)
+    if progress.completed_at is None:
+        progress.completed_at = datetime.now(timezone.utc)
     if body and body.last_lesson_index is not None:
-        state_result = await session.execute(
-            select(UserCourseState).where(
-                UserCourseState.user_id == user.id,
-                UserCourseState.course_id == course_id,
-            )
-        )
-        state = state_result.scalars().first()
-        if state:
-            state.last_lesson_index = body.last_lesson_index
-        else:
-            state = UserCourseState(
-                user_id=user.id,
-                course_id=course_id,
-                last_lesson_index=body.last_lesson_index,
-            )
-            session.add(state)
+        await _upsert_course_state(session, user.id, course_id, body.last_lesson_index)
     await session.commit()
     return {"ok": True}
 
@@ -190,31 +194,9 @@ async def post_lesson_feedback(
     user: Annotated[User, Depends(get_current_user_allowed)],
 ) -> dict:
     """Store thumbs or free-text feedback for a lesson."""
-    result = await session.execute(
-        select(Course).where(Course.id == course_id, Course.user_id == user.id)
-    )
-    course = result.scalars().first()
-    if course is None:
-        raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
-    progress_result = await session.execute(
-        select(Progress).where(
-            Progress.user_id == user.id,
-            Progress.course_id == course_id,
-            Progress.lesson_id == lesson_id,
-        )
-    )
-    progress = progress_result.scalars().first()
-    if progress:
-        progress.feedback = body.feedback
-    else:
-        progress = Progress(
-            user_id=user.id,
-            course_id=course_id,
-            lesson_id=lesson_id,
-            completed_at=None,
-            feedback=body.feedback,
-        )
-        session.add(progress)
+    await _get_user_course(session, course_id, user.id)
+    progress = await _get_or_create_progress(session, user.id, course_id, lesson_id)
+    progress.feedback = body.feedback
     await session.commit()
     return {"ok": True}
 
@@ -230,26 +212,7 @@ async def update_course_state(
     user: Annotated[User, Depends(get_current_user_allowed)],
 ) -> dict:
     """Update last_lesson_index for resume position."""
-    result = await session.execute(
-        select(Course).where(Course.id == course_id, Course.user_id == user.id)
-    )
-    if result.scalars().first() is None:
-        raise HTTPException(status_code=404, detail=_COURSE_NOT_FOUND)
-    state_result = await session.execute(
-        select(UserCourseState).where(
-            UserCourseState.user_id == user.id,
-            UserCourseState.course_id == course_id,
-        )
-    )
-    state = state_result.scalars().first()
-    if state:
-        state.last_lesson_index = body.last_lesson_index
-    else:
-        state = UserCourseState(
-            user_id=user.id,
-            course_id=course_id,
-            last_lesson_index=body.last_lesson_index,
-        )
-        session.add(state)
+    await _get_user_course(session, course_id, user.id)
+    await _upsert_course_state(session, user.id, course_id, body.last_lesson_index)
     await session.commit()
     return {"ok": True}

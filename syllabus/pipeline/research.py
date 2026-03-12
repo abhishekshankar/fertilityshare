@@ -50,6 +50,25 @@ def run_research(
     return research, citations
 
 
+def _build_intake_context(parsed: object) -> str:
+    """Build intake context string from parsed intake (object or dict)."""
+    if not parsed:
+        return ""
+    if hasattr(parsed, "journey_stage"):
+        ctx = f"Journey: {parsed.journey_stage}. Diagnosis: {parsed.diagnosis or 'Not specified'}. Level: {parsed.level}."
+        target = getattr(parsed, "target_end_state", "")
+        if target:
+            ctx = f"LEARNER OBJECTIVE: {target}\n\n{ctx}"
+        return ctx
+    if isinstance(parsed, dict):
+        ctx = f"Journey: {parsed.get('journey_stage', '')}. Diagnosis: {parsed.get('diagnosis') or 'Not specified'}."
+        target = parsed.get("target_end_state")
+        if target:
+            ctx = f"LEARNER OBJECTIVE: {target}\n\n{ctx}"
+        return ctx
+    return ""
+
+
 def research_node(state: dict) -> dict:
     """LangGraph node: state must have outline. Uses RAG with stub fallback."""
     outline = state.get("outline")
@@ -57,19 +76,7 @@ def research_node(state: dict) -> dict:
         return {"error": "Missing outline"}
     if state.get("error"):
         return {}
-    parsed = state.get("parsed_intake")
-    intake_context = ""
-    if parsed:
-        if hasattr(parsed, "journey_stage"):
-            intake_context = f"Journey: {parsed.journey_stage}. Diagnosis: {parsed.diagnosis or 'Not specified'}. Level: {parsed.level}."
-            if getattr(parsed, "target_end_state", ""):
-                intake_context = f"LEARNER OBJECTIVE: {parsed.target_end_state}\n\n{intake_context}"
-        elif isinstance(parsed, dict):
-            intake_context = f"Journey: {parsed.get('journey_stage', '')}. Diagnosis: {parsed.get('diagnosis') or 'Not specified'}."
-            if parsed.get("target_end_state"):
-                intake_context = (
-                    f"LEARNER OBJECTIVE: {parsed['target_end_state']}\n\n{intake_context}"
-                )
+    intake_context = _build_intake_context(state.get("parsed_intake"))
     try:
         research, research_citations = run_research(outline, intake_context)
         return {"research": research, "research_citations": research_citations, "error": None}

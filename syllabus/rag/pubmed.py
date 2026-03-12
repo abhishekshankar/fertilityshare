@@ -86,6 +86,24 @@ def _esearch(query: str, retmax: int, client: httpx.Client) -> list[str]:
     return id_list
 
 
+def _parse_article_abstract(article) -> tuple[str, str] | None:
+    """Extract (source_id, abstract_text) from a PubmedArticle XML element, or None if unusable."""
+    pmid_el = article.find(".//PMID")
+    if pmid_el is None or not (pmid_el.text or "").strip():
+        return None
+    pmid = pmid_el.text.strip()
+    parts = []
+    for at in article.findall(".//AbstractText"):
+        text = "".join(at.itertext()).strip()
+        if not text:
+            continue
+        label = at.get("Label")
+        parts.append(f"{label}: {text}" if label else text)
+    if not parts:
+        return None
+    return (f"PubMed:{pmid}", "\n".join(parts))
+
+
 def _efetch_abstracts(pmids: list[str], client: httpx.Client) -> list[tuple[str, str]]:
     """Fetch abstracts for PMIDs via XML for robust parsing. Returns list of (source_id, text)."""
     if not pmids:
@@ -105,30 +123,16 @@ def _efetch_abstracts(pmids: list[str], client: httpx.Client) -> list[tuple[str,
     )
     import xml.etree.ElementTree as ET
 
-    out: list[tuple[str, str]] = []
     try:
         root = ET.fromstring(r.text)
     except ET.ParseError:
         logger.warning("Failed to parse PubMed XML response; falling back to text splitting")
         return _efetch_abstracts_text_fallback(r.text)
+    out: list[tuple[str, str]] = []
     for article in root.iter("PubmedArticle"):
-        pmid_el = article.find(".//PMID")
-        if pmid_el is None or not (pmid_el.text or "").strip():
-            continue
-        pmid = pmid_el.text.strip()
-        abstract_parts = []
-        for at in article.findall(".//AbstractText"):
-            label = at.get("Label")
-            text = "".join(at.itertext()).strip()
-            if not text:
-                continue
-            if label:
-                abstract_parts.append(f"{label}: {text}")
-            else:
-                abstract_parts.append(text)
-        if not abstract_parts:
-            continue
-        out.append((f"PubMed:{pmid}", "\n".join(abstract_parts)))
+        result = _parse_article_abstract(article)
+        if result:
+            out.append(result)
     return out
 
 
