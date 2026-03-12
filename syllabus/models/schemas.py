@@ -31,7 +31,9 @@ class ContentBlock(BaseModel):
     type: ContentBlockType
     content: str
     citations: list[Citation] = Field(default_factory=list)
-    emotional_sensitivity_level: Literal["low", "medium", "high"] = "low"  # PRD Addendum C: format selection (quiz vs reflection)
+    emotional_sensitivity_level: Literal["low", "medium", "high"] = (
+        "low"  # PRD Addendum C: format selection (quiz vs reflection)
+    )
 
 
 # --- Intake (API request shape + parsed intent) ---
@@ -67,7 +69,9 @@ class LessonOutline(BaseModel):
     title: str
     objective: str
     knowledge_type: str = "declarative"  # declarative | procedural | conditional
-    emotional_sensitivity_level: Literal["low", "medium", "high"] = "low"  # V2: format selection (quiz vs reflection)
+    emotional_sensitivity_level: Literal["low", "medium", "high"] = (
+        "low"  # V2: format selection (quiz vs reflection)
+    )
 
 
 class ModuleOutline(BaseModel):
@@ -112,9 +116,13 @@ class Lesson(BaseModel):
     title: str
     objective: str
     blocks: list[ContentBlock] = Field(default_factory=list)
-    key_takeaways: list[str] = Field(default_factory=list)  # 3–5 items; rendered at top of lesson (D5)
+    key_takeaways: list[str] = Field(
+        default_factory=list
+    )  # 3–5 items; rendered at top of lesson (D5)
     knowledge_type: str = "declarative"  # declarative | procedural | conditional
-    emotional_sensitivity_level: Literal["low", "medium", "high"] = "low"  # V2: used for format selection
+    emotional_sensitivity_level: Literal["low", "medium", "high"] = (
+        "low"  # V2: used for format selection
+    )
     flashcards: list[Flashcard] = Field(default_factory=list)
     quiz: Optional[Quiz] = None
 

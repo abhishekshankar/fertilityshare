@@ -123,7 +123,9 @@ def qa_node(state: dict) -> dict:
     from syllabus.models.schemas import IntakeData, Metadata
 
     if parsed is None:
-        intake = IntakeData(journey_stage="", diagnosis=None, confusion="", level="beginner", target_end_state="")
+        intake = IntakeData(
+            journey_stage="", diagnosis=None, confusion="", level="beginner", target_end_state=""
+        )
     elif isinstance(parsed, IntakeData):
         intake = parsed
     elif isinstance(parsed, dict):

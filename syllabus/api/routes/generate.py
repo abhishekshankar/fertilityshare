@@ -36,23 +36,27 @@ def _build_skeleton_spec(intake: IntakeData, outline_modules: list[dict]) -> dic
     for mod in outline_modules:
         lessons = []
         for les in mod.get("lessons", []):
-            lessons.append({
-                "id": les["id"],
-                "title": les["title"],
-                "objective": les.get("objective", ""),
-                "blocks": [],
-                "key_takeaways": [],
-                "knowledge_type": "declarative",
-                "emotional_sensitivity_level": "low",
-                "flashcards": [],
-                "quiz": None,
-            })
-        modules.append({
-            "id": mod["id"],
-            "title": mod["title"],
-            "objective": mod.get("objective", ""),
-            "lessons": lessons,
-        })
+            lessons.append(
+                {
+                    "id": les["id"],
+                    "title": les["title"],
+                    "objective": les.get("objective", ""),
+                    "blocks": [],
+                    "key_takeaways": [],
+                    "knowledge_type": "declarative",
+                    "emotional_sensitivity_level": "low",
+                    "flashcards": [],
+                    "quiz": None,
+                }
+            )
+        modules.append(
+            {
+                "id": mod["id"],
+                "title": mod["title"],
+                "objective": mod.get("objective", ""),
+                "lessons": lessons,
+            }
+        )
 
     title = modules[0]["title"] if len(modules) == 1 else "Your fertility learning course"
 
@@ -115,12 +119,15 @@ async def _run_job(
                             c.generation_status = "complete"
                             await session.commit()
                 set_status(job_id, "done", course_id=course_id)
-                await put_event(job_id, {
-                    "event": "generation_complete",
-                    "course_id": course_id,
-                    "total_lessons": total_lessons,
-                    "generation_time_ms": elapsed_ms,
-                })
+                await put_event(
+                    job_id,
+                    {
+                        "event": "generation_complete",
+                        "course_id": course_id,
+                        "total_lessons": total_lessons,
+                        "generation_time_ms": elapsed_ms,
+                    },
+                )
                 await put_event(job_id, {"done": True, "course_id": course_id})
                 break
 
@@ -130,12 +137,15 @@ async def _run_job(
             elif isinstance(item, tuple) and item[0] == "node":
                 node_name = item[1]
                 msg, progress = STREAM_MESSAGES.get(node_name, ("Processing…", 50))
-                await put_event(job_id, {
-                    "event": node_name,
-                    "stage": node_name,
-                    "message": msg,
-                    "progress": progress,
-                })
+                await put_event(
+                    job_id,
+                    {
+                        "event": node_name,
+                        "stage": node_name,
+                        "message": msg,
+                        "progress": progress,
+                    },
+                )
 
             elif isinstance(item, tuple) and item[0] == "outline_ready":
                 outline_modules = item[1]
@@ -148,12 +158,15 @@ async def _run_job(
                             c.course_spec = skeleton_spec
                             c.title = skeleton_spec.get("title", "Your course")
                             await session.commit()
-                await put_event(job_id, {
-                    "event": "outline_ready",
-                    "course_id": course_id,
-                    "modules": outline_modules,
-                    "progress": 25,
-                })
+                await put_event(
+                    job_id,
+                    {
+                        "event": "outline_ready",
+                        "course_id": course_id,
+                        "modules": outline_modules,
+                        "progress": 25,
+                    },
+                )
 
             elif isinstance(item, tuple) and item[0] == "lesson_ready":
                 _, mod_idx, les_idx, lesson_dict = item
@@ -175,14 +188,17 @@ async def _run_job(
                                     spec["modules"] = modules
                                     c.course_spec = spec
                                     await session.commit()
-                await put_event(job_id, {
-                    "event": "lesson_ready",
-                    "course_id": course_id,
-                    "module_index": mod_idx,
-                    "lesson_index": les_idx,
-                    "lesson": lesson_dict,
-                    "progress": progress,
-                })
+                await put_event(
+                    job_id,
+                    {
+                        "event": "lesson_ready",
+                        "course_id": course_id,
+                        "module_index": mod_idx,
+                        "lesson_index": les_idx,
+                        "lesson": lesson_dict,
+                        "progress": progress,
+                    },
+                )
 
     except Exception as e:
         if course_id:
@@ -193,7 +209,9 @@ async def _run_job(
                     c.generation_status = status
                     await session.commit()
         set_status(job_id, "failed", error=str(e))
-        await put_event(job_id, {"event": "error", "stage": "error", "message": str(e), "progress": 0})
+        await put_event(
+            job_id, {"event": "error", "stage": "error", "message": str(e), "progress": 0}
+        )
         await put_event(job_id, {"done": True, "error": str(e)})
     finally:
         cleanup_job(job_id)

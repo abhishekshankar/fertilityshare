@@ -1,5 +1,8 @@
 """Tests for 9-dimension rubric scorer (Layer 1 eval, PRD Addendum E.1/E.3)."""
 
+import json
+
+from syllabus.eval.rubric import score_course_file, score_course_spec, score_directory
 from syllabus.models.schemas import (
     ContentBlock,
     ContentBlockType,
@@ -9,10 +12,6 @@ from syllabus.models.schemas import (
     Metadata,
     Module,
 )
-from syllabus.eval.rubric import score_course_spec, score_course_file, score_directory
-from pathlib import Path
-import tempfile
-import json
 
 
 def _minimal_course_spec(blocks_per_lesson=None):

@@ -168,9 +168,7 @@ def stream_pipeline_progressive(
 
         for idx, (mod_out, lec_out, one_based) in enumerate(flat):
             mod_idx = next(i for i, m in enumerate(outline) if m.id == mod_out.id)
-            les_idx = next(
-                i for i, l_out in enumerate(mod_out.lessons) if l_out.id == lec_out.id
-            )
+            les_idx = next(i for i, l_out in enumerate(mod_out.lessons) if l_out.id == lec_out.id)
 
             position_in_arc = f"Lesson {one_based} of {total}"
             adjacent_lessons: list[tuple[str, str]] = []

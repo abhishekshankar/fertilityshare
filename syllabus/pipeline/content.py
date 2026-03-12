@@ -124,7 +124,9 @@ def run_content_for_lesson(
         kt_instruction += " This lesson is emotionally sensitive: use a reflection block instead of a recall-style exercise; no quiz-style questions. End with supportive, patient-first framing."
     adjacent_text = ""
     if adjacent_lessons:
-        adjacent_text = "Adjacent lessons (titles and objectives only; do not repeat their content):\n"
+        adjacent_text = (
+            "Adjacent lessons (titles and objectives only; do not repeat their content):\n"
+        )
         for title, obj in adjacent_lessons:
             adjacent_text += f"- {title}: {obj}\n"
         adjacent_text += "\n"
@@ -175,7 +177,9 @@ JSON:"""
             )
         ] + blocks[1:]
     # Format selection (F-011): no quiz for high emotional sensitivity
-    quiz = None  # Quiz generation not yet implemented; when added, set to None when es_level == "high"
+    quiz = (
+        None  # Quiz generation not yet implemented; when added, set to None when es_level == "high"
+    )
     return Lesson(
         id=lesson_outline.id,
         title=lesson_outline.title,

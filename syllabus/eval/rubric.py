@@ -70,7 +70,10 @@ def _dim9_emotional_calibration_heuristic(spec: CourseSpec) -> tuple[bool, str]:
     for mod in spec.modules:
         for lesson in mod.lessons:
             if lesson.quiz and getattr(lesson, "emotional_sensitivity_level", None) == "high":
-                return False, f"Lesson '{lesson.title}' has quiz but emotional_sensitivity_level=high"
+                return (
+                    False,
+                    f"Lesson '{lesson.title}' has quiz but emotional_sensitivity_level=high",
+                )
     return True, "OK"
 
 
@@ -93,13 +96,15 @@ def score_course_spec(spec: CourseSpec) -> dict:
     pass9, note9 = _dim9_emotional_calibration_heuristic(spec)
     results["9"] = {"pass": pass9, "note": note9, "dimension": "emotional_calibration"}
     # Human review placeholders (2, 3, 5, 8)
-    for dim, name in [(2, "structural_coherence"), (3, "tone"), (5, "completeness"), (8, "knowledge_topology_fit")]:
+    for dim, name in [
+        (2, "structural_coherence"),
+        (3, "tone"),
+        (5, "completeness"),
+        (8, "knowledge_topology_fit"),
+    ]:
         if str(dim) not in results:
             results[str(dim)] = {"pass": None, "note": "human_review", "dimension": name}
-    overall = all(
-        results[str(d)].get("pass") is not False
-        for d in range(1, 10)
-    )
+    overall = all(results[str(d)].get("pass") is not False for d in range(1, 10))
     return {"dimensions": results, "overall_pass": overall, "automated_only": True}
 
 
@@ -143,7 +148,11 @@ def score_directory(out_dir: str | Path, pattern: str = "course_*.json") -> dict
         "total": total,
         "passed_automated_plus_hr": passed_all,
         "by_dimension": {
-            d: {"pass_count": sum(1 for v in by_dimension[d] if v is True), "fail_count": sum(1 for v in by_dimension[d] if v is False), "human_review_count": sum(1 for v in by_dimension[d] if v is None)}
+            d: {
+                "pass_count": sum(1 for v in by_dimension[d] if v is True),
+                "fail_count": sum(1 for v in by_dimension[d] if v is False),
+                "human_review_count": sum(1 for v in by_dimension[d] if v is None),
+            }
             for d in by_dimension
         },
     }
