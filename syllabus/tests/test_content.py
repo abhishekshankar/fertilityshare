@@ -329,3 +329,21 @@ def test_content_node_run_content_raises():
         result = content_node(state)
     assert result.get("error") == "LLM failed"
     assert result.get("modules") is None
+
+
+def test_malformed_fenced_json_counts_as_failed_attempt_and_retries():
+    bad = '```json\n{"quiz": [oops not json}\n```'
+    llm = _llm(bad, _resp([_Q, _Q]))
+    lesson = run_content_for_lesson(LessonOutline(title="L", objective="O"), "f", _PARSED, llm=llm)
+    assert llm.invoke.call_count == 2
+    assert len(lesson.quiz.questions) == 2
+
+
+@pytest.mark.parametrize("bad_option", [None, ""])
+def test_non_string_or_empty_option_drops_question(bad_option):
+    bad = {**_Q, "options": ["a", bad_option, "c"]}
+    lesson = run_content_for_lesson(
+        LessonOutline(title="L", objective="O"), "f", _PARSED, llm=_llm(_resp([bad, _Q, _Q]))
+    )
+    assert len(lesson.quiz.questions) == 2
+    assert all("None" not in q.options and "" not in q.options for q in lesson.quiz.questions)

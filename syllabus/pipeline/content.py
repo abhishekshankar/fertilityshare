@@ -36,10 +36,13 @@ def _extract_json(content: str) -> dict:
             part = part.strip()
             if part.startswith("json"):
                 part = part[4:].strip()
-            if part.startswith("{"):
-                return json.loads(part)
-            if part.startswith("["):
-                return {"blocks": json.loads(part)}
+            try:
+                if part.startswith("{"):
+                    return json.loads(part)
+                if part.startswith("["):
+                    return {"blocks": json.loads(part)}
+            except json.JSONDecodeError:
+                continue  # malformed fenced JSON: treat as unparseable so callers retry
         return {}
     try:
         data = json.loads(content)
@@ -117,11 +120,12 @@ def _parse_quiz(raw) -> Quiz:
             and isinstance(idx, int)
             and not isinstance(idx, bool)
             and 0 <= idx < len(opts)
+            and all(isinstance(o, str) and o.strip() for o in opts)
         ):
             questions.append(
                 QuizQuestion(
                     question=text,
-                    options=[str(o) for o in opts],
+                    options=opts,
                     correct_index=idx,
                     explanation=expl,
                 )

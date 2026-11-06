@@ -173,3 +173,20 @@ def test_reading_level_is_measured_not_asserted():
     mod = export_cog(load_spec(), "ff")
     first = mod[sorted(f for f in mod if MODULE_RE.match(f))[0]]
     assert isinstance(yaml.safe_load(first.split("---")[1])["reading_level"], int)
+
+
+def test_citations_deduplicated_preserving_order():
+    from syllabus.models.schemas import Citation
+
+    spec = load_spec()
+    lesson = spec.modules[0].lessons[0]
+    lesson.blocks[0].citations = [
+        Citation(source="B", snippet="s"),
+        Citation(source="A", snippet="s"),
+        Citation(source="B", snippet="s"),
+    ]
+    files = export_cog(spec, "fertility-foundations")
+    first = files[sorted(f for f in files if MODULE_RE.match(f))[0]]
+    front = yaml.safe_load(first.split("---")[1])
+    assert front["citations"][:2] == ["B", "A"]
+    assert len(front["citations"]) == len(set(front["citations"]))

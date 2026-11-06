@@ -66,7 +66,9 @@ def _module_md(course_slug: str, n: int, lesson: Lesson) -> str:
         "version": "1.0.0",
         "status": "draft",
         "competencies": [_competency(course_slug, n)],
-        "citations": [c.source for b in lesson.blocks for c in b.citations if c.source],
+        "citations": list(
+            dict.fromkeys(c.source for b in lesson.blocks for c in b.citations if c.source)
+        ),
         "strategic_hook": None,
         "rag_anchor": f"{course_slug}-m{n:02d}",
         "reading_level": fk_grade(body),  # measured, not the target
