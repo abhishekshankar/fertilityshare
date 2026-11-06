@@ -194,6 +194,7 @@ Block types: explanation, example, exercise, reflection, compliance_note.
 - Use 2-5 explanation/example/exercise/reflection blocks for the lesson body.
 - You MUST include exactly one block with type "compliance_note" at the END. Its content must be 1-3 questions the patient can ask their RE. Never give prescriptive medical advice.
 - quiz: 2-3 multiple-choice questions, each {{ "question": "...", "options": ["...", "..."] (3-4 options), "correct_index": 0-based index of the right option, "explanation": "one or two sentences why" }}. Questions test understanding of this lesson only. If the lesson is emotionally sensitive, keep them gentle and factual (no blame, no outcome predictions).
+- Never write first-person assistant sign-offs or offers of help (e.g. \"I'm here to help!\", \"Let me know if you have questions\"); write as course content, not a chat reply.
 - Content: clear, warm, medically accurate, non-prescriptive.
 
 JSON:"""

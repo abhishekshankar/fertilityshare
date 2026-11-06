@@ -162,3 +162,14 @@ def test_platform_dialect_shapes():
     fa = files["final-assessment.md"]
     assert "rag_anchor: ff-final" in fa
     assert re.findall(r"^\d+\. \(competency: ff\.m\d+\)$", fa, re.M) and fa.count("Scenario:") == 6
+
+
+def test_reading_level_is_measured_not_asserted():
+    from syllabus.export.cog import fk_grade
+
+    assert fk_grade("The cat sat on the mat. The dog ran to the park.") <= 2
+    hard = "Reproductive endocrinologists characteristically recommend comprehensive evaluations notwithstanding variability."
+    assert fk_grade(hard) >= 15
+    mod = export_cog(load_spec(), "ff")
+    first = mod[sorted(f for f in mod if MODULE_RE.match(f))[0]]
+    assert isinstance(yaml.safe_load(first.split("---")[1])["reading_level"], int)

@@ -40,7 +40,24 @@ def _why(q) -> str:
     return (q.explanation or "").strip() or f"The correct answer is: {q.options[q.correct_index]}"
 
 
+def _syllables(word: str) -> int:
+    groups = re.findall(r"[aeiouy]+", word.lower())
+    n = len(groups) - (1 if word.lower().endswith("e") and len(groups) > 1 else 0)
+    return max(1, n)
+
+
+def fk_grade(text: str) -> int:
+    """Flesch-Kincaid grade (rounded, >= 0). ponytail: vowel-group syllable heuristic, ~1 grade error."""
+    words = re.findall(r"[A-Za-z']+", text)
+    sentences = max(1, len(re.findall(r"[.!?]+(?:\s|$)", text)))
+    if not words:
+        return 0
+    syl = sum(_syllables(w) for w in words)
+    return max(0, round(0.39 * len(words) / sentences + 11.8 * syl / len(words) - 15.59))
+
+
 def _module_md(course_slug: str, n: int, lesson: Lesson) -> str:
+    body = " ".join(b.content for b in lesson.blocks)
     front = {
         "id": f"{course_slug}-m{n:02d}",
         "title": lesson.title,
@@ -52,7 +69,7 @@ def _module_md(course_slug: str, n: int, lesson: Lesson) -> str:
         "citations": [c.source for b in lesson.blocks for c in b.citations if c.source],
         "strategic_hook": None,
         "rag_anchor": f"{course_slug}-m{n:02d}",
-        "reading_level": 8,
+        "reading_level": fk_grade(body),  # measured, not the target
     }
     learn = [lesson.objective.strip(), *[t.strip() for t in lesson.key_takeaways]]
     parts = [
