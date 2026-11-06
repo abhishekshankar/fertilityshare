@@ -1,4 +1,5 @@
 import re
+from itertools import zip_longest
 
 import yaml
 
@@ -48,6 +49,17 @@ def export_cog(spec: CourseSpec, slug: str) -> dict[str, str]:
     for _, lesson in lessons:
         if not lesson.title.strip() or not lesson.blocks:
             raise ValueError(f"lesson {lesson.id} needs a title and blocks")
+        for q in lesson.quiz.questions if lesson.quiz else []:
+            if not q.options or not 0 <= q.correct_index < len(q.options):
+                raise ValueError(f"lesson {lesson.id} has a quiz question with invalid answer")
+
+    per_lesson = [lesson.quiz.questions if lesson.quiz else [] for _, lesson in lessons]
+    questions = [q for row in zip_longest(*per_lesson) for q in row if q is not None]
+    if len(questions) < 6:
+        raise ValueError(
+            f"course {spec.id} needs at least 6 quiz questions for the final assessment"
+        )
+    questions = questions[:6]
 
     files: dict[str, str] = {}
     groups, n = [], 0
@@ -56,19 +68,28 @@ def export_cog(spec: CourseSpec, slug: str) -> dict[str, str]:
         for lesson in module.lessons:
             n += 1
             nums.append(n)
-            files[f"m{n:02d}-{_slug(lesson.title)}.md"] = _module_md(slug, n, lesson)
+            files[f"m{n:02d}-{_slug(lesson.title) or 'lesson'}.md"] = _module_md(slug, n, lesson)
         if nums:
             groups.append({"id": f"{slug}-part-{mi + 1}", "title": module.title, "modules": nums})
 
-    questions = [q for _, lesson in lessons if lesson.quiz for q in lesson.quiz.questions][:6]
     body = "\n".join(
         f"{i}. {q.question}\n"
         + "\n".join(f"   {chr(97 + j)}. {o}" for j, o in enumerate(q.options))
         + f"\n   Answer: {chr(97 + q.correct_index)}"
         for i, q in enumerate(questions, 1)
     )
+    assessment_front = {
+        "id": f"{slug}-final",
+        "title": "Final Assessment",
+        "course": slug,
+        "version": "1.0.0",
+        "status": "draft",
+        "pass_of": 6,
+        "pass_need": 4,
+    }
     files["final-assessment.md"] = (
-        f"---\n{yaml.safe_dump({'id': f'{slug}-final', 'title': 'Final Assessment', 'course': slug, 'version': '1.0.0', 'status': 'draft', 'pass_of': 6, 'pass_need': 4}, sort_keys=False)}---\n\n# Final Assessment\n\n{body}\n"
+        f"---\n{yaml.safe_dump(assessment_front, sort_keys=False)}---\n\n"
+        f"# Final Assessment\n\n{body}\n"
     )
     files["course.yml"] = yaml.safe_dump(
         {
