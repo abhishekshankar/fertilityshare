@@ -124,7 +124,7 @@ def _llm(*contents):
     return llm
 
 
-@pytest.mark.parametrize("es", ["low", "medium", "high"])
+@pytest.mark.parametrize("es", ["low", "medium"])
 def test_lesson_gets_valid_quiz(es):
     lo = LessonOutline(title="L", objective="O", emotional_sensitivity_level=es)
     llm = _llm(_resp([_Q, _Q]))
@@ -134,15 +134,55 @@ def test_lesson_gets_valid_quiz(es):
     assert q.correct_index == 1 and q.explanation
 
 
-def test_high_sensitivity_keeps_reflection_and_quiz():
+def test_high_sensitivity_gets_reflection_and_no_quiz():
     lo = LessonOutline(title="L", objective="O", emotional_sensitivity_level="high")
     blocks = [
         {"type": "reflection", "content": "Sit with this."},
         {"type": "compliance_note", "content": "Ask your RE."},
     ]
-    lesson = run_content_for_lesson(lo, "f", _PARSED, llm=_llm(_resp([_Q, _Q], blocks)))
+    llm = _llm(_resp([_Q, _Q], blocks))
+    lesson = run_content_for_lesson(lo, "f", _PARSED, llm=llm)
     assert any(b.type == ContentBlockType.reflection for b in lesson.blocks)
+    assert lesson.quiz is None
+    assert llm.invoke.call_count == 1
+
+
+def test_high_sensitivity_without_quiz_key_does_not_retry():
+    lo = LessonOutline(title="L", objective="O", emotional_sensitivity_level="high")
+    llm = _llm(_resp(None))
+    assert run_content_for_lesson(lo, "f", _PARSED, llm=llm).quiz is None
+    assert llm.invoke.call_count == 1
+
+
+@pytest.mark.parametrize("field", ["question", "explanation"])
+@pytest.mark.parametrize("bad_val", [{"a": 1}, ["x"]])
+def test_non_string_question_or_explanation_dropped(field, bad_val):
+    bad = {**_Q, field: bad_val}
+    lesson = run_content_for_lesson(
+        LessonOutline(title="L", objective="O"), "f", _PARSED, llm=_llm(_resp([bad, _Q, _Q]))
+    )
     assert len(lesson.quiz.questions) == 2
+
+
+def _no_blocks(quiz):
+    return json.dumps({"key_takeaways": ["T"], "blocks": [], "quiz": quiz})
+
+
+@pytest.mark.parametrize("es", ["low", "high"])
+def test_missing_blocks_retries_then_succeeds(es):
+    lo = LessonOutline(title="L", objective="O", emotional_sensitivity_level=es)
+    llm = _llm(_no_blocks([_Q, _Q]), _resp([_Q, _Q]))
+    lesson = run_content_for_lesson(lo, "f", _PARSED, llm=llm)
+    assert llm.invoke.call_count == 2
+    assert any(b.type == ContentBlockType.explanation for b in lesson.blocks)
+
+
+@pytest.mark.parametrize("es", ["low", "high"])
+def test_missing_blocks_after_retry_raises_naming_lesson(es):
+    lo = LessonOutline(title="L", objective="O", emotional_sensitivity_level=es)
+    llm = _llm(_no_blocks([_Q, _Q]), _no_blocks([_Q, _Q]))
+    with pytest.raises(ValueError, match=str(lo.id)):
+        run_content_for_lesson(lo, "f", _PARSED, llm=llm)
 
 
 def test_invalid_questions_dropped():

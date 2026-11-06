@@ -8,7 +8,7 @@ import yaml
 from syllabus.export.cog import export_cog
 from syllabus.models.schemas import CourseSpec, Quiz, QuizQuestion
 
-FIXTURE = Path(__file__).resolve().parents[2] / "out" / "course_01.json"
+FIXTURE = Path(__file__).parent / "fixtures" / "course_spec_sample.json"
 
 
 MODULE_RE = re.compile(r"^m\d{2}-.*\.md$")
@@ -71,7 +71,7 @@ def test_rejects_lesson_without_blocks():
     spec = load_spec()
     bad = spec.modules[0].lessons[0]
     bad.blocks = []
-    with pytest.raises(ValueError, match=str(bad.id)):
+    with pytest.raises(ValueError, match=rf"{spec.id}.*{bad.id}"):
         export_cog(spec, "x")
 
 
@@ -106,7 +106,7 @@ def test_rejects_bad_correct_index(bad):
     spec = load_spec()
     lesson = spec.modules[0].lessons[0]
     lesson.quiz.questions[0].correct_index = bad
-    with pytest.raises(ValueError, match=str(lesson.id)):
+    with pytest.raises(ValueError, match=rf"{spec.id}.*{lesson.id}"):
         export_cog(spec, "x")
 
 
@@ -114,7 +114,7 @@ def test_rejects_empty_options():
     spec = load_spec()
     lesson = spec.modules[0].lessons[0]
     lesson.quiz.questions[0].options = []
-    with pytest.raises(ValueError, match=str(lesson.id)):
+    with pytest.raises(ValueError, match=rf"{spec.id}.*{lesson.id}"):
         export_cog(spec, "x")
 
 
@@ -190,3 +190,41 @@ def test_citations_deduplicated_preserving_order():
     front = yaml.safe_load(first.split("---")[1])
     assert front["citations"][:2] == ["B", "A"]
     assert len(front["citations"]) == len(set(front["citations"]))
+
+
+def test_high_sensitivity_lessons_without_quiz_emit_no_quick_check():
+    spec = load_spec(per_lesson=3)
+    lessons = [le for m in spec.modules for le in m.lessons]
+    high = lessons[0]
+    high.emotional_sensitivity_level = "high"
+    high.quiz = None
+    files = export_cog(spec, "x")
+    first = files[sorted(f for f in files if MODULE_RE.match(f))[0]]
+    assert "Quick check" not in first
+    assert re.findall(r"^(\d+)\. ", files["final-assessment.md"], re.M) == list("123456")
+    assert f"{high.title} q0?" not in files["final-assessment.md"]
+
+
+@pytest.mark.parametrize("opts", [["only"], ["a", ""], ["a", "   "], ["A", " a "], ["a", "a"]])
+def test_rejects_bad_option_sets(opts):
+    spec = load_spec()
+    lesson = spec.modules[0].lessons[0]
+    lesson.quiz.questions[0].options = opts
+    lesson.quiz.questions[0].correct_index = 0
+    with pytest.raises(ValueError, match=rf"{spec.id}.*{lesson.id}"):
+        export_cog(spec, "x")
+
+
+def test_cli_clean_error_on_bad_course_json(tmp_path):
+    from typer.testing import CliRunner
+
+    from syllabus.cli.main import app
+
+    bad = tmp_path / "bad.json"
+    bad.write_text("{not json")
+    for path in (bad, tmp_path / "missing.json"):
+        result = CliRunner().invoke(app, ["export-cog", str(path), "x", str(tmp_path)])
+        assert result.exit_code == 1
+        assert "Error:" in result.output
+        assert "Traceback" not in result.output
+        assert isinstance(result.exception, SystemExit)

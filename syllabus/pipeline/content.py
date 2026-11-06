@@ -111,7 +111,10 @@ def _parse_quiz(raw) -> Quiz:
         if not isinstance(q, dict):
             continue
         opts, idx = q.get("options"), q.get("correct_index")
-        text, expl = str(q.get("question") or "").strip(), str(q.get("explanation") or "").strip()
+        text, expl = q.get("question"), q.get("explanation")
+        if not isinstance(text, str) or not isinstance(expl, str):
+            continue
+        text, expl = text.strip(), expl.strip()
         if (
             text
             and expl
@@ -161,7 +164,7 @@ def run_content_for_lesson(
     }.get(kt, "Use explanation, example, and exercise blocks.")
     # Format selection (F-011): high emotional sensitivity → reflection instead of quiz-style exercise
     if es_level == "high":
-        kt_instruction += " This lesson is emotionally sensitive: use a reflection block instead of a recall-style exercise; keep the knowledge-check quiz questions gentle. End with supportive, patient-first framing."
+        kt_instruction += " This lesson is emotionally sensitive: use a reflection block instead of a recall-style exercise; do not write quiz questions. End with supportive, patient-first framing."
     adjacent_text = ""
     if adjacent_lessons:
         adjacent_text = (
@@ -192,26 +195,33 @@ Emotional sensitivity for this lesson: {es_level}.
 Context: Patient journey stage: {parsed.journey_stage}. Diagnosis: {parsed.diagnosis or "Not specified"}. Level: {parsed.level}.
 Key facts to ground the lesson: {research_facts}
 {adjacent_text}
-Output ONLY valid JSON with three keys: "key_takeaways" (array of 3-5 short strings, one line each, to display at TOP of lesson), "blocks" (array of blocks), and "quiz" (array of 2-3 knowledge-check questions). Each block: {{ "type": "...", "content": "...", optional "emotional_sensitivity_level": "low"|"medium"|"high" }}.
+Output ONLY valid JSON with three keys: "key_takeaways" (array of 3-5 short strings, one line each, to display at TOP of lesson), "blocks" (array of blocks), and "quiz" (array of 2-3 knowledge-check questions; use [] for emotionally sensitive "high" lessons). Each block: {{ "type": "...", "content": "...", optional "emotional_sensitivity_level": "low"|"medium"|"high" }}.
 Block types: explanation, example, exercise, reflection, compliance_note.
 - key_takeaways: 3-5 bullet-style takeaways that prime recall before the learner reads the full lesson.
 - Use 2-5 explanation/example/exercise/reflection blocks for the lesson body.
 - You MUST include exactly one block with type "compliance_note" at the END. Its content must be 1-3 questions the patient can ask their RE. Never give prescriptive medical advice.
-- quiz: 2-3 multiple-choice questions, each {{ "question": "...", "options": ["...", "..."] (3-4 options), "correct_index": 0-based index of the right option, "explanation": "one or two sentences why" }}. Questions test understanding of this lesson only. If the lesson is emotionally sensitive, keep them gentle and factual (no blame, no outcome predictions).
+- quiz: 2-3 multiple-choice questions, each {{ "question": "...", "options": ["...", "..."] (3-4 options), "correct_index": 0-based index of the right option, "explanation": "one or two sentences why" }}. Questions test understanding of this lesson only. For emotionally sensitive (high) lessons, output "quiz": [] (no quiz).
 - Never write first-person assistant sign-offs or offers of help (e.g. \"I'm here to help!\", \"Let me know if you have questions\"); write as course content, not a chat reply.
 - Content: clear, warm, medically accurate, non-prescriptive.
 
 JSON:"""
-    # Every lesson needs >=2 valid quiz questions (export requires 6+ per course); retry once.
+    # Body blocks always required. Quiz (>=2 valid questions; export needs 6+ per course) is
+    # required except for high-sensitivity lessons, which get a reflection and no quiz (F-011).
+    needs_quiz = es_level != "high"
+    quiz = None
     for _ in range(2):
         response = llm.invoke(prompt)
         raw_content = _strip_thinking(response.content)
-        quiz = _parse_quiz(_extract_json(raw_content).get("quiz"))
-        if len(quiz.questions) >= 2:
+        data = _extract_json(raw_content)
+        has_blocks = bool(data.get("blocks"))
+        if needs_quiz:
+            quiz = _parse_quiz(data.get("quiz"))
+        if has_blocks and (not needs_quiz or len(quiz.questions) >= 2):
             break
     else:
         raise ValueError(
-            f"Lesson {lesson_outline.id} ({lesson_outline.title}): LLM returned <2 valid quiz questions after retry"
+            f"Lesson {lesson_outline.id} ({lesson_outline.title}): LLM returned no body blocks"
+            " or <2 valid quiz questions after retry"
         )
     blocks, key_takeaways = _parse_blocks(raw_content, default_emotional_sensitivity=es_level)
     if citations and blocks:

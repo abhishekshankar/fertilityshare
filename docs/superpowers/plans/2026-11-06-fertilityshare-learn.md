@@ -323,9 +323,16 @@ git commit -m "feat: add catalog intake presets by journey stage"
 - [ ] **Step 1: Copy without history or build artifacts**
 
 ```bash
-cd ~/Documents/GitHub && rsync -a --exclude node_modules --exclude .git --exclude '.next' --exclude '* 2.*' --exclude '* 2' cogtraining/ fertilityshare-learn/
-cd fertilityshare-learn && git init && git add -A && git commit -m "chore: copy cogtraining engine as starting point"
+cd ~/Documents/GitHub && rsync -a --exclude node_modules --exclude .git --exclude '.next' --exclude '* 2.*' --exclude '* 2' --exclude '.env*' --exclude '.dev.vars' --exclude '*.pem' --exclude '*.key' cogtraining/ fertilityshare-learn/
+# keep the example files the excludes above dropped
+for f in .env.example .dev.vars.example; do [ -f cogtraining/$f ] && cp cogtraining/$f fertilityshare-learn/$f; done
+cd fertilityshare-learn && git init && git add -A
+# inspect staged files for secrets before the first commit
+git diff --cached --name-only | grep -iE '\.env|\.dev\.vars|\.pem|\.key|secret|credential' # only *.example files may appear
+git commit -m "chore: copy cogtraining engine as starting point"
 ```
+
+Review the `git diff --cached --name-only` list by eye before committing; if anything secret-like is staged, `git rm --cached` it and add it to `.gitignore`.
 
 - [ ] **Step 2: Remove dementia-specific content and docs**
 

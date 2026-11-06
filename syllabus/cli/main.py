@@ -277,7 +277,11 @@ def export_cog_cmd(course_json: Path, slug: str, out_dir: Path) -> None:
     from syllabus.export.cog import export_cog
     from syllabus.models.schemas import CourseSpec
 
-    spec = CourseSpec.model_validate_json(course_json.read_text())
+    try:
+        spec = CourseSpec.model_validate_json(course_json.read_text())
+    except (OSError, ValueError) as e:  # missing file, bad JSON, or ValidationError
+        typer.echo(f"Error: cannot read course spec {course_json}: {e}", err=True)
+        raise typer.Exit(1) from e
     try:
         files = export_cog(spec, slug)
     except ValueError as e:

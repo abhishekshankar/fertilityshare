@@ -100,10 +100,21 @@ def export_cog(spec: CourseSpec, slug: str) -> dict[str, str]:
         raise ValueError(f"course {spec.id} has no lessons")
     for _, lesson in lessons:
         if not lesson.title.strip() or not lesson.blocks:
-            raise ValueError(f"lesson {lesson.id} needs a title and blocks")
+            raise ValueError(f"course {spec.id} lesson {lesson.id} needs a title and blocks")
         for q in lesson.quiz.questions if lesson.quiz else []:
-            if not q.options or not 0 <= q.correct_index < len(q.options):
-                raise ValueError(f"lesson {lesson.id} has a quiz question with invalid answer")
+            opts = q.options
+            norm = [o.strip().lower() for o in opts if isinstance(o, str)]
+            if (
+                len(opts) < 2
+                or len(norm) != len(opts)
+                or not all(norm)
+                or len(set(norm)) != len(norm)
+                or not 0 <= q.correct_index < len(opts)
+            ):
+                raise ValueError(
+                    f"course {spec.id} lesson {lesson.id} has a quiz question with invalid"
+                    " options or answer (need >=2 distinct non-blank options, valid correct_index)"
+                )
 
     per_lesson = [
         [(i, q) for q in (lesson.quiz.questions if lesson.quiz else [])]
