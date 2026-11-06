@@ -1,0 +1,7 @@
+[
+  {"slug": "fertility-foundations", "intake": {"journey_stage": "thinking about starting", "confusion": "where do I even begin with fertility", "level": "beginner", "target_end_state": "Understand how fertility works and know the first practical steps to take."}},
+  {"slug": "trying-to-conceive", "intake": {"journey_stage": "trying to conceive", "confusion": "timing, tracking and when to seek help", "level": "beginner", "target_end_state": "Track cycles confidently and know when to see a specialist."}},
+  {"slug": "starting-ivf", "intake": {"journey_stage": "starting treatment", "diagnosis": "unexplained infertility", "confusion": "what happens during an IVF cycle", "level": "beginner", "target_end_state": "Walk into an IVF cycle knowing each step, medication and decision point."}},
+  {"slug": "ttc-with-pcos", "intake": {"journey_stage": "trying to conceive", "diagnosis": "PCOS", "confusion": "how PCOS affects ovulation and treatment options", "level": "beginner", "target_end_state": "Understand PCOS-specific options and questions to ask a clinician."}},
+  {"slug": "after-an-unsuccessful-cycle", "intake": {"journey_stage": "unsuccessful but hopeful", "confusion": "what to do after a failed cycle", "level": "intermediate", "target_end_state": "Review a failed cycle with your clinic and plan next steps."}}
+]
