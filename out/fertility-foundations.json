@@ -1,0 +1,801 @@
+{
+  "id": "ac8839a9-b9dc-4628-b95b-6bdf23b89d5d",
+  "title": "Your fertility learning course",
+  "intake": {
+    "journey_stage": "thinking about starting",
+    "diagnosis": null,
+    "confusion": "where do I even begin with fertility",
+    "level": "beginner",
+    "target_end_state": "Understand how fertility works and know the first practical steps to take."
+  },
+  "modules": [
+    {
+      "id": "5e55c56d-2012-4ea1-8a40-36a9688844dc",
+      "title": "Understanding Fertility Basics",
+      "objective": "Build a foundational understanding of fertility.",
+      "lessons": [
+        {
+          "id": "87ad467b-8a47-4357-bdeb-6411c90223aa",
+          "title": "Introduction to Fertility",
+          "objective": "Learn what fertility means and the basic biological processes involved.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Fertility is the natural capability to produce offspring. It involves a complex interplay of biological processes, including the release of an egg from the ovaries, its fertilization by sperm, and the implantation of the fertilized egg in the uterus. Understanding these processes is crucial for anyone considering starting a family.",
+              "citations": [
+                {
+                  "source": "PubMed:41736759",
+                  "snippet": "lifestyle factors, such as \nsmoking, alcohol consumption, caffeine intake, exercise, psychological stress \nand drug abuse. While advanced age and some medical conditions undeniably lower \nreproductive potential, modifiable lifestyle choices also play a vital role. \nEarly diagnosis, prompt and approp"
+                },
+                {
+                  "source": "PubMed:41766597",
+                  "snippet": "provide FP. \nThe objective of any FP intervention is to minimize or eliminate primary disease \nburden and to ensure the maintenance or preserving reproductive health. \nTherefore, people who are at risk of losing fertility should be evaluated for \nand counseled about future reproductive risks. Embryo"
+                },
+                {
+                  "source": "PubMed:41746699",
+                  "snippet": "on, \nUK.\n(5)Centre for Epidemiology and Biostatistics, Melbourne School of Population and \nGlobal Health, The University of Melbourne, Parkville, Victoria, Australia.\n(6)Cancer Epidemiology Division, Cancer Council Victoria, Melbourne, Victoria, \nAustralia.\n\nINTRODUCTION: Infertility is a common rep"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41746699",
+                  "snippet": "12. Acta Obstet Gynecol Scand. 2026 Feb 26. doi: 10.1111/aogs.70178. Online ahead\nof  print.\n\nAssociation between history of fertility problems and pregnancy and birth \ncomplications: A longitudinal population-based cohort study.\n\nTully CA(1)(2), Schoenaker D(3)(4), Pacella-Ince L(1)(2), Hodge AM(5)"
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "Several factors can influence fertility, including age, lifestyle choices, and overall health. For instance, smoking and excessive alcohol consumption can negatively affect fertility in both men and women. On the other hand, maintaining a healthy weight and managing stress can improve fertility outcomes.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Consider Sarah, who is planning to start a family. She learns that reducing her caffeine intake and quitting smoking can enhance her chances of conception. By making these lifestyle changes, Sarah is taking proactive steps to improve her fertility.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about your current lifestyle. Are there any habits or factors that might affect your fertility? Write down one or two changes you could make to support your reproductive health. Remember, small steps can lead to significant improvements.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you visit your reproductive endocrinologist, consider asking: What lifestyle changes can I make to improve my fertility? Are there any specific tests I should consider to assess my fertility health? How does age impact my fertility, and what can I do to mitigate any negative effects?",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "Fertility refers to the ability to conceive and bear children.",
+            "Lifestyle factors like smoking, alcohol, and stress can impact fertility.",
+            "Understanding basic fertility concepts helps in making informed decisions."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the primary definition of fertility?",
+                "options": [
+                  "The ability to produce offspring.",
+                  "The ability to run long distances.",
+                  "The ability to digest food efficiently.",
+                  "The ability to memorize information quickly."
+                ],
+                "correct_index": 0,
+                "explanation": "Fertility refers to the natural capability to produce offspring."
+              },
+              {
+                "question": "Which of the following lifestyle factors can negatively impact fertility?",
+                "options": [
+                  "Smoking and excessive alcohol consumption.",
+                  "Reading books.",
+                  "Drinking water.",
+                  "Getting enough sleep."
+                ],
+                "correct_index": 0,
+                "explanation": "Smoking and excessive alcohol consumption can negatively affect fertility in both men and women."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "944c6d36-cd76-4982-9170-356243567022",
+          "title": "The Menstrual Cycle and Ovulation",
+          "objective": "Understand the phases of the menstrual cycle and their role in fertility.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "The menstrual cycle is a monthly process that prepares the female body for pregnancy. It involves a series of hormonal changes that regulate the release of an egg from the ovaries and prepare the uterus for a potential pregnancy. Understanding this cycle is crucial for anyone considering starting a family.",
+              "citations": [
+                {
+                  "source": "PubMed:41800502",
+                  "snippet": "o penetrate the \nmembrane of mature oocytes. There are some crucial steps known to clearly \nexplain the process of fertilization, starting with hyperactivation of \nspermatozoa, mutual recognition, and binding of gametes mediated by receptors \nlocated on the surface membranes of both gametes. The fin"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41736759",
+                  "snippet": "lifestyle factors, such as \nsmoking, alcohol consumption, caffeine intake, exercise, psychological stress \nand drug abuse. While advanced age and some medical conditions undeniably lower \nreproductive potential, modifiable lifestyle choices also play a vital role. \nEarly diagnosis, prompt and approp"
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "The cycle is divided into four main phases: the menstrual phase, the follicular phase, ovulation, and the luteal phase. During the menstrual phase, the lining of the uterus is shed if pregnancy does not occur. The follicular phase follows, where the body prepares an egg for release. Ovulation is the midpoint of the cycle when the egg is released. The luteal phase is when the body prepares for a possible pregnancy.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Imagine your menstrual cycle as a carefully choreographed dance. Each hormone has its role, like dancers on a stage. Estrogen helps build the uterine lining, while progesterone maintains it. When the egg is released during ovulation, it's like the spotlight shining on the star of the show.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Let's check your understanding: Can you name the four phases of the menstrual cycle? Try to recall what happens during each phase and how they relate to fertility. Feel free to jot down your thoughts or discuss them with a friend.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you next see your reproductive endocrinologist, consider asking: 'Can you explain how my cycle might affect my fertility?' or 'Are there specific signs of ovulation I should look out for?' These questions can help you understand your body better and guide your fertility journey.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "The menstrual cycle is divided into four phases: menstrual, follicular, ovulation, and luteal.",
+            "Ovulation is the release of an egg from the ovary, crucial for fertility.",
+            "Hormones like estrogen and progesterone play key roles in regulating the cycle."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "Which phase of the menstrual cycle involves the release of an egg?",
+                "options": [
+                  "Menstrual phase",
+                  "Follicular phase",
+                  "Ovulation",
+                  "Luteal phase"
+                ],
+                "correct_index": 2,
+                "explanation": "Ovulation is the phase where the egg is released from the ovary, making it a critical part of the fertility process."
+              },
+              {
+                "question": "What role does estrogen play in the menstrual cycle?",
+                "options": [
+                  "Triggers ovulation",
+                  "Builds the uterine lining",
+                  "Maintains the uterine lining",
+                  "Causes the uterine lining to shed"
+                ],
+                "correct_index": 1,
+                "explanation": "Estrogen helps build the uterine lining, preparing it for a potential pregnancy."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "c37487a0-be18-4674-b94e-cc3996a07c66",
+          "title": "Factors Affecting Fertility",
+          "objective": "Identify lifestyle and health factors that can influence fertility.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Fertility is influenced by a variety of lifestyle and health factors. While age and certain medical conditions are well-known factors, lifestyle choices also play a crucial role. Understanding these factors can help you make informed decisions as you embark on your fertility journey.",
+              "citations": [
+                {
+                  "source": "PubMed:41736759",
+                  "snippet": "lifestyle factors, such as \nsmoking, alcohol consumption, caffeine intake, exercise, psychological stress \nand drug abuse. While advanced age and some medical conditions undeniably lower \nreproductive potential, modifiable lifestyle choices also play a vital role. \nEarly diagnosis, prompt and approp"
+                },
+                {
+                  "source": "PubMed:41809810",
+                  "snippet": "r \ntotal, Emotional, Mind-Body, and Social FertiQoL scores than their male \npartners. The cause of infertility was a key moderator: men with a male-factor \nor mixed-factor diagnosis reported lower Emotional and Mind-Body QoL, whereas \nwomen's scores were consistently low regardless of etiology. Prio"
+                },
+                {
+                  "source": "PubMed:41746699",
+                  "snippet": "on, \nUK.\n(5)Centre for Epidemiology and Biostatistics, Melbourne School of Population and \nGlobal Health, The University of Melbourne, Parkville, Victoria, Australia.\n(6)Cancer Epidemiology Division, Cancer Council Victoria, Melbourne, Victoria, \nAustralia.\n\nINTRODUCTION: Infertility is a common rep"
+                },
+                {
+                  "source": "PubMed:41809810",
+                  "snippet": "study used a dyadic approach to investigate how gender, medical history, \nand sociodemographic factors affect fertility-related QoL (FertiQoL) in Czech \ncouples seeking treatment for primary infertility.\nPARTICIPANTS AND PROCEDURE: This cross-sectional multicenter study included 469 \nheterosexual co"
+                },
+                {
+                  "source": "PubMed:41746699",
+                  "snippet": ".26)], or low birthweight [RR: 1.04; 95% CI (0.80 to 1.34)].\nCONCLUSIONS: In this large cohort of women in Australian, initial associations \nbetween fertility problems and adverse pregnancy outcomes were attenuated after \nadjustment for key health and lifestyle factors. The absence of associations i"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "Smoking, alcohol consumption, and drug use have been shown to negatively affect fertility. These substances can impact hormone levels and reduce the quality of eggs and sperm. Quitting smoking and moderating alcohol intake can improve your chances of conception.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Consider Sarah, who decided to quit smoking and reduce her alcohol intake when she and her partner started trying to conceive. Within a few months, she noticed improvements in her overall health and felt more optimistic about her fertility journey.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "Stress management and maintaining a healthy weight are also important. High stress levels can disrupt your hormonal balance, while being underweight or overweight can affect ovulation. Incorporating relaxation techniques and a balanced diet can support your reproductive health.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Reflect on your current lifestyle. Are there any habits or stressors you might want to address? Write down one or two changes you could make to support your fertility, and consider how you might implement these changes.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "At your next appointment, consider asking your reproductive endocrinologist: 'How might my lifestyle choices be affecting my fertility?' 'Are there specific changes you would recommend for me?' 'What resources are available to help me manage stress during this process?'",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Lifestyle choices can significantly impact fertility.",
+            "Smoking, alcohol, and drug use are known to reduce fertility.",
+            "Managing stress and maintaining a balanced diet can support reproductive health."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "Which lifestyle factor is known to negatively impact fertility?",
+                "options": [
+                  "Regular exercise",
+                  "Smoking",
+                  "Drinking water",
+                  "Reading"
+                ],
+                "correct_index": 1,
+                "explanation": "Smoking is known to reduce fertility by affecting hormone levels and the quality of eggs and sperm."
+              },
+              {
+                "question": "How can stress affect fertility?",
+                "options": [
+                  "It has no effect",
+                  "It can disrupt hormonal balance",
+                  "It improves fertility",
+                  "It only affects men"
+                ],
+                "correct_index": 1,
+                "explanation": "High stress levels can disrupt hormonal balance, which is crucial for maintaining regular ovulation and overall reproductive health."
+              },
+              {
+                "question": "What is a practical step to take if you're concerned about your fertility?",
+                "options": [
+                  "Ignore lifestyle factors",
+                  "Consult a reproductive endocrinologist",
+                  "Increase caffeine intake",
+                  "Avoid medical advice"
+                ],
+                "correct_index": 1,
+                "explanation": "Consulting a reproductive endocrinologist can provide you with personalized advice and guidance on how to optimize your fertility."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "5521692a-0301-414b-a067-2348072e92b0",
+      "title": "Assessing Your Fertility",
+      "objective": "Learn how to evaluate your own fertility status.",
+      "lessons": [
+        {
+          "id": "603c7fc3-9a81-41c0-9173-b63893de34b7",
+          "title": "Tracking Your Cycle",
+          "objective": "Learn how to track your menstrual cycle and ovulation.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Understanding your menstrual cycle is a crucial first step in tracking fertility. Your cycle begins on the first day of your period and ends the day before your next period starts. Ovulation, when an egg is released from your ovary, usually occurs around the midpoint of your cycle. Knowing when you ovulate can help you identify your most fertile days.",
+              "citations": [
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41809679",
+                  "snippet": "GROUND: Over 2.5 million cycles in vitro fertilization (IVF) are conducted \nannually, and numbers are expected to rise with the aging population. The \ncontrolled ovarian stimulation (COS) process, key to IVF success, is inherently \ncomplex. Given advances in artificial intelligence (AI), this study "
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                },
+                {
+                  "source": "PubMed:41805952",
+                  "snippet": "2023. Fellows and residents managed patient care, \nincluding the prescription of an OI agent (clomiphene citrate or letrozole), \nultrasound monitoring, and trigger (human chorionic gonadotropin) followed by \ntimed intercourse (TIC) or intrauterine insemination (IUI). Primary outcomes \nincluded the o"
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Let's say your cycle is 28 days long. Ovulation typically happens around day 14. If you're trying to conceive, having intercourse a few days before and after this midpoint increases your chances. Remember, every woman's cycle is unique, so it's important to track your own patterns.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Try tracking your cycle for a couple of months. Note the first day of your period and any changes in your body, like cervical mucus or basal body temperature. This practice helps you understand your cycle better and identify your fertile window. If you have questions, I'm here to help!",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "reflection",
+              "content": "Consider how tracking your cycle might fit into your daily routine. What tools or methods do you think would work best for you? Reflect on any patterns you notice and how they might inform your understanding of your fertility.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "At your next appointment, consider asking your reproductive endocrinologist: How can I accurately track my ovulation? Are there specific signs of ovulation I should be aware of? Is there any technology or apps you recommend for tracking my cycle?",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "Tracking your menstrual cycle helps identify your fertile window.",
+            "Ovulation typically occurs around the midpoint of your cycle.",
+            "Monitoring basal body temperature and cervical mucus can indicate ovulation."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the typical timing of ovulation in a 28-day menstrual cycle?",
+                "options": [
+                  "Day 1",
+                  "Day 14",
+                  "Day 21",
+                  "Day 28"
+                ],
+                "correct_index": 1,
+                "explanation": "Ovulation usually occurs around the midpoint of the cycle, which is day 14 in a 28-day cycle."
+              },
+              {
+                "question": "Which of the following can be a sign of ovulation?",
+                "options": [
+                  "Increased basal body temperature",
+                  "Decreased energy levels",
+                  "Constant mood swings",
+                  "Irregular periods"
+                ],
+                "correct_index": 0,
+                "explanation": "An increase in basal body temperature can indicate that ovulation has occurred."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "f8d026ad-903f-4a86-a88f-c0ed25cb50be",
+          "title": "Signs of Fertility and Infertility",
+          "objective": "Recognize signs that may indicate fertility or potential issues.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Fertility is a complex interplay of biological and lifestyle factors. While age and medical conditions are significant, lifestyle choices like smoking, alcohol consumption, and stress levels also play a crucial role. Understanding these factors can empower you to make informed decisions about your reproductive health.",
+              "citations": [
+                {
+                  "source": "PubMed:41736759",
+                  "snippet": "lifestyle factors, such as \nsmoking, alcohol consumption, caffeine intake, exercise, psychological stress \nand drug abuse. While advanced age and some medical conditions undeniably lower \nreproductive potential, modifiable lifestyle choices also play a vital role. \nEarly diagnosis, prompt and approp"
+                },
+                {
+                  "source": "PubMed:41800501",
+                  "snippet": "of infertility diagnoses \nand fertility treatments during the first year of coverage.\nMETHODS: This study analyzed claims data from 14 health insurance associations \nfrom April 2022 to March 2023. Infertility diagnoses and fertility treatments, \nand related comorbidities were identified via diagnosi"
+                },
+                {
+                  "source": "PubMed:41746699",
+                  "snippet": "on, \nUK.\n(5)Centre for Epidemiology and Biostatistics, Melbourne School of Population and \nGlobal Health, The University of Melbourne, Parkville, Victoria, Australia.\n(6)Cancer Epidemiology Division, Cancer Council Victoria, Melbourne, Victoria, \nAustralia.\n\nINTRODUCTION: Infertility is a common rep"
+                },
+                {
+                  "source": "PubMed:41605576",
+                  "snippet": "nited States.\n(2)Texas Fertility Center, Austin, United States.\n(3)The Fertility Center of Las Vegas, Las Vegas, United States.\n(4)Nashville Fertility Center, Nashville, United States.\n(5)The Fertility Center of Grand Rapids, Grand Rapids, United States.\n(6)Brigham Young University, Provo, United St"
+                },
+                {
+                  "source": "PubMed:41746699",
+                  "snippet": "12. Acta Obstet Gynecol Scand. 2026 Feb 26. doi: 10.1111/aogs.70178. Online ahead\nof  print.\n\nAssociation between history of fertility problems and pregnancy and birth \ncomplications: A longitudinal population-based cohort study.\n\nTully CA(1)(2), Schoenaker D(3)(4), Pacella-Ince L(1)(2), Hodge AM(5)"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Consider Sarah, who is 32 and trying to conceive. She notices her menstrual cycles are irregular and wonders if her high caffeine intake and stressful job might be affecting her fertility. By reducing caffeine and practicing stress management techniques, Sarah hopes to improve her chances of conceiving.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Reflect on your own lifestyle. Are there any habits, like smoking or high stress, that you think might impact your fertility? What small changes could you start making today to support your reproductive health?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Think about your understanding of fertility so far. How do you feel about the balance between biological and lifestyle factors? Are there areas where you feel confident or areas where you want to learn more?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you next meet with your reproductive endocrinologist, consider asking: 'How might my lifestyle choices be impacting my fertility?' 'Are there specific signs I should be aware of that indicate potential fertility issues?' 'What steps can I take to optimize my fertility health?'",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Fertility is influenced by a combination of biological and lifestyle factors.",
+            "Recognizing signs of fertility can help in planning for conception.",
+            "Lifestyle choices like smoking and stress can impact fertility.",
+            "Early awareness and intervention can optimize fertility outcomes."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "Which of the following is a lifestyle factor that can impact fertility?",
+                "options": [
+                  "Age",
+                  "Smoking",
+                  "Genetic disorders",
+                  "Menstrual cycle length"
+                ],
+                "correct_index": 1,
+                "explanation": "Smoking is a lifestyle factor that can negatively affect fertility."
+              },
+              {
+                "question": "Why is it important to recognize signs of fertility?",
+                "options": [
+                  "To predict the exact date of conception",
+                  "To make informed decisions about reproductive health",
+                  "To ensure a pregnancy within a specific timeframe",
+                  "To eliminate all fertility-related concerns"
+                ],
+                "correct_index": 1,
+                "explanation": "Recognizing signs of fertility helps in making informed decisions about reproductive health."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "efab9153-2541-4add-ad4a-62b382c919b6",
+      "title": "Taking the First Steps",
+      "objective": "Understand the initial steps to take when considering fertility options.",
+      "lessons": [
+        {
+          "id": "a233e87b-6fec-41f5-9e1f-9dcafae1d1df",
+          "title": "When to Seek Professional Advice",
+          "objective": "Determine when it is appropriate to consult a healthcare professional about fertility.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Deciding when to seek professional advice about fertility can be challenging. It's important to remember that seeking help is a proactive step, not a sign of failure. Many factors, including age, lifestyle, and health conditions, can influence fertility. If you've been trying to conceive for a year (or six months if you're over 35), it might be time to consult a healthcare professional.",
+              "citations": [
+                {
+                  "source": "PubMed:41736759",
+                  "snippet": "lifestyle factors, such as \nsmoking, alcohol consumption, caffeine intake, exercise, psychological stress \nand drug abuse. While advanced age and some medical conditions undeniably lower \nreproductive potential, modifiable lifestyle choices also play a vital role. \nEarly diagnosis, prompt and approp"
+                },
+                {
+                  "source": "PubMed:41766597",
+                  "snippet": "provide FP. \nThe objective of any FP intervention is to minimize or eliminate primary disease \nburden and to ensure the maintenance or preserving reproductive health. \nTherefore, people who are at risk of losing fertility should be evaluated for \nand counseled about future reproductive risks. Embryo"
+                },
+                {
+                  "source": "PubMed:41800295",
+                  "snippet": "riate genetic counseling may help the patient's decision making. \nThe treatment plan should be discussed with diverse professionals such as \noncologists, reproductive physicians, perinatologists, geneticists, and genetic \ncounselors.\n\n\u00a9 2026 The Author(s). Reproductive Medicine and Biology published"
+                },
+                {
+                  "source": "PubMed:41766597",
+                  "snippet": "trics and Gynecology, Istanbul Koc University School of \nMedicine, Istanbul, Turkey.\n\nFertility preservation (FP) is a rapidly expanding field in reproductive \nmedicine with still limited data on outcomes. FP aims to protect the fertility \nof children, women, and men who face the potential risk of f"
+                },
+                {
+                  "source": "PubMed:41800501",
+                  "snippet": "of infertility diagnoses \nand fertility treatments during the first year of coverage.\nMETHODS: This study analyzed claims data from 14 health insurance associations \nfrom April 2022 to March 2023. Infertility diagnoses and fertility treatments, \nand related comorbidities were identified via diagnosi"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Consider Sarah and Tom, who have been trying to conceive for 14 months without success. Sarah is 32, and Tom is 34. They both lead healthy lifestyles but are unsure if they should seek medical advice. Given their situation, reaching out to a fertility specialist could provide them with valuable insights and options.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about your own situation or someone you know who is trying to conceive. What factors might influence the decision to seek professional advice? Consider age, lifestyle, and how long you've been trying. Write down your thoughts and discuss them with a partner or friend.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on how lifestyle choices like smoking, alcohol consumption, and stress management might affect fertility. What small changes could you make to potentially improve your fertility health?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist, consider asking: What lifestyle changes could improve our chances of conceiving? Are there any specific tests we should consider given our age and health history? How do we know if it's time to explore fertility treatments?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Understand when it's time to seek professional fertility advice.",
+            "Lifestyle factors can impact fertility and should be considered.",
+            "Early consultation with a healthcare provider can optimize fertility outcomes."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "When is it generally recommended to seek professional fertility advice?",
+                "options": [
+                  "After trying to conceive for three months.",
+                  "After six months of trying, if over 35.",
+                  "Only after two years of trying.",
+                  "Immediately after deciding to conceive."
+                ],
+                "correct_index": 1,
+                "explanation": "It's recommended to seek advice after six months of trying if you're over 35, or after a year if you're younger."
+              },
+              {
+                "question": "Which lifestyle factor is NOT typically associated with impacting fertility?",
+                "options": [
+                  "Smoking",
+                  "Exercise",
+                  "Watching TV",
+                  "Alcohol consumption"
+                ],
+                "correct_index": 2,
+                "explanation": "While lifestyle factors like smoking and alcohol consumption can impact fertility, watching TV is not directly associated."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "d1705f58-1698-4b6d-a3c7-0be9f5a3ff17",
+          "title": "Preparing for Your First Fertility Appointment",
+          "objective": "Learn how to prepare for your first appointment with a reproductive endocrinologist.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Your first appointment with a reproductive endocrinologist is an essential step in your fertility journey. It's an opportunity to discuss your medical history, lifestyle, and any concerns you might have. The doctor will likely perform some initial tests to assess your reproductive health. This appointment is about gathering information and setting a foundation for your personalized fertility plan.",
+              "citations": [
+                {
+                  "source": "PubMed:41766597",
+                  "snippet": "provide FP. \nThe objective of any FP intervention is to minimize or eliminate primary disease \nburden and to ensure the maintenance or preserving reproductive health. \nTherefore, people who are at risk of losing fertility should be evaluated for \nand counseled about future reproductive risks. Embryo"
+                },
+                {
+                  "source": "PubMed:41800501",
+                  "snippet": "of infertility diagnoses \nand fertility treatments during the first year of coverage.\nMETHODS: This study analyzed claims data from 14 health insurance associations \nfrom April 2022 to March 2023. Infertility diagnoses and fertility treatments, \nand related comorbidities were identified via diagnosi"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41746699",
+                  "snippet": "12. Acta Obstet Gynecol Scand. 2026 Feb 26. doi: 10.1111/aogs.70178. Online ahead\nof  print.\n\nAssociation between history of fertility problems and pregnancy and birth \ncomplications: A longitudinal population-based cohort study.\n\nTully CA(1)(2), Schoenaker D(3)(4), Pacella-Ince L(1)(2), Hodge AM(5)"
+                },
+                {
+                  "source": "PubMed:41605576",
+                  "snippet": "nited States.\n(2)Texas Fertility Center, Austin, United States.\n(3)The Fertility Center of Las Vegas, Las Vegas, United States.\n(4)Nashville Fertility Center, Nashville, United States.\n(5)The Fertility Center of Grand Rapids, Grand Rapids, United States.\n(6)Brigham Young University, Provo, United St"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you\u2019re meeting your reproductive endocrinologist for the first time. You might start by discussing your menstrual cycle history, any previous pregnancies, and your general health. The doctor may ask about your lifestyle, such as diet, exercise, and stress levels, as these can impact fertility. This initial conversation helps the doctor understand your unique situation and tailor the next steps accordingly.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Take a moment to write down any questions or concerns you have about your fertility. Consider aspects like your menstrual cycle, any symptoms you\u2019ve noticed, or family history of reproductive issues. This list will be helpful during your appointment to ensure you cover all your bases. Remember, no question is too small when it comes to your health.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on how you feel about starting this journey. It's normal to have a mix of emotions\u2014excitement, anxiety, hope. Acknowledging these feelings can help you approach your appointment with a clear mind. Remember, you're not alone, and this step is a positive move towards understanding your fertility better.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist, consider asking: 'What initial tests will we be doing, and what will they tell us about my fertility?' 'Are there lifestyle changes I should consider to improve my fertility?' 'What are the next steps after this appointment?' These questions can help guide your discussion and ensure you leave with a clear understanding of your path forward.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Understand the purpose of your first fertility appointment.",
+            "Know what information to prepare before your appointment.",
+            "Learn how to approach your fertility journey with a positive mindset."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the primary purpose of your first fertility appointment?",
+                "options": [
+                  "To immediately start fertility treatment.",
+                  "To gather information and assess reproductive health.",
+                  "To undergo surgery.",
+                  "To receive a definitive diagnosis."
+                ],
+                "correct_index": 1,
+                "explanation": "The first appointment is primarily for gathering information and assessing your reproductive health to create a personalized plan."
+              },
+              {
+                "question": "Which of the following should you prepare before your first appointment?",
+                "options": [
+                  "A list of questions and concerns about your fertility.",
+                  "A detailed financial plan for treatment.",
+                  "A complete family tree.",
+                  "A list of potential baby names."
+                ],
+                "correct_index": 0,
+                "explanation": "Preparing a list of questions and concerns ensures you cover all important topics during your appointment."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "c5960481-728a-4424-b0a3-735de616be92",
+          "title": "What to Ask Your RE",
+          "objective": "Prepare a list of questions to ask your reproductive endocrinologist.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "When you're thinking about starting your fertility journey, it's crucial to have a clear line of communication with your reproductive endocrinologist (RE). Having a list of questions prepared can help you make the most of your appointments. It ensures you get the information you need and helps you feel more in control of the process.",
+              "citations": [
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "Conflict of interest statement: The authors declare that they have no commercial \nor financial relationships that could be construed as a potential conflict of \ninterest.\n\n\n13. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letr"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41719147",
+                  "snippet": "18. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letrozole treatment in patients with resistant \npolycystic ovary syndrome undergoing intrauterine insemination: A 7-year \nretrospective cohort study.\n\nSrinivasan V(1).\n\nAuthor i"
+                },
+                {
+                  "source": "PubMed:41674736",
+                  "snippet": "er relationships \nor activities that could appear to have influenced the submitted work.\n\n\n12. Reprod Biomed Online. 2025 Oct 24;52(3):105361. doi:\n10.1016/j.rbmo.2025.105361.  Online ahead of print.\n\nFertility preservation and family-building in transgender and non-binary \npatients: 14 years at a U"
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you're at your first appointment with your RE. You might feel overwhelmed by the information and emotions. Having a list of questions can guide the conversation and ensure you don't forget to address your main concerns. For instance, you might ask about the tests you'll need, the treatment options available, and the potential side effects.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Take a moment to jot down three questions you have about your fertility journey. Think about what you're most curious or concerned about. This exercise will help you prioritize your thoughts and ensure you're ready for your appointment. Remember, no question is too small or silly.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on how you feel about starting this journey. What are your hopes and fears? Understanding your emotions can help you communicate them to your RE, who can provide support and guidance tailored to your needs.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Here are some questions you might consider asking your RE at your next appointment: What are the next steps in my fertility evaluation? Are there lifestyle changes I should consider to improve my chances? What are the potential side effects of the treatments you're recommending?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Prepare questions to ask your reproductive endocrinologist (RE).",
+            "Understand the importance of clear communication with your RE.",
+            "Learn how to prioritize your concerns and questions."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "Why is it important to prepare questions before meeting with your RE?",
+                "options": [
+                  "To ensure the appointment is as short as possible.",
+                  "To make sure you get all the information you need.",
+                  "To impress the RE with your knowledge.",
+                  "To avoid asking any questions during the appointment."
+                ],
+                "correct_index": 1,
+                "explanation": "Preparing questions helps you gather the necessary information and ensures your concerns are addressed."
+              },
+              {
+                "question": "What is a good strategy for prioritizing your questions for your RE?",
+                "options": [
+                  "Ask about every possible treatment option available.",
+                  "Focus on your main concerns and what you need to know first.",
+                  "Only ask questions if there's time left at the end of the appointment.",
+                  "Avoid asking personal questions."
+                ],
+                "correct_index": 1,
+                "explanation": "Prioritizing your main concerns ensures the most important topics are covered during your appointment."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-11-06T21:20:53.188204Z",
+    "pipeline_version": "0.1.0",
+    "model_versions": {}
+  }
+}
