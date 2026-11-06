@@ -144,3 +144,21 @@ def test_cli_exits_1_on_too_few_questions(tmp_path):
     assert result.exit_code == 1
     assert "at least 6 quiz questions" in result.output
     assert not (tmp_path / "fertility-foundations").exists()
+
+
+def test_platform_dialect_shapes():
+    """Shapes the Cog content parser/lint require (regression: Task 5 gate failures)."""
+    files = export_cog(load_spec(), "ff")
+    course = files["course.yml"]
+    assert re.search(r'^  - id: ff-part-1\n    title: ".+"\n    modules: \[1, 2', course, re.M)
+    assert yaml.safe_load(course)["groups"][0]["modules"][0] == 1
+    mod = files[sorted(f for f in files if MODULE_RE.match(f))[0]]
+    front = yaml.safe_load(mod.split("---")[1])
+    for key in ("competencies", "citations", "strategic_hook", "rag_anchor", "reading_level"):
+        assert key in front
+    assert front["competencies"] and front["strategic_hook"] is None
+    assert re.search(r"\n1\.1 — .+\n", mod) and re.search(r"\n1\.2\.1 — .+\n", mod)
+    assert re.search(r"\nScenario: .+\n\n.*✓ .+ Why: .+  ·  \(competency: ff\.m01\)", mod)
+    fa = files["final-assessment.md"]
+    assert "rag_anchor: ff-final" in fa
+    assert re.findall(r"^\d+\. \(competency: ff\.m\d+\)$", fa, re.M) and fa.count("Scenario:") == 6
