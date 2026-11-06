@@ -116,3 +116,31 @@ def test_rejects_empty_options():
     lesson.quiz.questions[0].options = []
     with pytest.raises(ValueError, match=str(lesson.id)):
         export_cog(spec, "x")
+
+
+def test_cli_writes_package(tmp_path):
+    from typer.testing import CliRunner
+
+    from syllabus.cli.main import app
+
+    course_json = tmp_path / "course.json"
+    course_json.write_text(load_spec().model_dump_json())
+    out_dir = tmp_path / "out"
+    result = CliRunner().invoke(
+        app, ["export-cog", str(course_json), "fertility-foundations", str(out_dir)]
+    )
+    assert result.exit_code == 0, result.output
+    assert (out_dir / "fertility-foundations" / "course.yml").exists()
+
+
+def test_cli_exits_1_on_too_few_questions(tmp_path):
+    from typer.testing import CliRunner
+
+    from syllabus.cli.main import app
+
+    result = CliRunner().invoke(
+        app, ["export-cog", str(FIXTURE), "fertility-foundations", str(tmp_path)]
+    )
+    assert result.exit_code == 1
+    assert "at least 6 quiz questions" in result.output
+    assert not (tmp_path / "fertility-foundations").exists()
