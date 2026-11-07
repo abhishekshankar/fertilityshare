@@ -216,9 +216,10 @@ JSON:"""
         raw_blocks = data.get("blocks")
         has_blocks = isinstance(raw_blocks, list) and any(
             isinstance(b, dict)
-            and b.get("type") != "compliance_note"
             and isinstance(b.get("content"), str)
             and b["content"].strip()
+            and isinstance(b.get("type") or "", str)
+            and _to_content_block(b, es_level).type != ContentBlockType.compliance_note
             for b in raw_blocks
         )
         if needs_quiz:

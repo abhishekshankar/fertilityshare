@@ -192,7 +192,10 @@ _BLANK_BODY = [
 ]
 
 
-@pytest.mark.parametrize("bad_blocks", [_ONLY_COMPLIANCE, _BLANK_BODY])
+_ALIASED_COMPLIANCE = [{"type": "Compliance Note", "content": "Ask your RE."}]
+
+
+@pytest.mark.parametrize("bad_blocks", [_ONLY_COMPLIANCE, _BLANK_BODY, _ALIASED_COMPLIANCE])
 def test_compliance_only_or_blank_body_is_not_a_body(bad_blocks):
     lo = LessonOutline(title="L", objective="O")
     llm = _llm(_resp([_Q, _Q], blocks=bad_blocks), _resp([_Q, _Q], blocks=bad_blocks))
