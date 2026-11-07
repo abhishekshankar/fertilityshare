@@ -185,6 +185,22 @@ def test_missing_blocks_after_retry_raises_naming_lesson(es):
         run_content_for_lesson(lo, "f", _PARSED, llm=llm)
 
 
+_ONLY_COMPLIANCE = [{"type": "compliance_note", "content": "Ask your RE."}]
+_BLANK_BODY = [
+    {"type": "explanation", "content": "   "},
+    {"type": "compliance_note", "content": "Ask your RE."},
+]
+
+
+@pytest.mark.parametrize("bad_blocks", [_ONLY_COMPLIANCE, _BLANK_BODY])
+def test_compliance_only_or_blank_body_is_not_a_body(bad_blocks):
+    lo = LessonOutline(title="L", objective="O")
+    llm = _llm(_resp([_Q, _Q], blocks=bad_blocks), _resp([_Q, _Q], blocks=bad_blocks))
+    with pytest.raises(ValueError, match=str(lo.id)):
+        run_content_for_lesson(lo, "f", _PARSED, llm=llm)
+    assert llm.invoke.call_count == 2
+
+
 def test_invalid_questions_dropped():
     bad = [
         {**_Q, "correct_index": 5},

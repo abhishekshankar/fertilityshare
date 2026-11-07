@@ -213,7 +213,14 @@ JSON:"""
         response = llm.invoke(prompt)
         raw_content = _strip_thinking(response.content)
         data = _extract_json(raw_content)
-        has_blocks = bool(data.get("blocks"))
+        raw_blocks = data.get("blocks")
+        has_blocks = isinstance(raw_blocks, list) and any(
+            isinstance(b, dict)
+            and b.get("type") != "compliance_note"
+            and isinstance(b.get("content"), str)
+            and b["content"].strip()
+            for b in raw_blocks
+        )
         if needs_quiz:
             quiz = _parse_quiz(data.get("quiz"))
         if has_blocks and (not needs_quiz or len(quiz.questions) >= 2):
