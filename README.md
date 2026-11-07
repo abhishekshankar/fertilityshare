@@ -1,6 +1,8 @@
 # Syllabus — AI fertility learning platform
 
-V0: pipeline + schema + CLI. V1: FastAPI API, Postgres, auth (Google OAuth + email/password), RAG (Chroma), Next.js app (intake, stream, course, dashboard, feedback), invite-only. V1.1: progressive course delivery (F-016) — lessons stream to the course page one at a time as they generate.
+Syllabus generates FertilityShare courses and exports them to [FertilityShare Learn](https://learn.fertilityshare.com) (`python -m syllabus export-cog`). The learner-facing site lives in the `fertilityshare-learn` repo; the old Next.js web app here has been retired.
+
+V0: pipeline + schema + CLI. V1: FastAPI API, Postgres, auth (Google OAuth + email/password), RAG (Chroma). V1.1: progressive course delivery (F-016).
 
 ## Setup
 
@@ -9,7 +11,7 @@ pip install -e ".[dev]"
 cp .env.example .env   # set OPENAI_API_KEY, DATABASE_URL, JWT_SECRET, etc.
 ```
 
-## V1: Run API + Web
+## V1: Run the API locally
 
 1. **Database**
    ```bash
@@ -26,20 +28,7 @@ cp .env.example .env   # set OPENAI_API_KEY, DATABASE_URL, JWT_SECRET, etc.
    ```
    API: http://127.0.0.1:8000
 
-3. **Frontend**
-   ```bash
-   cd web
-   npm install
-   npm run dev
-   ```
-   App: http://localhost:3000. Set `NEXT_PUBLIC_API_URL=http://127.0.0.1:8000` if the API is elsewhere.
-
-   **App not loading / stuck at "Compiling"?** (1) If you see `ETIMEDOUT`, disk I/O is slow—close heavy apps, exclude the project from antivirus, or use a local disk. (2) If the build fails with `Cannot read properties of undefined (reading 'DEBUG')`, Tailwind is pinned to 3.3.3 in `web/package.json`; run `cd web && npm install && npm run build`. (3) To avoid dev compile hangs, run a one-time build then serve: `cd web && npm run dev:build` (build once, then app at http://localhost:3000).
-
-4. **Invite a user**  
-   Add their email to `ALLOWED_EMAILS` in the backend env; they sign in (or register) and get access to intake/generate/dashboard.
-
-5. **RAG (optional)**  
+3. **RAG (optional)**  
    Index docs so research uses real facts and citations:
    ```bash
    python -m syllabus index-rag /path/to/txt-or-md-files
@@ -85,8 +74,6 @@ The pipeline’s ResearchNode grounds each lesson in evidence from a vector stor
 pytest syllabus/tests -v
 ```
 
-**E2E (Playwright):** From `web/`, run `npm run test:e2e`. Requires the backend running and a test user in `ALLOWED_EMAILS`; set `E2E_TEST_EMAIL` and `E2E_TEST_PASSWORD` to run the intake → course flow spec.
-
 ## Manual eval
 
 See [docs/V0_EVAL.md](docs/V0_EVAL.md) for the 10 prompts, success criteria, and 5-dimension rubric.
@@ -128,11 +115,16 @@ The `courses` table has a `generation_status` column (`generating` | `complete` 
 - `syllabus/pipeline/` — LangGraph nodes (intent, outline, research, content, qa) and graph; `stream_pipeline_progressive` for per-lesson delivery
 - `syllabus/models/` — Pydantic schemas (Intake, CourseSpec, Module, Lesson, ContentBlock)
 - `syllabus/cli/` — Typer CLI (generate, eval, index-rag, index-pubmed)
-- `web/` — Next.js app (intake, course with progressive delivery, dashboard, login, waitlist)
+- `syllabus/export/` — `export-cog`: CourseSpec → FertilityShare Learn course package
+- `catalog/presets.json` — intake presets for the shared course catalog
 - `syllabus/tests/` — Unit and integration tests
 
-## Production (Railway + Vercel)
+## Publishing courses
 
-Set production env vars in Railway and Vercel, and add the production callback URL in Google OAuth. See **[docs/PRODUCTION-ENV.md](docs/PRODUCTION-ENV.md)** for the full list and Google Cloud steps.
+Courses are not served from this repo. Generate a course, export it, and add it to the `fertilityshare-learn` repo, where it stays a draft until clinical sign-off:
+
+```bash
+python -m syllabus export-cog out/<course>.json <slug> ../fertilityshare-learn/content/courses
+```
 
 PRD: [prd.md](prd.md).
