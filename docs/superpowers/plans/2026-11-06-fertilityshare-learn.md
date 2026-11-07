@@ -327,12 +327,24 @@ cd ~/Documents/GitHub && rsync -a --exclude node_modules --exclude .git --exclud
 # keep the example files the excludes above dropped
 for f in .env.example .dev.vars.example; do [ -f cogtraining/$f ] && cp cogtraining/$f fertilityshare-learn/$f; done
 cd fertilityshare-learn && git init && git add -A
-# inspect staged files for secrets before the first commit
-git diff --cached --name-only | grep -iE '\.env|\.dev\.vars|\.pem|\.key|secret|credential' # only *.example files may appear
-git commit -m "chore: copy cogtraining engine as starting point"
 ```
 
-Review the `git diff --cached --name-only` list by eye before committing; if anything secret-like is staged, `git rm --cached` it and add it to `.gitignore`.
+- [ ] **Step 1b: Secret review of staged contents (gate — do not commit until clean)**
+
+```bash
+# secret-like filenames: only *.example files may appear
+git diff --cached --name-only | grep -iE '\.env|\.dev\.vars|\.pem|\.key|secret|credential'
+# secret-like values in staged contents, including the restored example files
+git diff --cached -U0 | grep -nE '^\+.*(sk-[A-Za-z0-9]{16,}|sk_live_|rk_live_|whsec_|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20,}|xox[bp]-|-----BEGIN [A-Z ]*PRIVATE KEY|(SECRET|TOKEN|PASSWORD|API_KEY)[A-Z_]*\s*[=:]\s*["'"'"']?[^"'"'"'\s]{12,})'
+```
+
+Read both outputs. Example files must contain only placeholders. If a real value appears, `git rm --cached` the file (or blank the value), add it to `.gitignore`, and re-run Step 1b until both commands print nothing unexpected.
+
+- [ ] **Step 1c: First commit (only after Step 1b is clean)**
+
+```bash
+git commit -m "chore: copy cogtraining engine as starting point"
+```
 
 - [ ] **Step 2: Remove dementia-specific content and docs**
 
