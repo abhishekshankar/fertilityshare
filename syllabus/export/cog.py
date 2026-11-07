@@ -151,6 +151,8 @@ def export_cog(spec: CourseSpec, slug: str) -> dict[str, str]:
         "status": "draft",
         "pass_of": 6,
         "pass_need": 4,
+        "max_attempts": 3,
+        "cooldown_hours": 24,
         "rag_anchor": f"{slug}-final",
     }
     files["final-assessment.md"] = (

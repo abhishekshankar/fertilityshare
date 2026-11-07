@@ -80,6 +80,7 @@ def test_final_assessment_has_six_questions():
     fa = files["final-assessment.md"]
     front = yaml.safe_load(fa.split("---")[1])
     assert front["pass_of"] == 6 and front["pass_need"] == 4
+    assert front["max_attempts"] == 3 and front["cooldown_hours"] == 24
     assert re.findall(r"^(\d+)\. ", fa, re.M) == ["1", "2", "3", "4", "5", "6"]
 
 
