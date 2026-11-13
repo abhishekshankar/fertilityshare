@@ -1,0 +1,367 @@
+{
+  "id": "acacbfcb-477e-40cd-9f1b-a17dfc687372",
+  "title": "Your fertility learning course",
+  "intake": {
+    "journey_stage": "Preparing for first IUI",
+    "diagnosis": "PCOS",
+    "confusion": "What should I expect during the IUI process?",
+    "level": "beginner",
+    "target_end_state": "By the end of this course, you will be able to understand the IUI process and prepare effectively for your upcoming treatment."
+  },
+  "modules": [
+    {
+      "id": "5f8f17d0-6962-403a-b96e-12650b53706f",
+      "title": "Understanding PCOS and Its Impact on Fertility",
+      "objective": "Gain foundational knowledge about PCOS and its effects on fertility.",
+      "lessons": [
+        {
+          "id": "8d6db678-cb24-4027-b372-ea96c69f6052",
+          "title": "What is PCOS?",
+          "objective": "Understand the basics of Polycystic Ovary Syndrome (PCOS).",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Polycystic Ovary Syndrome, or PCOS, is a common hormonal disorder that affects many women of reproductive age. It's characterized by irregular menstrual cycles, excess androgen levels (which are male hormones that females also have), and polycystic ovaries, which means your ovaries might contain many small, fluid-filled sacs. These sacs are actually follicles that contain immature eggs. The eggs might not mature enough to trigger ovulation, which can affect your fertility.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "PCOS is a bit like a traffic jam in your body's hormone highway. Normally, your hormones work together to help your ovaries release an egg each month. But with PCOS, this process can be disrupted, leading to irregular periods or even no periods at all. This is why understanding PCOS is important, especially if you're preparing for fertility treatments like IUI (Intrauterine Insemination).",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Imagine your ovaries as a garden. In a typical cycle, each month a gardener (your hormones) picks the ripest fruit (the egg) to harvest. With PCOS, the gardener might be confused or overwhelmed, leaving the fruit on the tree. This can make it harder to predict when the fruit will be ready or if it will be picked at all.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about what you've learned so far about PCOS. How might irregular ovulation affect someone trying to conceive? Jot down your thoughts and consider how this could relate to your upcoming IUI treatment. Remember, understanding these connections can empower you in your fertility journey.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you visit your reproductive endocrinologist (RE), consider asking: 'How does PCOS specifically affect my chances of successful IUI?' and 'Are there any lifestyle changes I can make to help manage my PCOS symptoms?' These questions can help you better understand your condition and treatment options.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "PCOS stands for Polycystic Ovary Syndrome, a common hormonal disorder.",
+            "PCOS can affect ovulation and fertility.",
+            "Understanding PCOS is crucial for preparing for IUI treatment."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": null
+        },
+        {
+          "id": "5e1817f3-e9f2-4516-93d0-211ac31b2e0f",
+          "title": "How PCOS Affects Fertility",
+          "objective": "Learn how PCOS can impact your fertility and treatment options.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Polycystic Ovary Syndrome (PCOS) is a common condition that can affect your fertility. One of the main ways it does this is by disrupting ovulation. Ovulation is the process where your ovary releases an egg, and in many people with PCOS, this process doesn't happen regularly. This irregularity can make it more challenging to conceive naturally.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "When ovulation is irregular, it means that the timing of egg release is unpredictable, which can make it harder to plan for conception. In some cases, ovulation might not occur at all. This is where treatments like Intrauterine Insemination (IUI) can be helpful. IUI involves placing sperm directly into the uterus around the time of ovulation, increasing the chances of sperm meeting the egg.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine your ovulation cycle as a train schedule. With PCOS, the trains (ovulation) might arrive at different times or not at all. IUI acts like a special service that ensures the train is on time, helping to increase the chances of conception.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Reflect on how PCOS affects your ovulation. Can you identify any patterns in your cycle? How might IUI help in your situation? Write down your thoughts and bring them to your next appointment for discussion.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Consider asking your reproductive endocrinologist: How does PCOS specifically affect my fertility? What steps can I take to improve my chances of success with IUI? Are there any lifestyle changes that might support my treatment?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "PCOS can affect ovulation, making conception more challenging.",
+            "IUI can be an effective treatment option for those with PCOS.",
+            "Understanding how PCOS impacts fertility helps in preparing for IUI."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": null
+        }
+      ]
+    },
+    {
+      "id": "7421b980-37c9-44e6-9b46-24bb8af7238e",
+      "title": "Introduction to IUI",
+      "objective": "Understand the basics of Intrauterine Insemination (IUI) as a fertility treatment.",
+      "lessons": [
+        {
+          "id": "35c1e0e5-50e4-4cb4-9938-8ac6334c120c",
+          "title": "What is IUI?",
+          "objective": "Learn what Intrauterine Insemination (IUI) involves.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Intrauterine Insemination, or IUI, is a fertility treatment that might sound complex, but it's actually quite straightforward. It's designed to help sperm get closer to the egg by placing it directly into the uterus. This can increase the chances of fertilization, especially for those with conditions like PCOS, which can affect how eggs are released.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "During IUI, a doctor uses a thin tube to place washed and concentrated sperm directly into your uterus. This is usually timed with your ovulation to maximize the chances of conception. The process is relatively quick and is often compared to a Pap smear in terms of discomfort.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Imagine a marathon where the runners start much closer to the finish line than usual. In IUI, the sperm are like those runners, starting closer to the egg, which can be especially helpful if there are any obstacles along the way, such as those caused by PCOS.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Let's check your understanding! Can you explain in your own words what the main goal of IUI is? What might be some reasons IUI is recommended for someone with PCOS?",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you visit your reproductive endocrinologist (RE), consider asking: 'How will my PCOS affect the timing and success of IUI?' 'What should I expect during the IUI procedure?' 'Are there any specific preparations I need to make before my IUI treatment?'",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "IUI stands for Intrauterine Insemination, a common fertility treatment.",
+            "IUI involves placing sperm directly into the uterus to increase chances of fertilization.",
+            "Understanding the IUI process can help you prepare for your treatment."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": null
+        },
+        {
+          "id": "2f1c5af8-6e58-4660-bc90-4ac3c3c49ca0",
+          "title": "IUI vs. Other Fertility Treatments",
+          "objective": "Compare IUI with other fertility treatment options.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Let's explore how IUI compares to other fertility treatments like IVF. IUI, or Intrauterine Insemination, is often less invasive and less expensive than IVF, which stands for In Vitro Fertilization. While IVF involves retrieving eggs and fertilizing them outside the body, IUI involves placing sperm directly into the uterus to facilitate fertilization.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you're at a decision point: your doctor has recommended IUI because you have PCOS, a condition that can affect ovulation. IUI can be a good first step because it's simpler and less costly than IVF. However, if IUI doesn't work after several cycles, IVF might be considered as a next step.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Reflect on your own situation: What are the reasons your doctor has recommended IUI for you? Consider how PCOS might influence this choice. Write down any questions or concerns you have about starting with IUI compared to other treatments.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Think about how you feel regarding the IUI process compared to other treatments like IVF. Are there any aspects of IUI that make you feel more comfortable or anxious? How do you think these feelings might affect your decision-making process?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "At your next appointment, consider asking your doctor: 'Why is IUI recommended for my specific condition, like PCOS?' 'What are the success rates of IUI compared to IVF for someone with my diagnosis?' 'If IUI doesn't work, what are the next steps?'",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "IUI is a less invasive fertility treatment compared to IVF.",
+            "IUI is often recommended for conditions like PCOS.",
+            "Understanding different fertility treatments helps in making informed decisions."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": null
+        }
+      ]
+    },
+    {
+      "id": "52a52491-7718-46d3-9dc1-a2c8719a4492",
+      "title": "Preparing for Your IUI Treatment",
+      "objective": "Prepare effectively for your upcoming IUI treatment.",
+      "lessons": [
+        {
+          "id": "5e3741f2-81ae-4101-9401-ebd2853c7029",
+          "title": "The IUI Procedure Step-by-Step",
+          "objective": "Understand the step-by-step process of an IUI procedure.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Intrauterine insemination (IUI) is a fertility treatment that involves placing sperm directly into the uterus around the time of ovulation. This helps the sperm get closer to the egg, increasing the chances of fertilization. Let's walk through the steps involved in an IUI procedure.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "Step 1: Monitoring Ovulation - Your healthcare provider will monitor your ovulation cycle using ultrasounds and blood tests. This helps determine the best time for the IUI procedure. For those with PCOS, medications may be used to stimulate ovulation.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "Step 2: Preparing the Sperm - On the day of the procedure, a sperm sample is collected and 'washed' to concentrate the healthiest sperm. This process removes impurities and increases the likelihood of fertilization.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "Step 3: Performing the IUI - During the procedure, a thin, flexible catheter is used to place the prepared sperm directly into your uterus. This is usually quick and painless, though you might feel some mild discomfort.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Imagine you're preparing for your first IUI. What questions do you have about the timing of the procedure or the sperm preparation process? Write them down, and consider discussing them with your healthcare team.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist (RE), consider asking: 'How will you monitor my ovulation cycle?', 'What should I expect during the sperm preparation process?', and 'Are there any specific instructions I should follow on the day of the procedure?'",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "IUI is a step-by-step process that involves timing and preparation.",
+            "Understanding each step can help reduce anxiety and increase confidence.",
+            "Communicate openly with your healthcare team about any questions or concerns."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": null
+        },
+        {
+          "id": "89aa8aad-783a-490f-983d-b17285592d4c",
+          "title": "Managing Expectations and Emotions",
+          "objective": "Learn how to manage expectations and emotions during the IUI process.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "As you prepare for your first IUI, it's natural to feel a mix of hope and anxiety. Managing expectations is key. While IUI can be a successful treatment for many, it doesn't guarantee pregnancy. Understanding this can help you maintain a balanced perspective and reduce stress.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "example",
+              "content": "Consider Sarah, who also has PCOS and is about to undergo her first IUI. She found it helpful to set realistic expectations by reminding herself that while IUI increases the chances of pregnancy, it may take a few cycles to achieve success. This mindset helped her stay positive and resilient.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "reflection",
+              "content": "Take a moment to reflect on your own expectations for the IUI process. What are your hopes and fears? How can you prepare emotionally for both possible outcomes? Writing these thoughts down can be a helpful way to process your feelings.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "explanation",
+              "content": "Emotions during IUI can range from excitement to disappointment. It's important to acknowledge and validate these feelings. They are a normal part of the journey. Consider reaching out to support groups or counseling services if you need someone to talk to.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your RE, consider asking: What are realistic success rates for someone with my diagnosis undergoing IUI? How can I best manage stress and anxiety during this process? Are there support resources you recommend for emotional well-being?",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            }
+          ],
+          "key_takeaways": [
+            "Managing expectations during IUI is crucial for emotional well-being.",
+            "Emotions can vary widely during the IUI process; acknowledging them is important.",
+            "Communicating openly with your healthcare team can help manage stress."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "high",
+          "flashcards": [],
+          "quiz": null
+        },
+        {
+          "id": "9b2347da-b1b0-475c-90f1-4f75eb445085",
+          "title": "What to Ask Your Reproductive Endocrinologist (RE)",
+          "objective": "Prepare questions to ask your RE to ensure you're fully informed about your IUI treatment.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "As you prepare for your first IUI treatment, it's important to feel empowered and informed. Your Reproductive Endocrinologist (RE) is there to guide you and answer any questions you might have. By preparing thoughtful questions, you can ensure you understand the process and feel more comfortable moving forward.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you're at your appointment, and your RE explains the IUI process. You might ask, 'Can you walk me through what the IUI procedure will be like step-by-step?' This helps you visualize the process and know what to expect on the day of your treatment.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about what concerns or curiosities you have about the IUI process. Write down two questions you would like to ask your RE. Consider aspects like the timeline, success rates, or any specific concerns related to your PCOS diagnosis.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on how you feel about starting IUI. Are there any emotions or thoughts that you want to discuss with your RE? Sometimes sharing these feelings can help your RE provide more personalized care.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your RE, consider asking: 'How will my PCOS affect the IUI process?' and 'What are the next steps if this cycle is not successful?' These questions can help you understand your treatment plan and set realistic expectations.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Prepare questions to ask your RE about the IUI process.",
+            "Understand the role of your RE in guiding your treatment.",
+            "Clarify any concerns about the IUI procedure with your RE."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": null
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-03-11T02:20:11.486439Z",
+    "pipeline_version": "0.1.0",
+    "model_versions": {}
+  }
+}

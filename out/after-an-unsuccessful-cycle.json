@@ -1,0 +1,632 @@
+{
+  "id": "15e789ea-08fa-4cb0-8937-70acd6908c4a",
+  "title": "Your fertility learning course",
+  "intake": {
+    "journey_stage": "unsuccessful but hopeful",
+    "diagnosis": null,
+    "confusion": "what to do after a failed cycle",
+    "level": "intermediate",
+    "target_end_state": "Review a failed cycle with your clinic and plan next steps."
+  },
+  "modules": [
+    {
+      "id": "cef32c32-9f75-4d8d-99c1-2322f0ca377a",
+      "title": "Understanding the Cycle",
+      "objective": "Gain a clear understanding of the fertility cycle process.",
+      "lessons": [
+        {
+          "id": "833867b9-850f-42b3-8dc0-fd0adc724d2a",
+          "title": "Overview of the Fertility Cycle",
+          "objective": "Learn the key stages of a fertility cycle.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "A fertility cycle involves several key stages, each crucial for a successful outcome. These stages typically include ovarian stimulation, egg retrieval, fertilization, embryo culture, and embryo transfer. Understanding these stages can help you better navigate your fertility journey.",
+              "citations": [
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                },
+                {
+                  "source": "PubMed:41809679",
+                  "snippet": "GROUND: Over 2.5 million cycles in vitro fertilization (IVF) are conducted \nannually, and numbers are expected to rise with the aging population. The \ncontrolled ovarian stimulation (COS) process, key to IVF success, is inherently \ncomplex. Given advances in artificial intelligence (AI), this study "
+                },
+                {
+                  "source": "PubMed:41803788",
+                  "snippet": "blastocyst grades.\nMATERIAL AND METHODS: A retrospective cohort study was conducted on 854 FET \ncycles from January 2018 to August 2024. Participants were women undergoing FET \nwith cryopreserved embryos. Exclusion criteria included multiple initial in \nvitro fertilization (IVF) attempts, advanced a"
+                },
+                {
+                  "source": "PubMed:41783725",
+                  "snippet": "embryo culture system.\nRESULTS: From 12 cycles initiated, no oocytes were obtained in one cycle, \nfertilization failed in another cycle due to a low number of oocytes which were \npredominantly immature, and 10 cycles continued to embryo culture. Of these 10 \ncycles, a single embryo transfer was perf"
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Consider a typical IVF cycle: After ovarian stimulation, eggs are retrieved from the ovaries. These eggs are then fertilized in a lab to create embryos. The embryos are cultured for a few days before one or more are transferred back into the uterus. Each stage must be carefully monitored to ensure the best possible outcome.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Let's check your understanding. Can you list the main stages of a fertility cycle in order? Think about what happens first, next, and so on. This exercise will help reinforce your learning.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on your last cycle. Which stage did you find most challenging, and why? Understanding your experience can help you discuss it more effectively with your clinic.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist (RE), consider asking: What were the specific challenges in my last cycle? How can we optimize the next cycle? Are there alternative protocols we should consider?",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "Understand the key stages of a fertility cycle.",
+            "Learn how to review a failed cycle with your clinic.",
+            "Plan next steps effectively after a cycle review."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the first stage in a typical fertility cycle?",
+                "options": [
+                  "Embryo transfer",
+                  "Ovarian stimulation",
+                  "Fertilization",
+                  "Egg retrieval"
+                ],
+                "correct_index": 1,
+                "explanation": "Ovarian stimulation is the first stage, where medications are used to encourage the ovaries to produce multiple eggs."
+              },
+              {
+                "question": "Why is it important to understand each stage of a fertility cycle?",
+                "options": [
+                  "To become a fertility specialist",
+                  "To better navigate your fertility journey",
+                  "To reduce medical costs",
+                  "To avoid seeing a doctor"
+                ],
+                "correct_index": 1,
+                "explanation": "Understanding each stage helps you make informed decisions and communicate effectively with your healthcare team."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "38f1747c-a6c1-4bcf-a6b8-8a1658f496a6",
+          "title": "Factors Affecting Cycle Success",
+          "objective": "Identify common factors that influence the success of a fertility cycle.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "The success of a fertility cycle can be influenced by a variety of factors. These include lifestyle choices, such as smoking, alcohol consumption, and stress levels, as well as biological factors like age and body mass index (BMI). It's important to understand these elements as they can provide insight into why a cycle may not have been successful.",
+              "citations": [
+                {
+                  "source": "PubMed:41809679",
+                  "snippet": "GROUND: Over 2.5 million cycles in vitro fertilization (IVF) are conducted \nannually, and numbers are expected to rise with the aging population. The \ncontrolled ovarian stimulation (COS) process, key to IVF success, is inherently \ncomplex. Given advances in artificial intelligence (AI), this study "
+                },
+                {
+                  "source": "PubMed:41736759",
+                  "snippet": "lifestyle factors, such as \nsmoking, alcohol consumption, caffeine intake, exercise, psychological stress \nand drug abuse. While advanced age and some medical conditions undeniably lower \nreproductive potential, modifiable lifestyle choices also play a vital role. \nEarly diagnosis, prompt and approp"
+                },
+                {
+                  "source": "PubMed:41712245",
+                  "snippet": "t of a total \ncohort of 62201 infertile couples.\nRESULTS: Among 5465 UI couples, 3400 achieved a live birth (cumulative live \nbirth rate\u2009=\u200962.2%). Multivariate logistic regression indicated the key negative \npredictors included: female age \u2265\u200935\u2009years (odds ratio [OR]: 0.63; 95% \nconfidence interval "
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Consider a couple where the female partner is over 35 and has a BMI over 27.5. These factors alone can decrease the likelihood of a successful pregnancy through IVF, as research shows that age and BMI are significant predictors of success.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about your own lifestyle and health factors. Are there any areas where you might make changes to potentially improve your fertility outcomes? Remember, this is about understanding and identifying, not self-judgment.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on how understanding these factors might change your approach to fertility treatment. What questions or concerns does this bring up for you?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist (RE), consider asking: 'How do my age and BMI specifically impact my treatment plan?' 'Are there lifestyle changes that could improve my chances of success?' 'What are the next steps based on my previous cycle's results?'",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Lifestyle factors like smoking and stress can impact fertility cycle success.",
+            "Age and body mass index (BMI) are significant predictors of IVF outcomes.",
+            "Understanding these factors can guide discussions with your fertility clinic."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "Which of the following lifestyle factors can affect the success of a fertility cycle?",
+                "options": [
+                  "Smoking",
+                  "Exercise",
+                  "Diet",
+                  "All of the above"
+                ],
+                "correct_index": 3,
+                "explanation": "All these lifestyle factors can influence fertility outcomes."
+              },
+              {
+                "question": "Why is age considered a significant predictor of IVF success?",
+                "options": [
+                  "Younger eggs are more viable.",
+                  "Older individuals have more experience.",
+                  "Age does not affect IVF outcomes.",
+                  "Older individuals have a higher chance of natural conception."
+                ],
+                "correct_index": 0,
+                "explanation": "Younger eggs tend to be more viable, making age a key factor in IVF success."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "3bd0de46-fb05-411b-9c0d-5c1340a052ff",
+      "title": "Analyzing a Failed Cycle",
+      "objective": "Understand the reasons behind a failed cycle.",
+      "lessons": [
+        {
+          "id": "a8b3daf7-c33c-4d5d-9bf2-6866da72f35a",
+          "title": "Common Reasons for Cycle Failure",
+          "objective": "Explore typical reasons why fertility cycles may not succeed.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "When a fertility cycle doesn't succeed, it can feel disheartening. However, understanding the reasons behind a failed cycle can empower you to make informed decisions moving forward. Common reasons for cycle failure often include issues with embryo quality, implantation challenges, and hormonal imbalances. Each of these factors can affect the outcome of a cycle, and it's important to explore them with your healthcare provider to determine the best path forward.",
+              "citations": [
+                {
+                  "source": "PubMed:41809679",
+                  "snippet": "GROUND: Over 2.5 million cycles in vitro fertilization (IVF) are conducted \nannually, and numbers are expected to rise with the aging population. The \ncontrolled ovarian stimulation (COS) process, key to IVF success, is inherently \ncomplex. Given advances in artificial intelligence (AI), this study "
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                },
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "xtended group; LE 7.5 mg) within a single \ncycle. Clinical outcomes included ovulation rate and clinical pregnancy rate \n(CPR).\nRESULTS: Overall, 219 patients responded to standard LE with follicular \ndevelopment, 83 responded to extended LE 5 mg therapy, and 11 responded to \nextended LE 7.5 mg. CPR"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41803932",
+                  "snippet": "ulation and detailed \ncounselling with explicit written consent, prior to the initiation of cycles, \nbecomes crucial to prevent this crisis.\n\nDOI: 10.20529/IJME.2025.091"
+                }
+              ],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "example",
+              "content": "Consider a scenario where an IVF cycle didn't result in pregnancy. Upon review, it was found that the embryos had chromosomal abnormalities, which is a common reason for failure. In this case, the clinic might suggest genetic testing in future cycles to improve the chances of success.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Take a moment to reflect on your own experience. What were the factors discussed with your clinic after your cycle? How did these discussions help you understand the outcome better? Remember, each cycle is a step towards understanding your unique fertility journey.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist (RE) next, consider asking: What were the specific reasons for my cycle's outcome? Are there any additional tests or treatments you recommend before the next cycle? How can we optimize the chances of success in future cycles?",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            }
+          ],
+          "key_takeaways": [
+            "Understanding why a fertility cycle may fail is crucial for planning next steps.",
+            "Common reasons for cycle failure include embryo quality, implantation issues, and hormonal imbalances.",
+            "Discussing failed cycles with your clinic can provide insights and guide future treatment plans."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "high",
+          "flashcards": [],
+          "quiz": null
+        },
+        {
+          "id": "5adcf0a6-6975-4791-8a0c-d60c3bdc4177",
+          "title": "Emotional Impact of a Failed Cycle",
+          "objective": "Reflect on the emotional aspects of experiencing a failed cycle.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Experiencing a failed fertility cycle can be emotionally challenging. It's important to acknowledge these feelings as a natural part of the process. Emotions like sadness, frustration, and even anger are common and valid. Recognizing these feelings can help you process them and move forward.",
+              "citations": [
+                {
+                  "source": "PubMed:41803932",
+                  "snippet": "ulation and detailed \ncounselling with explicit written consent, prior to the initiation of cycles, \nbecomes crucial to prevent this crisis.\n\nDOI: 10.20529/IJME.2025.091"
+                },
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "xtended group; LE 7.5 mg) within a single \ncycle. Clinical outcomes included ovulation rate and clinical pregnancy rate \n(CPR).\nRESULTS: Overall, 219 patients responded to standard LE with follicular \ndevelopment, 83 responded to extended LE 5 mg therapy, and 11 responded to \nextended LE 7.5 mg. CPR"
+                },
+                {
+                  "source": "PubMed:41790698",
+                  "snippet": "transfer.\nOUTCOMES: After receiving appropriate fertility treatment based on the corrected \ndiagnosis, the patient successfully achieved pregnancy via in vitro \nfertilization-embryo transfer.\nLESSONS: Significant VI can manifest as organized \"pseudo-tubular\" structures \nthat convincingly mimic conge"
+                },
+                {
+                  "source": "PubMed:41682732",
+                  "snippet": "he \npatient and her partner failed to conceive following three cycles of ovulation \ninduction with intrauterine insemination (IUI). In preparation for IVF, an \nendometrial biopsy (EMB) was performed, and five CD138+ plasma cells per 10 \nhigh-power fields suggested CE. The patient underwent antibioti"
+                },
+                {
+                  "source": "PubMed:41682732",
+                  "snippet": "he \npatient and her partner failed to conceive following three cycles of ovulation \ninduction with intrauterine insemination (IUI). In preparation for IVF, an \nendometrial biopsy (EMB) was performed, and five CD138+ plasma cells per 10 \nhigh-power fields suggested CE. The patient underwent antibioti"
+                }
+              ],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "example",
+              "content": "Consider Sarah, who recently went through a failed IVF cycle. She felt a mix of disappointment and worry about her future options. By talking to her partner and reaching out to her support network, Sarah found comfort and clarity, which helped her plan her next steps with her clinic.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "reflection",
+              "content": "Take a moment to reflect on your own emotional response to a failed cycle. What feelings have you experienced? How have you coped with these emotions? Consider writing down your thoughts or discussing them with someone you trust.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "explanation",
+              "content": "After acknowledging your emotions, it's beneficial to prepare for a discussion with your clinic. This meeting can provide insights into why the cycle may have failed and what adjustments can be made moving forward. Open communication is key to understanding your options and feeling empowered in your journey.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist, consider asking: What factors might have contributed to the cycle not succeeding? Are there any changes in treatment you would recommend? How can we better support my emotional well-being during this process?",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            }
+          ],
+          "key_takeaways": [
+            "Reflecting on a failed cycle is a crucial part of the fertility journey.",
+            "Understanding emotional responses can aid in planning next steps.",
+            "Communicating openly with your clinic can provide clarity and support."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "high",
+          "flashcards": [],
+          "quiz": null
+        }
+      ]
+    },
+    {
+      "id": "22818fd3-adca-4b24-b96c-50ad9d24fc0b",
+      "title": "Planning Next Steps",
+      "objective": "Develop a plan for moving forward after a failed cycle.",
+      "lessons": [
+        {
+          "id": "df541531-262f-4905-bc46-8c21f8a8ad81",
+          "title": "Options After a Failed Cycle",
+          "objective": "Learn about potential options and next steps after a failed cycle.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Experiencing a failed IVF cycle can be disheartening, but it's important to remember that this is a common part of the fertility journey. Understanding the reasons behind a failed cycle can help you and your healthcare team make informed decisions about your next steps. Common reasons for a failed cycle include issues with embryo quality, uterine receptivity, or hormonal imbalances. Each of these factors can be addressed in future cycles with tailored approaches.",
+              "citations": [
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "xtended group; LE 7.5 mg) within a single \ncycle. Clinical outcomes included ovulation rate and clinical pregnancy rate \n(CPR).\nRESULTS: Overall, 219 patients responded to standard LE with follicular \ndevelopment, 83 responded to extended LE 5 mg therapy, and 11 responded to \nextended LE 7.5 mg. CPR"
+                },
+                {
+                  "source": "PubMed:41803932",
+                  "snippet": "ulation and detailed \ncounselling with explicit written consent, prior to the initiation of cycles, \nbecomes crucial to prevent this crisis.\n\nDOI: 10.20529/IJME.2025.091"
+                },
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "S). However, in women who are resistant to \nstandard LE therapy, alternative ovulation induction regimens require further \nexploration. This study evaluated the efficacy of a novel protocol for stepwise \nextended LE treatment in patients with anovulatory PCOS undergoing intrauterine \ninsemination wh"
+                },
+                {
+                  "source": "PubMed:41719147",
+                  "snippet": "a novel protocol for stepwise \nextended LE treatment in patients with anovulatory PCOS undergoing intrauterine \ninsemination who were resistant to the standard dose of 5 mg LE.\nMETHODS: The study included 319 women diagnosed with PCOS. LE treatment was \nadministered in a stepwise manner, starting wi"
+                },
+                {
+                  "source": "PubMed:41719147",
+                  "snippet": "18. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letrozole treatment in patients with resistant \npolycystic ovary syndrome undergoing intrauterine insemination: A 7-year \nretrospective cohort study.\n\nSrinivasan V(1).\n\nAuthor i"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "After a failed cycle, your clinic may suggest several options. These could include adjusting medication protocols, considering genetic testing for embryos, or exploring alternative therapies. Each option has its own set of considerations, and your healthcare provider will guide you based on your specific situation. The goal is to increase the chances of success in your next cycle.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "For instance, if embryo quality was an issue, your clinic might recommend preimplantation genetic testing (PGT) to ensure only healthy embryos are transferred. Alternatively, if hormonal imbalances were a concern, adjusting the medication regimen could help optimize the uterine environment for implantation.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Reflect on your recent cycle. What do you think went well, and what could have been improved? Consider writing down any questions or concerns you have about the cycle to discuss with your clinic. This will help you feel more prepared and engaged in your next appointment.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Here are some questions you might consider asking at your next appointment: What factors might have contributed to the failed cycle? What changes can we make to improve the chances of success in the next cycle? Are there any additional tests or treatments you recommend before starting another cycle?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Understand the common reasons for a failed IVF cycle.",
+            "Learn about potential next steps after a failed cycle.",
+            "Prepare questions for your clinic review."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is a common reason for a failed IVF cycle?",
+                "options": [
+                  "Embryo quality issues",
+                  "Perfect hormone levels",
+                  "Too many embryos",
+                  "Excessive uterine receptivity"
+                ],
+                "correct_index": 0,
+                "explanation": "Embryo quality issues are a common reason for a failed IVF cycle."
+              },
+              {
+                "question": "What might a clinic suggest if embryo quality was an issue?",
+                "options": [
+                  "Preimplantation genetic testing",
+                  "Reducing medication",
+                  "Skipping the next cycle",
+                  "Increasing stress levels"
+                ],
+                "correct_index": 0,
+                "explanation": "Preimplantation genetic testing can help ensure only healthy embryos are transferred."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "a8c8b614-ea94-4831-bf42-f9d229a2c0d0",
+          "title": "Preparing for Your Clinic Review",
+          "objective": "Prepare for a productive review meeting with your clinic.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "After a failed IVF cycle, it's important to have a review meeting with your clinic. This meeting is an opportunity to understand what happened during the cycle and to discuss potential changes for future attempts. The goal is to gather information that will help you make informed decisions moving forward.",
+              "citations": [
+                {
+                  "source": "PubMed:41803932",
+                  "snippet": "ulation and detailed \ncounselling with explicit written consent, prior to the initiation of cycles, \nbecomes crucial to prevent this crisis.\n\nDOI: 10.20529/IJME.2025.091"
+                },
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "xtended group; LE 7.5 mg) within a single \ncycle. Clinical outcomes included ovulation rate and clinical pregnancy rate \n(CPR).\nRESULTS: Overall, 219 patients responded to standard LE with follicular \ndevelopment, 83 responded to extended LE 5 mg therapy, and 11 responded to \nextended LE 7.5 mg. CPR"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "cology, JSS Medical College, Mysuru, Karnataka, India \nhlkalabharathi@jssuni.edu.in.\n\nINTRODUCTION: Unexplained infertility affects about 30% of couples seeking help \nfor infertility, yet the optimal ovulation induction strategy remains largely \nunclear. Letrozole, clomiphene citrate and gonadotropi"
+                },
+                {
+                  "source": "PubMed:41809803",
+                  "snippet": "icalization by showing how individuals \nmay engage in intensive clinical protocols as a negotiated response to \nstructural inequalities.\n\nCopyright \u00a9 2026 The Author. Published by Elsevier Ltd.. All rights reserved.\n\nDOI: 10.1016/j.socscimed.2026.119160"
+                },
+                {
+                  "source": "PubMed:41719147",
+                  "snippet": "a novel protocol for stepwise \nextended LE treatment in patients with anovulatory PCOS undergoing intrauterine \ninsemination who were resistant to the standard dose of 5 mg LE.\nMETHODS: The study included 319 women diagnosed with PCOS. LE treatment was \nadministered in a stepwise manner, starting wi"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you went through an IVF cycle and it didn't result in a pregnancy. During your review meeting, your doctor might explain that the embryos didn't develop as expected. They might suggest trying a different medication protocol next time to improve embryo quality.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about your recent IVF cycle. What specific outcomes or processes would you like more clarity on? Write down at least three questions you could ask your doctor to better understand your cycle's results and potential next steps.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Consider how understanding the details of your failed cycle might influence your feelings and decisions about future treatments. Reflect on how being informed can empower you to make choices that align with your personal goals and health needs.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist, consider asking: 'What factors contributed to the cycle not being successful?', 'Are there any changes you recommend for the next cycle?', and 'What are the potential risks and benefits of these changes?'",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Prepare questions for your clinic review to understand the failed cycle.",
+            "Reviewing past cycles helps plan future steps effectively.",
+            "Understanding your treatment and results empowers your next decisions."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the primary purpose of a clinic review after a failed IVF cycle?",
+                "options": [
+                  "To blame someone for the failure",
+                  "To understand what happened and plan next steps",
+                  "To decide to stop all treatments",
+                  "To choose a new clinic immediately"
+                ],
+                "correct_index": 1,
+                "explanation": "The review is meant to understand the cycle's outcomes and discuss future options."
+              },
+              {
+                "question": "Why is it important to prepare questions for your clinic review?",
+                "options": [
+                  "To impress the doctor with your knowledge",
+                  "To ensure you understand the cycle and can make informed decisions",
+                  "To challenge the clinic's methods",
+                  "To avoid discussing emotional topics"
+                ],
+                "correct_index": 1,
+                "explanation": "Preparing questions helps you gain clarity and make informed decisions about future treatments."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "d7966d96-fba7-48a6-9e62-b3166531b793",
+          "title": "What to Ask Your Reproductive Endocrinologist",
+          "objective": "Formulate key questions to ask your RE during your review meeting.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "When a cycle doesn't succeed, it can be disheartening, but it's also an opportunity to gather valuable insights. Your Reproductive Endocrinologist (RE) can help you understand what happened and what might be adjusted for future cycles. This lesson will guide you in formulating questions that can lead to a productive discussion.",
+              "citations": [
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "xtended group; LE 7.5 mg) within a single \ncycle. Clinical outcomes included ovulation rate and clinical pregnancy rate \n(CPR).\nRESULTS: Overall, 219 patients responded to standard LE with follicular \ndevelopment, 83 responded to extended LE 5 mg therapy, and 11 responded to \nextended LE 7.5 mg. CPR"
+                },
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "Conflict of interest statement: The authors declare that they have no commercial \nor financial relationships that could be construed as a potential conflict of \ninterest.\n\n\n13. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letr"
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                },
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "S). However, in women who are resistant to \nstandard LE therapy, alternative ovulation induction regimens require further \nexploration. This study evaluated the efficacy of a novel protocol for stepwise \nextended LE treatment in patients with anovulatory PCOS undergoing intrauterine \ninsemination wh"
+                },
+                {
+                  "source": "PubMed:41719147",
+                  "snippet": "18. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letrozole treatment in patients with resistant \npolycystic ovary syndrome undergoing intrauterine insemination: A 7-year \nretrospective cohort study.\n\nSrinivasan V(1).\n\nAuthor i"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you've just completed an IVF cycle, but unfortunately, it didn't result in a pregnancy. During your review meeting, your RE might discuss factors like egg quality, sperm quality, or embryo development. They might also review the protocol used, such as medication dosages and timing, to identify areas for improvement.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Consider the following scenario: Your cycle didn't result in a pregnancy, and your RE mentions that the embryo quality was lower than expected. What questions could you ask to understand this better? Think about asking about potential causes of low embryo quality and what changes could be made in future cycles.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on how you felt after learning about the outcome of your cycle. It's important to acknowledge your emotions and consider how they might influence your next steps. How can understanding the reasons behind the outcome help you feel more empowered in your fertility journey?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your RE, consider asking: What were the key factors that contributed to the cycle's outcome? Are there any specific changes you recommend for the next cycle? How can we optimize the treatment protocol based on what we've learned?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Prepare questions to discuss a failed IVF cycle with your RE.",
+            "Understand the importance of reviewing clinical outcomes.",
+            "Learn how to plan next steps in your fertility journey."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is a key reason for reviewing a failed cycle with your RE?",
+                "options": [
+                  "To determine who is at fault.",
+                  "To gather insights for future cycles.",
+                  "To decide whether to stop all treatments.",
+                  "To compare your case with others."
+                ],
+                "correct_index": 1,
+                "explanation": "Reviewing a failed cycle helps gather insights that can inform and improve future treatment plans."
+              },
+              {
+                "question": "Which of the following is NOT a typical topic to discuss with your RE after a failed cycle?",
+                "options": [
+                  "Embryo quality",
+                  "Egg and sperm quality",
+                  "Your RE's personal life",
+                  "Medication dosages and timing"
+                ],
+                "correct_index": 2,
+                "explanation": "Discussions should focus on clinical and medical factors relevant to your treatment, not personal details of your RE's life."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-11-13T17:14:23.494671Z",
+    "pipeline_version": "0.1.0",
+    "model_versions": {}
+  }
+}

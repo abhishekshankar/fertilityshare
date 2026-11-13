@@ -37,7 +37,6 @@ ENV/
 
 # Test and output
 .pytest_cache/
-web/test-results/
 .coverage
 .coverage*
 coverage.xml
@@ -48,10 +47,11 @@ out/
 .chroma_rag/
 
 # Node / Next.js
-web/node_modules/
-web/.next/
 node_modules/
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Retired Syllabus web app (removed); ignore any leftover local copy
+web/
