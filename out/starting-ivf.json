@@ -1,0 +1,830 @@
+{
+  "id": "c960c2d3-8ce7-4a62-b3e4-c7f3054736b0",
+  "title": "Your fertility learning course",
+  "intake": {
+    "journey_stage": "starting treatment",
+    "diagnosis": "unexplained infertility",
+    "confusion": "what happens during an IVF cycle",
+    "level": "beginner",
+    "target_end_state": "Walk into an IVF cycle knowing each step, medication and decision point."
+  },
+  "modules": [
+    {
+      "id": "78772052-a3a4-4baa-b4d1-902403ae88e6",
+      "title": "Understanding IVF Basics",
+      "objective": "Build a foundational understanding of IVF and its purpose.",
+      "lessons": [
+        {
+          "id": "333a2a5a-9e98-4fff-a8f0-b0174171e447",
+          "title": "Introduction to IVF",
+          "objective": "Learn what IVF is and why it is used for infertility treatment.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "In Vitro Fertilization, or IVF, is a process where eggs are retrieved from the ovaries and fertilized by sperm in a lab. This method is often used to help individuals or couples facing infertility challenges. IVF can be a complex journey, but understanding each step can make it more manageable.",
+              "citations": [
+                {
+                  "source": "PubMed:41790698",
+                  "snippet": "transfer.\nOUTCOMES: After receiving appropriate fertility treatment based on the corrected \ndiagnosis, the patient successfully achieved pregnancy via in vitro \nfertilization-embryo transfer.\nLESSONS: Significant VI can manifest as organized \"pseudo-tubular\" structures \nthat convincingly mimic conge"
+                },
+                {
+                  "source": "PubMed:41757842",
+                  "snippet": "er \ncumulative live birth rates compared to conventional IVF, it offers significant \nadvantages for selected patient populations, particularly women with polycystic \novary syndrome (PCOS), high ovarian reserve, or those requiring fertility \npreservation. Importantly, current evidence supports the ge"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41809679",
+                  "snippet": "GROUND: Over 2.5 million cycles in vitro fertilization (IVF) are conducted \nannually, and numbers are expected to rise with the aging population. The \ncontrolled ovarian stimulation (COS) process, key to IVF success, is inherently \ncomplex. Given advances in artificial intelligence (AI), this study "
+                },
+                {
+                  "source": "PubMed:41644960",
+                  "snippet": "terine \ninsemination (IUI) (e.g. CC/IUI/, letrozole/IUI, and FSH/IUI) followed by ART. \nCombination of letrozole and clomiphene have been studied in past but there are \nfewer studies in Indian scenario.\nAIMS AND OBJECTIVES: The aim of the present study was to compare the combination \nof Letrozole an"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine IVF as a relay race. First, medications help your ovaries produce multiple eggs. Then, these eggs are collected and fertilized in a lab. Once embryos develop, one or more are transferred to the uterus, hoping for a successful pregnancy.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about why IVF might be recommended for someone with unexplained infertility. Consider the steps involved and how each contributes to increasing the chances of pregnancy. Write down your thoughts and compare them with the explanation provided.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist, consider asking: What are the specific steps in my IVF treatment plan? How will medications be managed throughout the cycle? What are the potential risks and success rates for someone with my diagnosis?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "IVF stands for In Vitro Fertilization, a common fertility treatment.",
+            "IVF involves several steps, including egg retrieval and embryo transfer.",
+            "Understanding IVF can help manage expectations and reduce anxiety."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What does IVF stand for?",
+                "options": [
+                  "Intrauterine Fertilization",
+                  "In Vitro Fertilization",
+                  "In Vivo Fertilization",
+                  "Intraovarian Fertilization"
+                ],
+                "correct_index": 1,
+                "explanation": "IVF stands for In Vitro Fertilization, a process where eggs are fertilized outside the body."
+              },
+              {
+                "question": "Which step is NOT part of the IVF process?",
+                "options": [
+                  "Egg retrieval",
+                  "Embryo transfer",
+                  "Natural conception",
+                  "Fertilization in a lab"
+                ],
+                "correct_index": 2,
+                "explanation": "Natural conception is not part of the IVF process, which involves fertilization outside the body."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "b2bd78c7-411a-43d7-8455-88da443d45a1",
+          "title": "Stages of an IVF Cycle",
+          "objective": "Understand the main stages of an IVF cycle from start to finish.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "An IVF cycle is a structured process that includes several stages, each critical to the goal of achieving pregnancy. The main stages are ovarian stimulation, egg retrieval, fertilization, and embryo transfer. Each stage has its own purpose and requires specific actions and medications.",
+              "citations": [
+                {
+                  "source": "PubMed:41809679",
+                  "snippet": "GROUND: Over 2.5 million cycles in vitro fertilization (IVF) are conducted \nannually, and numbers are expected to rise with the aging population. The \ncontrolled ovarian stimulation (COS) process, key to IVF success, is inherently \ncomplex. Given advances in artificial intelligence (AI), this study "
+                },
+                {
+                  "source": "PubMed:41790698",
+                  "snippet": "transfer.\nOUTCOMES: After receiving appropriate fertility treatment based on the corrected \ndiagnosis, the patient successfully achieved pregnancy via in vitro \nfertilization-embryo transfer.\nLESSONS: Significant VI can manifest as organized \"pseudo-tubular\" structures \nthat convincingly mimic conge"
+                },
+                {
+                  "source": "PubMed:41686632",
+                  "snippet": "goal in ovulation induction for \nintrauterine insemination (IUI), particularly for patients with polycystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing "
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "Ovarian stimulation is the first stage where medications are used to encourage the ovaries to produce multiple eggs. This is crucial because having more eggs increases the chances of successful fertilization. The process is closely monitored through blood tests and ultrasounds to ensure the ovaries are responding well.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "For instance, during ovarian stimulation, you might be prescribed medications like gonadotropins to boost egg production. Your fertility specialist will monitor your hormone levels and adjust the medication dosage as needed to optimize your response.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "The next stage is egg retrieval, where the mature eggs are collected from the ovaries. This is a minor surgical procedure done under sedation. After retrieval, the eggs are fertilized with sperm in the lab to create embryos.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "Finally, the embryo transfer stage involves placing one or more embryos into the uterus. This is a simple procedure and, if successful, leads to implantation and pregnancy. Each stage requires careful timing and coordination with your medical team.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Let's review: What are the main stages of an IVF cycle? Can you list them and briefly describe the purpose of each? Think about how each stage builds on the previous one to increase the chances of a successful pregnancy.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Consider asking your reproductive endocrinologist: What specific medications will I need at each stage of the IVF cycle? How will you monitor my progress during ovarian stimulation? What are the potential risks or side effects at each stage?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "An IVF cycle involves several key stages: ovarian stimulation, egg retrieval, fertilization, and embryo transfer.",
+            "Each stage of IVF requires specific medications and monitoring.",
+            "Understanding each step helps in making informed decisions during the IVF process."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the purpose of ovarian stimulation in an IVF cycle?",
+                "options": [
+                  "To increase the number of eggs produced.",
+                  "To retrieve eggs from the ovaries.",
+                  "To fertilize eggs with sperm.",
+                  "To transfer embryos into the uterus."
+                ],
+                "correct_index": 0,
+                "explanation": "Ovarian stimulation uses medications to encourage the ovaries to produce multiple eggs, which increases the chances of successful fertilization."
+              },
+              {
+                "question": "During which stage of IVF are eggs fertilized with sperm?",
+                "options": [
+                  "Ovarian stimulation",
+                  "Egg retrieval",
+                  "Fertilization",
+                  "Embryo transfer"
+                ],
+                "correct_index": 2,
+                "explanation": "Fertilization occurs after the eggs are retrieved and involves combining them with sperm in the lab to create embryos."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "ad5c6407-a9f5-4342-8ce1-e8ec026fb3e5",
+      "title": "Medications and Procedures",
+      "objective": "Gain knowledge about the medications and procedures involved in IVF.",
+      "lessons": [
+        {
+          "id": "88251623-5d4a-4980-b703-ec58a4ca966f",
+          "title": "Medications Used in IVF",
+          "objective": "Identify the common medications used during an IVF cycle and their purposes.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "During an IVF cycle, various medications are used to help your body respond in the best way possible. Each medication has a specific role, from stimulating your ovaries to preparing your body for embryo transfer. Knowing what these medications do can make the process feel less overwhelming and more manageable.",
+              "citations": [
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41686632",
+                  "snippet": "goal in ovulation induction for \nintrauterine insemination (IUI), particularly for patients with polycystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing "
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "10. J Clin Med. 2026 Jan 28;15(3):1050. doi: 10.3390/jcm15031050.\n\nMinimal Dose Paradigm in IUI Stimulation for Unexplained Infertility: \nLetrozole-Initiated Late Gonadotropin Protocol.\n\nYe\u015filda\u011fer E(1), Ye\u015filda\u011fer U(1), Arl\u0131er S(2).\n\nAuthor information:\n(1)Department of Obstetrics and Gynecology, A"
+                },
+                {
+                  "source": "PubMed:41644960",
+                  "snippet": "terine \ninsemination (IUI) (e.g. CC/IUI/, letrozole/IUI, and FSH/IUI) followed by ART. \nCombination of letrozole and clomiphene have been studied in past but there are \nfewer studies in Indian scenario.\nAIMS AND OBJECTIVES: The aim of the present study was to compare the combination \nof Letrozole an"
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "The first group of medications you may encounter are gonadotropins. These are hormones that stimulate your ovaries to produce multiple eggs. Unlike the natural cycle, where usually one egg matures, IVF aims to mature several eggs to increase the chances of a successful fertilization.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "For instance, you might be prescribed a medication like FSH (follicle-stimulating hormone) or hMG (human menopausal gonadotropin). These help your ovaries produce more eggs, which are crucial for the IVF process.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "Next, you might use GnRH agonists or antagonists. These medications prevent premature ovulation, ensuring your eggs are ready for retrieval at the right time. It's like hitting the pause button until everything is perfectly timed.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "An example of a GnRH antagonist is cetrorelix, which helps keep your body from releasing the eggs too early, allowing your healthcare team to retrieve them when they're most viable.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Let's check your understanding: What is the main purpose of gonadotropins in an IVF cycle? Think about how they differ from your body's natural hormone cycle.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "Finally, progesterone is often used after egg retrieval. It supports the uterine lining, making it a welcoming environment for the embryo to implant. This step is crucial for a successful pregnancy.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "You might take progesterone in the form of injections, vaginal suppositories, or oral medications. Each method has its own benefits, and your doctor will recommend the best option for you.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Reflect on why progesterone is important after embryo transfer. How does it help support a potential pregnancy?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Consider asking your reproductive endocrinologist: What are the side effects of the medications I'll be taking? How should I manage them if they occur? Are there any specific instructions I should follow when taking these medications?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "IVF involves several medications, each with a specific purpose.",
+            "Common medications include gonadotropins, GnRH agonists/antagonists, and progesterone.",
+            "Understanding each medication helps you know what to expect during your cycle."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the primary role of gonadotropins in an IVF cycle?",
+                "options": [
+                  "To stimulate the ovaries to produce multiple eggs.",
+                  "To prevent premature ovulation.",
+                  "To support the uterine lining after embryo transfer.",
+                  "To reduce the risk of ovarian hyperstimulation syndrome."
+                ],
+                "correct_index": 0,
+                "explanation": "Gonadotropins are used to stimulate the ovaries to produce multiple eggs, increasing the chances of successful fertilization."
+              },
+              {
+                "question": "Why are GnRH antagonists used during an IVF cycle?",
+                "options": [
+                  "To stimulate egg production.",
+                  "To prevent premature ovulation.",
+                  "To support embryo implantation.",
+                  "To increase sperm count."
+                ],
+                "correct_index": 1,
+                "explanation": "GnRH antagonists prevent premature ovulation, ensuring eggs are retrieved at the optimal time."
+              },
+              {
+                "question": "What is the purpose of progesterone after egg retrieval?",
+                "options": [
+                  "To stimulate multiple egg production.",
+                  "To prevent premature ovulation.",
+                  "To support the uterine lining for embryo implantation.",
+                  "To increase the number of embryos."
+                ],
+                "correct_index": 2,
+                "explanation": "Progesterone supports the uterine lining, creating a favorable environment for embryo implantation."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "f069ee59-f970-4c97-9937-944da73aa946",
+          "title": "IVF Procedures Explained",
+          "objective": "Learn about the key procedures involved in an IVF cycle.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "In vitro fertilization (IVF) is a multi-step process designed to help couples conceive. The main steps include ovarian stimulation, egg retrieval, fertilization, embryo culture, and embryo transfer. Each step is crucial in increasing the chances of a successful pregnancy.",
+              "citations": [
+                {
+                  "source": "PubMed:41790698",
+                  "snippet": "transfer.\nOUTCOMES: After receiving appropriate fertility treatment based on the corrected \ndiagnosis, the patient successfully achieved pregnancy via in vitro \nfertilization-embryo transfer.\nLESSONS: Significant VI can manifest as organized \"pseudo-tubular\" structures \nthat convincingly mimic conge"
+                },
+                {
+                  "source": "PubMed:41809679",
+                  "snippet": "GROUND: Over 2.5 million cycles in vitro fertilization (IVF) are conducted \nannually, and numbers are expected to rise with the aging population. The \ncontrolled ovarian stimulation (COS) process, key to IVF success, is inherently \ncomplex. Given advances in artificial intelligence (AI), this study "
+                },
+                {
+                  "source": "PubMed:41757842",
+                  "snippet": "er \ncumulative live birth rates compared to conventional IVF, it offers significant \nadvantages for selected patient populations, particularly women with polycystic \novary syndrome (PCOS), high ovarian reserve, or those requiring fertility \npreservation. Importantly, current evidence supports the ge"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41686632",
+                  "snippet": "goal in ovulation induction for \nintrauterine insemination (IUI), particularly for patients with polycystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing "
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "Ovarian stimulation involves using medications to encourage the ovaries to produce multiple eggs. This increases the chances of collecting viable eggs during the retrieval process. The medications used were covered in the previous lesson.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you\u2019re going through an IVF cycle. After taking medications to stimulate your ovaries, you undergo an egg retrieval procedure. This is done under sedation, and a doctor uses an ultrasound-guided needle to collect eggs from your ovaries. These eggs are then fertilized in a lab.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "Once fertilization occurs, the embryos are cultured for several days. The best quality embryos are selected for transfer into the uterus. The embryo transfer is a simple procedure where a thin catheter is used to place the embryo into the uterus, similar to a pap smear.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about the steps of IVF: ovarian stimulation, egg retrieval, fertilization, embryo culture, and embryo transfer. Can you list them in order and explain why each step is important for a successful pregnancy?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist (RE), consider asking these questions: What should I expect during the egg retrieval and embryo transfer procedures? How will you determine the best time for each step in my cycle? Are there any specific preparations I should make before each procedure?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Understand the main steps in an IVF cycle.",
+            "Learn about the procedures involved in egg retrieval and embryo transfer.",
+            "Recognize the importance of each step in achieving a successful pregnancy."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the purpose of ovarian stimulation in an IVF cycle?",
+                "options": [
+                  "To increase the number of eggs produced",
+                  "To directly fertilize the eggs",
+                  "To transfer the embryo to the uterus",
+                  "To perform genetic testing on embryos"
+                ],
+                "correct_index": 0,
+                "explanation": "Ovarian stimulation is used to encourage the ovaries to produce multiple eggs, increasing the chances of successful fertilization."
+              },
+              {
+                "question": "Which procedure involves placing the embryo into the uterus?",
+                "options": [
+                  "Egg retrieval",
+                  "Embryo transfer",
+                  "Ovarian stimulation",
+                  "Fertilization"
+                ],
+                "correct_index": 1,
+                "explanation": "Embryo transfer is the procedure where a thin catheter is used to place the embryo into the uterus."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "69e68fa4-c778-48ea-8632-d9a0615b0d4d",
+      "title": "Decision Points and Emotional Considerations",
+      "objective": "Prepare for decision-making and emotional aspects of IVF.",
+      "lessons": [
+        {
+          "id": "46040c55-4bfa-4445-80ee-742f4629d8f1",
+          "title": "Decision Points in IVF",
+          "objective": "Understand the critical decision points during an IVF cycle.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "In an IVF cycle, there are several critical decision points that can influence the outcome. These decisions include when to start ovarian stimulation, choosing the right protocol, deciding on the number of embryos to transfer, and whether to freeze embryos. Each decision is guided by your unique situation and medical advice.",
+              "citations": [
+                {
+                  "source": "PubMed:41806594",
+                  "snippet": "Conflict of interest statement: Declaration of competing interest I declare no \nconflicts of interest.\n\n\n10. Int J Womens Health. 2026 Mar 4;18:577483. doi: 10.2147/IJWH.S577483. \neCollection 2026.\n\nThe Influencing Factors and Predictive Algorithm of Pregnancy Outcomes in \nIVF/ICSI-ET Patients.\n\nWan"
+                },
+                {
+                  "source": "PubMed:41809679",
+                  "snippet": "GROUND: Over 2.5 million cycles in vitro fertilization (IVF) are conducted \nannually, and numbers are expected to rise with the aging population. The \ncontrolled ovarian stimulation (COS) process, key to IVF success, is inherently \ncomplex. Given advances in artificial intelligence (AI), this study "
+                },
+                {
+                  "source": "PubMed:41790698",
+                  "snippet": "transfer.\nOUTCOMES: After receiving appropriate fertility treatment based on the corrected \ndiagnosis, the patient successfully achieved pregnancy via in vitro \nfertilization-embryo transfer.\nLESSONS: Significant VI can manifest as organized \"pseudo-tubular\" structures \nthat convincingly mimic conge"
+                },
+                {
+                  "source": "PubMed:41805460",
+                  "snippet": "7. Int J Womens Health. 2026 Mar 4;18:577483. doi: 10.2147/IJWH.S577483. \neCollection 2026.\n\nThe Influencing Factors and Predictive Algorithm of Pregnancy Outcomes in \nIVF/ICSI-ET Patients.\n\nWang C(1), Yang XJ(1), Feng Y(1).\n\nAuthor information:\n(1)Department of Reproductive Medicine, Hangzhou Women"
+                },
+                {
+                  "source": "PubMed:41806715",
+                  "snippet": "6. Int J Womens Health. 2026 Mar 4;18:577483. doi: 10.2147/IJWH.S577483. \neCollection 2026.\n\nThe Influencing Factors and Predictive Algorithm of Pregnancy Outcomes in \nIVF/ICSI-ET Patients.\n\nWang C(1), Yang XJ(1), Feng Y(1).\n\nAuthor information:\n(1)Department of Reproductive Medicine, Hangzhou Women"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Consider a scenario where a couple is deciding how many embryos to transfer. They might weigh the increased chance of pregnancy against the risk of multiple births. Their doctor will provide guidance based on factors like age, embryo quality, and previous IVF attempts.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Reflect on your own situation: What are your main goals and concerns as you approach an IVF cycle? Try to list them and think about how they might influence your decisions during the process.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Think about a decision you made recently that was important to you. How did you gather information and what factors did you consider? This reflection can help you prepare for making decisions during your IVF cycle.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist (RE), consider asking: What are the key decision points in my IVF cycle? How will my specific circumstances influence these decisions? What are the potential risks and benefits of each option?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Understand the key decision points in an IVF cycle.",
+            "Know when and why decisions are made during IVF.",
+            "Identify common misconceptions about IVF decision-making.",
+            "Learn the vocabulary needed for informed IVF discussions."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is a critical decision point in an IVF cycle?",
+                "options": [
+                  "Choosing the color of the IVF clinic walls",
+                  "Deciding when to start ovarian stimulation",
+                  "Selecting the brand of prenatal vitamins",
+                  "Choosing a vacation destination"
+                ],
+                "correct_index": 1,
+                "explanation": "Deciding when to start ovarian stimulation is a critical decision point in an IVF cycle."
+              },
+              {
+                "question": "Why might a couple choose to transfer more than one embryo?",
+                "options": [
+                  "To increase the chance of pregnancy",
+                  "To reduce the cost of the procedure",
+                  "To ensure a specific gender",
+                  "To avoid freezing embryos"
+                ],
+                "correct_index": 0,
+                "explanation": "Transferring more than one embryo can increase the chance of pregnancy, but it also carries the risk of multiple births."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "a65ec50e-f396-4d8b-a04d-25f75c9ad9bb",
+          "title": "Emotional Aspects of IVF",
+          "objective": "Explore the emotional challenges and how to manage them during IVF.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Embarking on an IVF journey can be an emotional rollercoaster. It's completely normal to experience a wide range of emotions, from hope and excitement to anxiety and frustration. These feelings are a natural part of the process and acknowledging them is the first step in managing them effectively.",
+              "citations": [
+                {
+                  "source": "PubMed:41806594",
+                  "snippet": "Conflict of interest statement: Declaration of competing interest I declare no \nconflicts of interest.\n\n\n10. Int J Womens Health. 2026 Mar 4;18:577483. doi: 10.2147/IJWH.S577483. \neCollection 2026.\n\nThe Influencing Factors and Predictive Algorithm of Pregnancy Outcomes in \nIVF/ICSI-ET Patients.\n\nWan"
+                },
+                {
+                  "source": "PubMed:41790698",
+                  "snippet": "transfer.\nOUTCOMES: After receiving appropriate fertility treatment based on the corrected \ndiagnosis, the patient successfully achieved pregnancy via in vitro \nfertilization-embryo transfer.\nLESSONS: Significant VI can manifest as organized \"pseudo-tubular\" structures \nthat convincingly mimic conge"
+                },
+                {
+                  "source": "PubMed:41776587",
+                  "snippet": "ological contexts. Surgical innovations, including fertility-sparing \nsurgery and ovarian transposition, allow reproductive potential to be \nsafeguarded without compromising oncological safety. Cryobiology has been \ntransformed by the transition from slow-freezing to vitrification, establishing \nooc"
+                },
+                {
+                  "source": "PubMed:41806715",
+                  "snippet": "6. Int J Womens Health. 2026 Mar 4;18:577483. doi: 10.2147/IJWH.S577483. \neCollection 2026.\n\nThe Influencing Factors and Predictive Algorithm of Pregnancy Outcomes in \nIVF/ICSI-ET Patients.\n\nWang C(1), Yang XJ(1), Feng Y(1).\n\nAuthor information:\n(1)Department of Reproductive Medicine, Hangzhou Women"
+                },
+                {
+                  "source": "PubMed:41805460",
+                  "snippet": "7. Int J Womens Health. 2026 Mar 4;18:577483. doi: 10.2147/IJWH.S577483. \neCollection 2026.\n\nThe Influencing Factors and Predictive Algorithm of Pregnancy Outcomes in \nIVF/ICSI-ET Patients.\n\nWang C(1), Yang XJ(1), Feng Y(1).\n\nAuthor information:\n(1)Department of Reproductive Medicine, Hangzhou Women"
+                }
+              ],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "explanation",
+              "content": "During IVF, you might feel overwhelmed by the uncertainty and the stakes involved. It's important to remember that these feelings are valid and shared by many going through similar experiences. Emotional responses can vary greatly from person to person and can change throughout the cycle. Recognizing this can help in finding ways to cope and seek support when needed.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "example",
+              "content": "For instance, you might find yourself feeling hopeful after a positive doctor's appointment but then anxious as you wait for test results. This fluctuation is common and understanding that it's part of the process can help you prepare mentally.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "reflection",
+              "content": "Take a moment to think about how you are feeling right now about your IVF journey. Are there particular moments that have been more challenging emotionally? Reflecting on these can help you identify areas where you might want to seek additional support or employ coping strategies.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Consider asking your reproductive endocrinologist (RE) about the emotional support resources available through their clinic. You might also inquire about counseling services or support groups specifically for IVF patients. Lastly, discuss any specific concerns you have about how the emotional aspects of treatment might impact your overall well-being.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            }
+          ],
+          "key_takeaways": [
+            "IVF can be emotionally challenging, and it's normal to feel a range of emotions.",
+            "Understanding and acknowledging your feelings is crucial during the IVF journey.",
+            "There are strategies and support systems available to help manage the emotional aspects of IVF."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "high",
+          "flashcards": [],
+          "quiz": null
+        }
+      ]
+    },
+    {
+      "id": "144c1a13-67bd-4fcd-8ebf-9a844c34f217",
+      "title": "Preparing for Your IVF Cycle",
+      "objective": "Get ready to start your IVF cycle with confidence.",
+      "lessons": [
+        {
+          "id": "3ad5dfc0-7139-4bd6-bac3-cf305ea9a1fe",
+          "title": "What to Expect During Your IVF Cycle",
+          "objective": "Learn what to expect day-to-day during your IVF cycle.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Starting an IVF cycle can feel overwhelming, but knowing what to expect each day can help ease some of that anxiety. Your cycle will be broken down into several key stages: preparation, stimulation, egg retrieval, fertilization, and embryo transfer. Each stage has its own set of tasks and medications. Let's break these down step-by-step.",
+              "citations": [
+                {
+                  "source": "PubMed:41809679",
+                  "snippet": "GROUND: Over 2.5 million cycles in vitro fertilization (IVF) are conducted \nannually, and numbers are expected to rise with the aging population. The \ncontrolled ovarian stimulation (COS) process, key to IVF success, is inherently \ncomplex. Given advances in artificial intelligence (AI), this study "
+                },
+                {
+                  "source": "PubMed:41686632",
+                  "snippet": "goal in ovulation induction for \nintrauterine insemination (IUI), particularly for patients with polycystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing "
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41806715",
+                  "snippet": "6. Int J Womens Health. 2026 Mar 4;18:577483. doi: 10.2147/IJWH.S577483. \neCollection 2026.\n\nThe Influencing Factors and Predictive Algorithm of Pregnancy Outcomes in \nIVF/ICSI-ET Patients.\n\nWang C(1), Yang XJ(1), Feng Y(1).\n\nAuthor information:\n(1)Department of Reproductive Medicine, Hangzhou Women"
+                },
+                {
+                  "source": "PubMed:41805460",
+                  "snippet": "7. Int J Womens Health. 2026 Mar 4;18:577483. doi: 10.2147/IJWH.S577483. \neCollection 2026.\n\nThe Influencing Factors and Predictive Algorithm of Pregnancy Outcomes in \nIVF/ICSI-ET Patients.\n\nWang C(1), Yang XJ(1), Feng Y(1).\n\nAuthor information:\n(1)Department of Reproductive Medicine, Hangzhou Women"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you are starting your IVF cycle. During the preparation phase, you'll undergo baseline tests like blood work and ultrasounds to establish your starting point. Once cleared, you'll begin ovarian stimulation with medications such as gonadotropins to encourage your ovaries to produce multiple eggs.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "The stimulation phase involves daily injections and regular monitoring through blood tests and ultrasounds to track your response. It's crucial to follow your medication schedule precisely to optimize egg development. Your doctor will adjust dosages based on your body's response.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Let's check your understanding: What is the purpose of the stimulation phase in an IVF cycle? Think about how it prepares your body for the next steps. Write down your thoughts and compare them with the explanation above.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "Once your follicles are ready, you'll receive a 'trigger shot' to mature the eggs. Egg retrieval happens about 36 hours later under sedation, where your doctor will collect the eggs using a needle guided by ultrasound. After retrieval, the eggs are fertilized in the lab, and the best embryos are selected for transfer.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Consider how you might feel during each stage of the IVF process. Reflect on any concerns or questions you have about the medications or procedures. It's important to feel informed and comfortable with each step.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist, consider asking: What are the potential side effects of the medications I'll be taking? How will we decide how many embryos to transfer? What are the success rates for someone with my diagnosis?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Understand the day-to-day steps of an IVF cycle.",
+            "Learn about the medications involved in IVF.",
+            "Identify key decision points during the IVF process."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the primary goal of the stimulation phase in an IVF cycle?",
+                "options": [
+                  "To prepare the uterus for embryo transfer",
+                  "To produce multiple eggs for retrieval",
+                  "To determine the best embryo for transfer",
+                  "To monitor hormone levels"
+                ],
+                "correct_index": 1,
+                "explanation": "The stimulation phase aims to produce multiple eggs by using medications to stimulate the ovaries."
+              },
+              {
+                "question": "What happens approximately 36 hours after the trigger shot?",
+                "options": [
+                  "Embryo transfer",
+                  "Egg retrieval",
+                  "Start of stimulation phase",
+                  "Baseline testing"
+                ],
+                "correct_index": 1,
+                "explanation": "Egg retrieval is scheduled about 36 hours after the trigger shot to collect mature eggs."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "b090d14e-4f7e-4078-8134-98ff1bc71ff2",
+          "title": "Questions to Ask Your Reproductive Endocrinologist",
+          "objective": "Prepare a list of important questions to ask your RE before starting IVF.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Starting your IVF journey can feel overwhelming, but being prepared with the right questions can empower you to make informed decisions. Your reproductive endocrinologist (RE) is there to guide you, and asking the right questions can clarify each step of the process.",
+              "citations": [
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "Conflict of interest statement: The authors declare that they have no commercial \nor financial relationships that could be construed as a potential conflict of \ninterest.\n\n\n13. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letr"
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                },
+                {
+                  "source": "PubMed:41719147",
+                  "snippet": "18. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letrozole treatment in patients with resistant \npolycystic ovary syndrome undergoing intrauterine insemination: A 7-year \nretrospective cohort study.\n\nSrinivasan V(1).\n\nAuthor i"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41686632",
+                  "snippet": "goal in ovulation induction for \nintrauterine insemination (IUI), particularly for patients with polycystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing "
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you're at your first appointment with your RE. You might ask, 'What is the purpose of each medication in my IVF protocol?' This question helps you understand how each medication contributes to your treatment, making the process less daunting.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about what worries or confuses you the most about starting IVF. Write down three questions that address these concerns. Consider how these questions will help you feel more confident about the upcoming steps.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on a time when asking questions helped you understand a difficult situation better. How did it change your perspective? Use this experience to motivate you to engage actively with your RE.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Consider asking your RE: 'What are the potential side effects of the medications I will be taking?', 'How will we monitor the progress of my IVF cycle?', and 'What should I do if I experience unexpected symptoms during the treatment?'",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Prepare questions for your reproductive endocrinologist (RE) to guide your IVF journey.",
+            "Understanding each step of IVF helps in making informed decisions.",
+            "Active participation in your treatment plan can improve your experience."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "Why is it important to prepare questions for your RE before starting IVF?",
+                "options": [
+                  "To ensure you have the right medications.",
+                  "To understand each step and make informed decisions.",
+                  "To avoid needing any follow-up appointments.",
+                  "To reduce the cost of treatment."
+                ],
+                "correct_index": 1,
+                "explanation": "Preparing questions helps you understand the process and make informed decisions, which is crucial for a successful IVF journey."
+              },
+              {
+                "question": "Which of the following is a good question to ask your RE?",
+                "options": [
+                  "How long will each appointment last?",
+                  "What is the success rate of IVF?",
+                  "What are the potential side effects of the medications?",
+                  "Can I choose the gender of my baby?"
+                ],
+                "correct_index": 2,
+                "explanation": "Understanding the potential side effects of medications is important for managing expectations and preparing for the treatment."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-11-13T17:14:41.156964Z",
+    "pipeline_version": "0.1.0",
+    "model_versions": {}
+  }
+}

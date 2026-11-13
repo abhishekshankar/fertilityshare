@@ -1,0 +1,846 @@
+{
+  "id": "b1e2296a-3560-4b28-ab1d-13964c2b013c",
+  "title": "Your fertility learning course",
+  "intake": {
+    "journey_stage": "trying to conceive",
+    "diagnosis": "PCOS",
+    "confusion": "how PCOS affects ovulation and treatment options",
+    "level": "beginner",
+    "target_end_state": "Understand PCOS-specific options and questions to ask a clinician."
+  },
+  "modules": [
+    {
+      "id": "220f8f49-de4c-4d75-b781-34a55e673a59",
+      "title": "Understanding PCOS and Ovulation",
+      "objective": "Build foundational knowledge of how PCOS affects ovulation.",
+      "lessons": [
+        {
+          "id": "a85ea522-277e-4d5a-88d3-57c029291435",
+          "title": "What is PCOS?",
+          "objective": "Define PCOS and its general impact on the body.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Polycystic Ovary Syndrome, or PCOS, is a condition that affects how a woman's ovaries work. It is characterized by the presence of multiple small cysts on the ovaries, irregular menstrual cycles, and an excess of male hormones (androgens) in the body. Although the exact cause of PCOS is unknown, it is believed to involve a combination of genetic and environmental factors.",
+              "citations": [
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ty levels. All women knew how PCOS affected their ability to \nhave children but weren\u2019t confident in managing their symptoms. Few understood \nthat PCOS increases risk for other health problems. Younger women looked for \nhelp with symptoms but were unhappy with their doctors\u2019 knowledge and care. \nOld"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ystic ovary syndrome (PCOS) is a serious, \nlong-lasting condition, but we don\u2019t know much about what women with PCOS go \nthrough, especially during menopause. This study looked at women\u2019s experiences \nwith PCOS before and after menopause to understand: 1) What they know about \ntheir condition, 2) Wh"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": ", life-stage-specific support groups, and better patient-facing \nresources.\nCONCLUSION: Pre-menopausal and post-menopausal women with PCOS exhibit low \nhealth literacy about the potential impact of PCOS on metabolic health. Primary \ncare providers should be trained in how to educate women with PCOS,"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "menopausal only). Both pre- and post-menopausal women were knowledgeable \nabout the impact of PCOS on their fertility, and expressed low to moderate \nhealth literacy to successfully manage the PCOS-related symptoms. Few \nparticipants expressed understanding of long-term chronic disease risk. \nPre-me"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "atients with PCOS and its \npredictive models.\n\nJi X(1)(2), Xia H(1)(2), Liang T(1)(2), Lin H(1)(2), Yang Y(1)(2), Que W(1)(2), \nZhang Q(1)(2), Chen H(1)(2), Qiu Q(1)(2), Wei L(3), Li Y(1)(2).\n\nAuthor information:\n(1)Center for Reproductive Medicine, Sun Yat-Sen Memorial Hospital of Sun \nYat-Sen Univ"
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "PCOS doesn't just affect your reproductive health; it can also have broader health implications. Women with PCOS may experience symptoms such as irregular periods, excessive hair growth on the face and body, acne, and weight gain. Additionally, PCOS is associated with an increased risk of developing other health issues like type 2 diabetes, high blood pressure, and cholesterol problems.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Imagine Sarah, who has been experiencing irregular periods and unwanted facial hair. After visiting her doctor, she learns that these symptoms are linked to PCOS. By understanding her condition, Sarah can work with her healthcare provider to manage her symptoms and reduce her risk of other health complications.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Let's check your understanding. Can you list two common symptoms of PCOS and one potential long-term health risk associated with it? Think about how these might affect someone's daily life and overall health.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you visit your healthcare provider, consider asking: 'How might PCOS affect my overall health beyond fertility?' 'What lifestyle changes can help manage my symptoms?' 'Are there specific treatments or medications that could be beneficial for me?'",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "PCOS stands for Polycystic Ovary Syndrome, a common hormonal disorder.",
+            "PCOS can affect fertility, but it also impacts overall health beyond reproduction.",
+            "Symptoms of PCOS include irregular periods, excess hair growth, and acne.",
+            "Understanding PCOS is key to managing its symptoms and health risks."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What does PCOS stand for?",
+                "options": [
+                  "Polycystic Ovary Syndrome",
+                  "Postmenopausal Ovarian Syndrome",
+                  "Primary Cystic Ovary Symptoms",
+                  "Polycystic Organ System"
+                ],
+                "correct_index": 0,
+                "explanation": "PCOS stands for Polycystic Ovary Syndrome, a condition affecting ovarian function."
+              },
+              {
+                "question": "Which of the following is NOT a common symptom of PCOS?",
+                "options": [
+                  "Irregular periods",
+                  "Excess hair growth",
+                  "Acne",
+                  "Frequent headaches"
+                ],
+                "correct_index": 3,
+                "explanation": "Frequent headaches are not typically associated with PCOS, unlike the other symptoms listed."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "f5fae7cc-30ca-4374-982d-cdadfe7aa344",
+          "title": "PCOS and Hormonal Imbalance",
+          "objective": "Explain how PCOS leads to hormonal imbalances.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Polycystic Ovary Syndrome (PCOS) is a condition that affects how a woman's ovaries work. One of the key features of PCOS is hormonal imbalance. Hormones are chemical messengers in your body, and in PCOS, these messengers can become disrupted. This disruption often involves an increase in androgens, which are sometimes called 'male hormones,' although women naturally have them too.",
+              "citations": [
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ty levels. All women knew how PCOS affected their ability to \nhave children but weren\u2019t confident in managing their symptoms. Few understood \nthat PCOS increases risk for other health problems. Younger women looked for \nhelp with symptoms but were unhappy with their doctors\u2019 knowledge and care. \nOld"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ystic ovary syndrome (PCOS) is a serious, \nlong-lasting condition, but we don\u2019t know much about what women with PCOS go \nthrough, especially during menopause. This study looked at women\u2019s experiences \nwith PCOS before and after menopause to understand: 1) What they know about \ntheir condition, 2) Wh"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": ", life-stage-specific support groups, and better patient-facing \nresources.\nCONCLUSION: Pre-menopausal and post-menopausal women with PCOS exhibit low \nhealth literacy about the potential impact of PCOS on metabolic health. Primary \ncare providers should be trained in how to educate women with PCOS,"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "menopausal only). Both pre- and post-menopausal women were knowledgeable \nabout the impact of PCOS on their fertility, and expressed low to moderate \nhealth literacy to successfully manage the PCOS-related symptoms. Few \nparticipants expressed understanding of long-term chronic disease risk. \nPre-me"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "re and after the menopause transition to understand their health \nliteracy, barriers to healthcare management, and desired resources to improve \ntheir health and well-being.\nDESIGN: This was a convergent-parallel mixed-methods study.\nMETHODS: Twenty-four participants completed semi-structured interv"
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "In women with PCOS, the ovaries may produce higher levels of androgens than normal. This can lead to symptoms like irregular menstrual cycles, acne, and excess hair growth. These hormonal imbalances can also interfere with ovulation, making it more challenging to conceive. Understanding these imbalances is crucial because they are at the core of many PCOS symptoms.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Imagine your hormones as a symphony orchestra. Each hormone has its part to play, and when they are all in harmony, everything works smoothly. In PCOS, it's like the androgens are playing too loudly, drowning out the other instruments. This imbalance can disrupt the entire performance, leading to the symptoms you experience.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Let's check your understanding: What are the key hormones involved in PCOS-related imbalances? Why might elevated androgen levels be problematic? Write down your thoughts and consider how this might relate to the symptoms you've experienced.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Here are some questions you might consider asking your clinician at your next appointment: 1. How do my hormone levels compare to typical levels? 2. What treatment options are available to manage my hormonal imbalance? 3. How might these hormonal imbalances affect my fertility and what can we do about it?",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "PCOS causes hormonal imbalances that can affect fertility.",
+            "Hormonal imbalances in PCOS involve elevated levels of androgens.",
+            "Understanding these imbalances can help in managing symptoms and fertility."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is a common hormonal imbalance found in women with PCOS?",
+                "options": [
+                  "Elevated estrogen levels",
+                  "Elevated androgen levels",
+                  "Decreased insulin levels",
+                  "Decreased progesterone levels"
+                ],
+                "correct_index": 1,
+                "explanation": "Women with PCOS often have elevated levels of androgens, which can lead to various symptoms and affect fertility."
+              },
+              {
+                "question": "Why is understanding hormonal imbalances important for managing PCOS?",
+                "options": [
+                  "It helps in managing symptoms and fertility",
+                  "It cures PCOS",
+                  "It prevents menopause",
+                  "It eliminates all symptoms"
+                ],
+                "correct_index": 0,
+                "explanation": "Understanding hormonal imbalances is crucial as it helps in managing symptoms and addressing fertility issues associated with PCOS."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "e20abcdd-007f-44c8-b4be-ea85fecc32a7",
+          "title": "PCOS and Ovulation",
+          "objective": "Describe how PCOS affects ovulation specifically.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Polycystic Ovary Syndrome (PCOS) can significantly impact ovulation. In many women with PCOS, the hormonal imbalances lead to irregular or even absent menstrual cycles. This is because the ovaries may not release eggs regularly, making it harder to predict ovulation.",
+              "citations": [
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ystic ovary syndrome (PCOS) is a serious, \nlong-lasting condition, but we don\u2019t know much about what women with PCOS go \nthrough, especially during menopause. This study looked at women\u2019s experiences \nwith PCOS before and after menopause to understand: 1) What they know about \ntheir condition, 2) Wh"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "atients with PCOS and its \npredictive models.\n\nJi X(1)(2), Xia H(1)(2), Liang T(1)(2), Lin H(1)(2), Yang Y(1)(2), Que W(1)(2), \nZhang Q(1)(2), Chen H(1)(2), Qiu Q(1)(2), Wei L(3), Li Y(1)(2).\n\nAuthor information:\n(1)Center for Reproductive Medicine, Sun Yat-Sen Memorial Hospital of Sun \nYat-Sen Univ"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ty levels. All women knew how PCOS affected their ability to \nhave children but weren\u2019t confident in managing their symptoms. Few understood \nthat PCOS increases risk for other health problems. Younger women looked for \nhelp with symptoms but were unhappy with their doctors\u2019 knowledge and care. \nOld"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "(COS) affects pregnancy outcomes in patients with \npolycystic ovary syndrome (PCOS) undergoing assisted reproductive technology \n(ART) and to explore methods for identifying high-risk patients for early \nintervention. In a retrospective case-control analysis of 786 PCOS cycles, an \nearly LH surge wa"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine trying to catch a bus that doesn't have a set schedule. Sometimes it comes early, sometimes late, and sometimes not at all. This unpredictability is similar to what happens with ovulation in PCOS. The eggs might not be released consistently, making it challenging to conceive naturally.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "One specific issue in PCOS is an early luteinizing hormone (LH) surge. LH is crucial for triggering ovulation, but in PCOS, this surge can happen prematurely. This early surge can disrupt the timing of ovulation, which is particularly important during fertility treatments like IVF.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about how an early LH surge might affect someone trying to conceive. How could this unpredictability influence their treatment plan? Reflect on how understanding your own ovulation patterns could be beneficial in discussions with your doctor.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Consider asking your reproductive endocrinologist about how PCOS might specifically affect your ovulation. Inquire about monitoring options for LH surges and how they might influence your treatment plan. Discuss any symptoms you notice that could relate to your ovulation patterns.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "PCOS can affect ovulation by causing irregular or absent menstrual cycles.",
+            "An early LH surge during ovulation can impact fertility treatment outcomes.",
+            "Understanding ovulation patterns in PCOS is crucial for effective fertility planning."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "How does PCOS primarily affect ovulation?",
+                "options": [
+                  "By causing regular menstrual cycles",
+                  "By leading to irregular or absent menstrual cycles",
+                  "By increasing the frequency of ovulation",
+                  "By ensuring consistent ovulation"
+                ],
+                "correct_index": 1,
+                "explanation": "PCOS often leads to irregular or absent menstrual cycles due to hormonal imbalances affecting ovulation."
+              },
+              {
+                "question": "What is a potential consequence of an early LH surge in PCOS?",
+                "options": [
+                  "It ensures successful ovulation",
+                  "It has no impact on fertility treatments",
+                  "It can disrupt the timing of ovulation during fertility treatments",
+                  "It guarantees a higher chance of conception"
+                ],
+                "correct_index": 2,
+                "explanation": "An early LH surge can disrupt the timing of ovulation, which is crucial during fertility treatments like IVF."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "ed5dea32-24dc-4c76-b7ab-2e7f479ed082",
+      "title": "Fertility Treatment Options for PCOS",
+      "objective": "Explore treatment options available for PCOS-related infertility.",
+      "lessons": [
+        {
+          "id": "c22bcc3c-3544-4e8f-a4c8-66d642064d8d",
+          "title": "Lifestyle Modifications",
+          "objective": "Identify lifestyle changes that can improve fertility with PCOS.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Polycystic ovary syndrome (PCOS) is a common condition that can affect your fertility. While medications can help, lifestyle modifications are a powerful tool in managing PCOS symptoms and improving fertility. Let's explore some of these changes and how they can make a difference.",
+              "citations": [
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": ", life-stage-specific support groups, and better patient-facing \nresources.\nCONCLUSION: Pre-menopausal and post-menopausal women with PCOS exhibit low \nhealth literacy about the potential impact of PCOS on metabolic health. Primary \ncare providers should be trained in how to educate women with PCOS,"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "menopausal only). Both pre- and post-menopausal women were knowledgeable \nabout the impact of PCOS on their fertility, and expressed low to moderate \nhealth literacy to successfully manage the PCOS-related symptoms. Few \nparticipants expressed understanding of long-term chronic disease risk. \nPre-me"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ty levels. All women knew how PCOS affected their ability to \nhave children but weren\u2019t confident in managing their symptoms. Few understood \nthat PCOS increases risk for other health problems. Younger women looked for \nhelp with symptoms but were unhappy with their doctors\u2019 knowledge and care. \nOld"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ystic ovary syndrome (PCOS) is a serious, \nlong-lasting condition, but we don\u2019t know much about what women with PCOS go \nthrough, especially during menopause. This study looked at women\u2019s experiences \nwith PCOS before and after menopause to understand: 1) What they know about \ntheir condition, 2) Wh"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "atients with PCOS and its \npredictive models.\n\nJi X(1)(2), Xia H(1)(2), Liang T(1)(2), Lin H(1)(2), Yang Y(1)(2), Que W(1)(2), \nZhang Q(1)(2), Chen H(1)(2), Qiu Q(1)(2), Wei L(3), Li Y(1)(2).\n\nAuthor information:\n(1)Center for Reproductive Medicine, Sun Yat-Sen Memorial Hospital of Sun \nYat-Sen Univ"
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Consider Emma, who was diagnosed with PCOS and is trying to conceive. She started incorporating a balanced diet rich in whole grains, lean proteins, and plenty of fruits and vegetables. Emma also began a regular exercise routine, combining both cardio and strength training, which helped her manage her weight and improve her insulin sensitivity.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about your current lifestyle. Identify one dietary change you could make this week, such as swapping out refined grains for whole grains. How might this small step contribute to managing your PCOS symptoms and improving your fertility?",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on your stress levels and sleep patterns. How do these factors impact your daily life and overall well-being? What are some small changes you can implement to reduce stress and improve your sleep quality?",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "At your next appointment, consider asking your clinician: What specific lifestyle changes would you recommend for managing my PCOS? How can I monitor the impact of these changes on my fertility? Are there any local support groups or resources you suggest for ongoing support?",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "Lifestyle changes can significantly impact fertility in women with PCOS.",
+            "Diet and exercise are key components in managing PCOS symptoms.",
+            "Stress management and sleep quality can also affect fertility outcomes.",
+            "Regular monitoring and support from healthcare providers are essential."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "Which of the following is a recommended lifestyle modification for managing PCOS?",
+                "options": [
+                  "Increasing intake of refined sugars",
+                  "Incorporating regular exercise",
+                  "Reducing sleep hours",
+                  "Avoiding all carbohydrates"
+                ],
+                "correct_index": 1,
+                "explanation": "Regular exercise helps manage weight and improve insulin sensitivity, which are beneficial for managing PCOS."
+              },
+              {
+                "question": "Why is stress management important for women with PCOS trying to conceive?",
+                "options": [
+                  "It has no impact on fertility",
+                  "It can improve sleep quality",
+                  "It helps regulate hormone levels",
+                  "It increases calorie intake"
+                ],
+                "correct_index": 2,
+                "explanation": "Stress management can help regulate hormone levels, which is crucial for improving fertility in women with PCOS."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "19fcd3b1-a962-4020-90ec-e70c2355eefd",
+          "title": "Medications for Inducing Ovulation",
+          "objective": "Understand medications used to induce ovulation in PCOS patients.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Polycystic Ovary Syndrome (PCOS) can make ovulation irregular or absent, which is why medications like Letrozole are often used to help induce ovulation. Letrozole works by stimulating the ovaries to release eggs, which is crucial for conception. It's often the first line of treatment for ovulation induction in women with PCOS.",
+              "citations": [
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "S). However, in women who are resistant to \nstandard LE therapy, alternative ovulation induction regimens require further \nexploration. This study evaluated the efficacy of a novel protocol for stepwise \nextended LE treatment in patients with anovulatory PCOS undergoing intrauterine \ninsemination wh"
+                },
+                {
+                  "source": "PubMed:41719147",
+                  "snippet": "a novel protocol for stepwise \nextended LE treatment in patients with anovulatory PCOS undergoing intrauterine \ninsemination who were resistant to the standard dose of 5 mg LE.\nMETHODS: The study included 319 women diagnosed with PCOS. LE treatment was \nadministered in a stepwise manner, starting wi"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41719147",
+                  "snippet": "18. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letrozole treatment in patients with resistant \npolycystic ovary syndrome undergoing intrauterine insemination: A 7-year \nretrospective cohort study.\n\nSrinivasan V(1).\n\nAuthor i"
+                },
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "Conflict of interest statement: The authors declare that they have no commercial \nor financial relationships that could be construed as a potential conflict of \ninterest.\n\n\n13. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letr"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "For some women, the standard 5 mg dose of Letrozole taken for 5 days may not be enough to induce ovulation. In such cases, a stepwise extended protocol might be used. This involves extending the initial 5 mg dose for up to 10 days or increasing the dose to 7.5 mg for a few more days. This approach has been shown to improve ovulation rates in women who are initially resistant to the standard dose.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Consider Sarah, who has PCOS and initially did not respond to the standard Letrozole treatment. Her doctor suggested a stepwise approach, extending the 5 mg dose for a few more days. This adjustment helped her ovulate, increasing her chances of conception.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Reflect on what you've learned about Letrozole and its use in PCOS. Can you explain why a stepwise extended protocol might be beneficial for some women? Try to recall the reasons without looking back at the text.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Consider asking your clinician: 'What are the potential side effects of Letrozole for me?' 'If I don't respond to the standard treatment, what are my options?' 'How will we monitor the effectiveness of the treatment?'",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Letrozole is commonly used to induce ovulation in PCOS patients.",
+            "Stepwise extended Letrozole treatment can help those resistant to standard doses.",
+            "Understanding your medication options empowers you to discuss them with your clinician."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the primary purpose of using Letrozole in women with PCOS?",
+                "options": [
+                  "To regulate menstrual cycles.",
+                  "To induce ovulation.",
+                  "To reduce PCOS symptoms.",
+                  "To improve overall health."
+                ],
+                "correct_index": 1,
+                "explanation": "Letrozole is used to induce ovulation, which is often irregular or absent in women with PCOS."
+              },
+              {
+                "question": "What might a stepwise extended Letrozole protocol involve?",
+                "options": [
+                  "Increasing the dose of Letrozole gradually.",
+                  "Switching to a different medication.",
+                  "Taking Letrozole for fewer days.",
+                  "Combining Letrozole with another medication."
+                ],
+                "correct_index": 0,
+                "explanation": "A stepwise extended protocol may involve increasing the dose of Letrozole or extending the duration of the standard dose."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "016ce41d-1eeb-4c55-af6c-92170857541e",
+          "title": "Assisted Reproductive Technologies",
+          "objective": "Learn about assisted reproductive technologies available for PCOS.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Assisted reproductive technologies (ART) offer hope for many women with PCOS who are trying to conceive. ART includes various medical procedures used to address infertility. One of the most common ART methods is in vitro fertilization (IVF), where eggs are fertilized by sperm outside the body and then implanted into the uterus. This can be particularly helpful for women with PCOS, as it bypasses some of the issues related to ovulation.",
+              "citations": [
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "(COS) affects pregnancy outcomes in patients with \npolycystic ovary syndrome (PCOS) undergoing assisted reproductive technology \n(ART) and to explore methods for identifying high-risk patients for early \nintervention. In a retrospective case-control analysis of 786 PCOS cycles, an \nearly LH surge wa"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ty levels. All women knew how PCOS affected their ability to \nhave children but weren\u2019t confident in managing their symptoms. Few understood \nthat PCOS increases risk for other health problems. Younger women looked for \nhelp with symptoms but were unhappy with their doctors\u2019 knowledge and care. \nOld"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "atients with PCOS and its \npredictive models.\n\nJi X(1)(2), Xia H(1)(2), Liang T(1)(2), Lin H(1)(2), Yang Y(1)(2), Que W(1)(2), \nZhang Q(1)(2), Chen H(1)(2), Qiu Q(1)(2), Wei L(3), Li Y(1)(2).\n\nAuthor information:\n(1)Center for Reproductive Medicine, Sun Yat-Sen Memorial Hospital of Sun \nYat-Sen Univ"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ystic ovary syndrome (PCOS) is a serious, \nlong-lasting condition, but we don\u2019t know much about what women with PCOS go \nthrough, especially during menopause. This study looked at women\u2019s experiences \nwith PCOS before and after menopause to understand: 1) What they know about \ntheir condition, 2) Wh"
+                },
+                {
+                  "source": "PubMed:41719147",
+                  "snippet": "18. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letrozole treatment in patients with resistant \npolycystic ovary syndrome undergoing intrauterine insemination: A 7-year \nretrospective cohort study.\n\nSrinivasan V(1).\n\nAuthor i"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "Women with PCOS may face unique challenges when undergoing ART. For instance, an early luteinizing hormone (LH) surge can negatively impact pregnancy outcomes in IVF. This is because it can lead to premature ovulation, which may reduce the chances of a successful pregnancy. Understanding these potential risks allows you to have informed discussions with your healthcare provider about your treatment options.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Consider Sarah, who has PCOS and is considering IVF. Her doctor explains that due to her condition, she might experience an early LH surge, which could affect her IVF cycle. By closely monitoring her hormone levels and adjusting her treatment plan, her healthcare team can help mitigate these risks and improve her chances of a successful pregnancy.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Reflect on what you've learned about ART and PCOS. Can you identify two potential challenges women with PCOS might face when undergoing IVF? How might understanding these challenges help you in discussions with your healthcare provider?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist (RE), consider asking: What are the specific risks of ART for someone with PCOS? How can we monitor and manage hormone levels to improve my chances of success? Are there additional treatments that could complement ART in my case?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Assisted reproductive technologies (ART) can help manage PCOS-related fertility challenges.",
+            "In vitro fertilization (IVF) is a common ART option for women with PCOS.",
+            "Understanding the risks and benefits of ART can empower you in your fertility journey."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is one of the most common assisted reproductive technologies used for women with PCOS?",
+                "options": [
+                  "In vitro fertilization (IVF)",
+                  "Intrauterine insemination (IUI)",
+                  "Surrogacy",
+                  "Natural cycle monitoring"
+                ],
+                "correct_index": 0,
+                "explanation": "IVF is a common ART method that can help women with PCOS by bypassing ovulation issues."
+              },
+              {
+                "question": "Why is monitoring hormone levels important in ART for women with PCOS?",
+                "options": [
+                  "To ensure the procedure is scheduled correctly",
+                  "To predict an early LH surge",
+                  "To reduce the cost of treatment",
+                  "To avoid any medical intervention"
+                ],
+                "correct_index": 1,
+                "explanation": "Monitoring hormone levels helps predict an early LH surge, which can affect the success of ART cycles."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "e30d8d24-e9b5-4755-ae3d-c660f470482d",
+      "title": "Navigating the Clinical Journey",
+      "objective": "Prepare to engage with healthcare providers effectively.",
+      "lessons": [
+        {
+          "id": "ce616757-4cb5-4270-8277-da777e49c6f6",
+          "title": "Monitoring and Testing",
+          "objective": "Recognize the tests and monitoring involved in PCOS fertility treatment.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "When trying to conceive with PCOS, monitoring and testing play a critical role in understanding your fertility health. This involves a variety of tests that help your clinician assess your hormone levels and the health of your ovaries. These tests are crucial because they provide insights into how your body is responding to treatment and help in making informed decisions about your care.",
+              "citations": [
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "atients with PCOS and its \npredictive models.\n\nJi X(1)(2), Xia H(1)(2), Liang T(1)(2), Lin H(1)(2), Yang Y(1)(2), Que W(1)(2), \nZhang Q(1)(2), Chen H(1)(2), Qiu Q(1)(2), Wei L(3), Li Y(1)(2).\n\nAuthor information:\n(1)Center for Reproductive Medicine, Sun Yat-Sen Memorial Hospital of Sun \nYat-Sen Univ"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "menopausal only). Both pre- and post-menopausal women were knowledgeable \nabout the impact of PCOS on their fertility, and expressed low to moderate \nhealth literacy to successfully manage the PCOS-related symptoms. Few \nparticipants expressed understanding of long-term chronic disease risk. \nPre-me"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ty levels. All women knew how PCOS affected their ability to \nhave children but weren\u2019t confident in managing their symptoms. Few understood \nthat PCOS increases risk for other health problems. Younger women looked for \nhelp with symptoms but were unhappy with their doctors\u2019 knowledge and care. \nOld"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": ", life-stage-specific support groups, and better patient-facing \nresources.\nCONCLUSION: Pre-menopausal and post-menopausal women with PCOS exhibit low \nhealth literacy about the potential impact of PCOS on metabolic health. Primary \ncare providers should be trained in how to educate women with PCOS,"
+                },
+                {
+                  "source": "PubMed:41719147",
+                  "snippet": "a novel protocol for stepwise \nextended LE treatment in patients with anovulatory PCOS undergoing intrauterine \ninsemination who were resistant to the standard dose of 5 mg LE.\nMETHODS: The study included 319 women diagnosed with PCOS. LE treatment was \nadministered in a stepwise manner, starting wi"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "explanation",
+              "content": "The most common tests include blood tests to check hormone levels, such as luteinizing hormone (LH), follicle-stimulating hormone (FSH), and testosterone. An ultrasound is also typically used to examine the ovaries and check for the presence of cysts or the development of follicles. These tests help in predicting ovulation and determining the best timing for interventions.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "For instance, if your blood tests show elevated levels of LH compared to FSH, this might indicate that your body is not ovulating regularly. An ultrasound might reveal multiple small follicles, which is common in PCOS. These results can guide your clinician in adjusting your treatment plan, such as altering medication dosages or timing.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about the tests you might have already undergone. Can you recall what each test was for and what the results indicated? If you're unsure, note any questions you have for your next appointment. Understanding these tests will empower you to actively participate in your treatment decisions.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "At your next appointment, consider asking your clinician: 'What do my hormone levels indicate about my fertility?', 'How often should I have ultrasounds during treatment?', and 'Are there any other tests that could provide more insight into my PCOS management?'",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "PCOS can affect fertility, but there are specific tests to monitor and manage it.",
+            "Understanding the role of hormone levels and ultrasound in fertility treatment is crucial.",
+            "Regular communication with your clinician can help tailor your treatment plan."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the primary purpose of monitoring hormone levels in PCOS fertility treatment?",
+                "options": [
+                  "To determine dietary needs",
+                  "To assess ovulation and fertility health",
+                  "To diagnose diabetes",
+                  "To measure blood pressure"
+                ],
+                "correct_index": 1,
+                "explanation": "Monitoring hormone levels helps assess ovulation and fertility health, which is crucial in managing PCOS."
+              },
+              {
+                "question": "Why is an ultrasound used in PCOS fertility treatment?",
+                "options": [
+                  "To check for heart health",
+                  "To examine the ovaries and check for follicle development",
+                  "To measure bone density",
+                  "To assess liver function"
+                ],
+                "correct_index": 1,
+                "explanation": "An ultrasound is used to examine the ovaries and check for the development of follicles, which is important in fertility treatment."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "c9078139-cb18-4908-aaac-42668f09294e",
+          "title": "Emotional Well-being and Support",
+          "objective": "Understand the importance of emotional support during fertility treatment.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Fertility treatments, especially with PCOS, can be emotionally challenging. It's important to acknowledge and address these feelings. Emotional well-being is not just about feeling happy; it's about understanding and managing your emotions during this journey.",
+              "citations": [
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": ", life-stage-specific support groups, and better patient-facing \nresources.\nCONCLUSION: Pre-menopausal and post-menopausal women with PCOS exhibit low \nhealth literacy about the potential impact of PCOS on metabolic health. Primary \ncare providers should be trained in how to educate women with PCOS,"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ty levels. All women knew how PCOS affected their ability to \nhave children but weren\u2019t confident in managing their symptoms. Few understood \nthat PCOS increases risk for other health problems. Younger women looked for \nhelp with symptoms but were unhappy with their doctors\u2019 knowledge and care. \nOld"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "menopausal only). Both pre- and post-menopausal women were knowledgeable \nabout the impact of PCOS on their fertility, and expressed low to moderate \nhealth literacy to successfully manage the PCOS-related symptoms. Few \nparticipants expressed understanding of long-term chronic disease risk. \nPre-me"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ystic ovary syndrome (PCOS) is a serious, \nlong-lasting condition, but we don\u2019t know much about what women with PCOS go \nthrough, especially during menopause. This study looked at women\u2019s experiences \nwith PCOS before and after menopause to understand: 1) What they know about \ntheir condition, 2) Wh"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "e better resources to help women with PCOS throughout their lives.\n\n\u00a9 The Author(s), 2026.\n\nDOI: 10.1177/26334941261426089\nPMCID: PMC12926541"
+                }
+              ],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "example",
+              "content": "Consider Sarah, who has been trying to conceive for over a year. She joined a support group for women with PCOS. Sharing her experiences and hearing others' stories helped her feel less isolated and more understood.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "reflection",
+              "content": "Take a moment to reflect on your own emotional journey. What feelings have surfaced during your treatment? How have you managed them? Consider writing down your thoughts or discussing them with someone you trust.",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you speak with your clinician, consider asking: 'What emotional support resources are available for someone in my situation?' 'How can I manage stress and anxiety during treatment?' 'Are there local or online support groups you recommend?'",
+              "citations": [],
+              "emotional_sensitivity_level": "high"
+            }
+          ],
+          "key_takeaways": [
+            "Emotional well-being is crucial during fertility treatment.",
+            "Support groups can provide comfort and shared experiences.",
+            "Understanding your emotions helps in managing stress during treatment."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "high",
+          "flashcards": [],
+          "quiz": null
+        },
+        {
+          "id": "7dbd88ab-3318-47ac-ab57-ab2ad35150c5",
+          "title": "Questions to Ask Your Reproductive Endocrinologist",
+          "objective": "Prepare key questions to ask your reproductive endocrinologist about PCOS treatment options.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Polycystic Ovary Syndrome (PCOS) is a common condition that affects how a woman's ovaries work. It can lead to symptoms like irregular periods, excessive hair growth, and acne. Importantly, PCOS can also impact your ability to conceive. Understanding your treatment options is crucial to managing your symptoms and improving fertility outcomes.",
+              "citations": [
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ty levels. All women knew how PCOS affected their ability to \nhave children but weren\u2019t confident in managing their symptoms. Few understood \nthat PCOS increases risk for other health problems. Younger women looked for \nhelp with symptoms but were unhappy with their doctors\u2019 knowledge and care. \nOld"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ystic ovary syndrome (PCOS) is a serious, \nlong-lasting condition, but we don\u2019t know much about what women with PCOS go \nthrough, especially during menopause. This study looked at women\u2019s experiences \nwith PCOS before and after menopause to understand: 1) What they know about \ntheir condition, 2) Wh"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": ", life-stage-specific support groups, and better patient-facing \nresources.\nCONCLUSION: Pre-menopausal and post-menopausal women with PCOS exhibit low \nhealth literacy about the potential impact of PCOS on metabolic health. Primary \ncare providers should be trained in how to educate women with PCOS,"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "atients with PCOS and its \npredictive models.\n\nJi X(1)(2), Xia H(1)(2), Liang T(1)(2), Lin H(1)(2), Yang Y(1)(2), Que W(1)(2), \nZhang Q(1)(2), Chen H(1)(2), Qiu Q(1)(2), Wei L(3), Li Y(1)(2).\n\nAuthor information:\n(1)Center for Reproductive Medicine, Sun Yat-Sen Memorial Hospital of Sun \nYat-Sen Univ"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "menopausal only). Both pre- and post-menopausal women were knowledgeable \nabout the impact of PCOS on their fertility, and expressed low to moderate \nhealth literacy to successfully manage the PCOS-related symptoms. Few \nparticipants expressed understanding of long-term chronic disease risk. \nPre-me"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Consider Sarah, who has been trying to conceive for over a year. After being diagnosed with PCOS, she learned about various treatment options such as lifestyle changes, medications like Metformin, and fertility treatments like Clomiphene or Letrozole. By discussing these options with her doctor, she was able to create a personalized plan that addressed both her fertility goals and overall health.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Think about your own journey with PCOS. What symptoms have you experienced, and how have they affected your daily life? Reflect on what you hope to achieve through treatment, whether it's symptom management, improving fertility, or both.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Consider your current understanding of PCOS. Write down two questions you have about how it might affect your fertility or overall health. This will help you prepare for your next appointment with your reproductive endocrinologist.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist, consider asking: What are the most effective treatment options for managing PCOS and improving fertility? How can lifestyle changes complement medical treatments? Are there any risks associated with the recommended treatments?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "PCOS can affect fertility and overall health.",
+            "Understanding treatment options is crucial for managing PCOS.",
+            "Prepare questions for your reproductive endocrinologist to tailor your treatment."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is a common misconception about PCOS?",
+                "options": [
+                  "It only affects fertility.",
+                  "It can cause irregular periods.",
+                  "Lifestyle changes can help manage symptoms.",
+                  "It may require medical treatment."
+                ],
+                "correct_index": 0,
+                "explanation": "PCOS affects more than just fertility; it can impact overall health and requires a comprehensive management plan."
+              },
+              {
+                "question": "What is an important step when preparing for an appointment with a reproductive endocrinologist?",
+                "options": [
+                  "Bringing a list of symptoms and questions.",
+                  "Researching unrelated medical conditions.",
+                  "Avoiding any mention of lifestyle changes.",
+                  "Assuming all treatments are the same."
+                ],
+                "correct_index": 0,
+                "explanation": "Preparing a list of symptoms and questions helps ensure that your concerns are addressed and that you receive personalized care."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-11-13T17:14:47.042516Z",
+    "pipeline_version": "0.1.0",
+    "model_versions": {}
+  }
+}
