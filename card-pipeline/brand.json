@@ -1,0 +1,128 @@
+{
+ "byline": "FertilityShare",
+ "monogram": null,
+ "model": null,
+ "site": "fertilityshare.com",
+ "tokens": {
+  "light": {
+   "bg": "#faf8f5",
+   "panel": "#ffffff",
+   "panel2": "#f3efe8",
+   "ink": "#1a1612",
+   "ink2": "#46423c",
+   "ink3": "#6e6a62",
+   "ink4": "#6e6a62",
+   "rule": "#e6e0d6",
+   "grid": "#ece7de",
+   "axis": "#444444",
+   "shadow": "0 1px 2px rgba(0,0,0,.04)",
+   "red": "#b8294a",
+   "red-soft": "#f8e6ea",
+   "amber": "#d98c18",
+   "amber-soft": "#faefd6",
+   "green": "#1a7850",
+   "green-soft": "#e2f3ea",
+   "blue": "#2a5cb0",
+   "blue-soft": "#e5edfa",
+   "purple": "#6b3fb5",
+   "grey-bar": "#b8b4ad",
+   "ochre1": "#d4802a",
+   "ochre2": "#eda05a",
+   "hl-green": "#5fde90",
+   "hl-red": "#ff5f72",
+   "hl-amber": "#f5c454",
+   "bar-black": "#000000",
+   "white": "#ffffff",
+   "black": "#000000"
+  },
+  "dark": {
+   "bg": "#16141a",
+   "panel": "#1f1d24",
+   "panel2": "#27252e",
+   "ink": "#f2ede6",
+   "ink2": "#cfc9bf",
+   "ink3": "#9a9490",
+   "ink4": "#9a9490",
+   "rule": "#302d38",
+   "grid": "#2b2933",
+   "axis": "#9a9490",
+   "shadow": "0 1px 2px rgba(0,0,0,.4)",
+   "grey-bar": "#5d5a56",
+   "red-soft": "#3a1620",
+   "green-soft": "#143020",
+   "blue-soft": "#15203a",
+   "bar-black": "#000000",
+   "red": "#ff6b82",
+   "green": "#4fcf86",
+   "blue": "#6ea2f0",
+   "purple": "#b08cf0",
+   "amber": "#e0a848"
+  }
+ },
+ "fonts": {
+  "cond": [
+   "TeX Gyre Heros Cn",
+   "Inter Display",
+   "Inter",
+   "sans-serif"
+  ],
+  "sans": [
+   "Inter",
+   "system-ui",
+   "sans-serif"
+  ],
+  "mono": [
+   "DejaVu Sans Mono",
+   "ui-monospace",
+   "monospace"
+  ],
+  "_comment": "Linux (production) paths are commented out. macOS dev paths used here. On Linux CI/server, restore the Inter paths.",
+  "files": [
+   {
+    "family": "Inter",
+    "weight": 400,
+    "path": "/System/Library/Fonts/Supplemental/Arial.ttf"
+   },
+   {
+    "family": "Inter",
+    "weight": 600,
+    "path": "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+   },
+   {
+    "family": "Inter",
+    "weight": 700,
+    "path": "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+   },
+   {
+    "family": "Inter",
+    "weight": 800,
+    "path": "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+   },
+   {
+    "family": "Inter Display",
+    "weight": 800,
+    "path": "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+   },
+   {
+    "family": "Inter Display",
+    "weight": 900,
+    "path": "/System/Library/Fonts/Supplemental/Arial Black.ttf"
+   },
+   {
+    "family": "TeX Gyre Heros Cn",
+    "weight": 700,
+    "path": "/System/Library/Fonts/Supplemental/Arial Narrow Bold.ttf"
+   },
+   {
+    "family": "DejaVu Sans Mono",
+    "weight": 400,
+    "path": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono.ttf"
+   },
+   {
+    "family": "DejaVu Sans Mono",
+    "weight": 700,
+    "path": "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Bold.ttf"
+   }
+  ]
+ }
+}

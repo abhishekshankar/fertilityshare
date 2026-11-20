@@ -1,0 +1,1471 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Card",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eyebrow",
+    "headline",
+    "beats",
+    "hero",
+    "data_block",
+    "source_strip",
+    "takeaway",
+    "citation"
+  ],
+  "properties": {
+    "aspect": {
+      "type": "string",
+      "enum": [
+        "4:5",
+        "1:1",
+        "9:16"
+      ],
+      "default": "4:5"
+    },
+    "eyebrow": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Genre label, uppercase: DATA REVIEW / TRIAL RESULT / MECHANISM REVIEW / EVIDENCE REVIEW / MOUSE STUDY \u00b7 MECHANISM. May instead carry scale: '9.7 MILLION BLOOD TEST RESULTS | 101,148 ADULTS'."
+    },
+    "badge": {
+      "type": "string",
+      "maxLength": 18,
+      "description": "Optional red-outline badge top-right, e.g. MOUSE RESEARCH, PILOT, PREPRINT."
+    },
+    "series": {
+      "type": "string",
+      "maxLength": 12,
+      "description": "Optional counter, e.g. '03 / 09'."
+    },
+    "headline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "payoff"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "maxLength": 95,
+          "description": "Full headline, 2 lines when rendered. Pattern: [population or dose] [past-tense hedged verb] [outcome by number]."
+        },
+        "payoff": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Exact substring of text to color red. A phrase, not a single word."
+        }
+      }
+    },
+    "dek": {
+      "type": "string",
+      "maxLength": 230
+    },
+    "stats_line": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "maxLength": 32
+      },
+      "description": "Alternative to dek: mono fragments joined by ' \u00b7 ', e.g. ['95,559 adults','wrist-estimated sleep','median 8.9 years']."
+    },
+    "beats": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "lead",
+          "detail",
+          "role"
+        ],
+        "properties": {
+          "lead": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 110
+          },
+          "color": {
+            "type": "string",
+            "enum": [
+              "red",
+              "amber",
+              "green",
+              "blue",
+              "grey"
+            ],
+            "description": "red/amber/green, one each in order; blue or grey only on a `how` beat (E37)."
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "what",
+              "how",
+              "honesty"
+            ],
+            "description": "what = a finding; how = mechanism or dose; honesty = a limit (species ladder, not measured, association-not-cause, small N, one site). Audited (E31/E32)."
+          }
+        }
+      }
+    },
+    "beats_placement": {
+      "type": "string",
+      "enum": [
+        "under_dek",
+        "beside_hero",
+        "bottom_boxes"
+      ],
+      "default": "under_dek"
+    },
+    "hero": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "prompt"
+      ],
+      "properties": {
+        "subject": {
+          "type": "string",
+          "maxLength": 60,
+          "description": "e.g. 'sagittal brain with hippocampus highlighted'"
+        },
+        "prompt": {
+          "type": "string",
+          "maxLength": 400,
+          "description": "Image-model prompt. Physical description only. Textbook watercolor anatomical illustration, off-white background, NO text or labels in the image."
+        },
+        "labels": {
+          "type": "array",
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": [
+              "text",
+              "x",
+              "y"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "text": {
+                "type": "string",
+                "maxLength": 28
+              },
+              "x": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "y": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "lx": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "ly": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          },
+          "description": "Leader-line labels drawn in HTML over the image, at fractional coordinates."
+        },
+        "image": {
+          "type": "string",
+          "description": "Path/URL once generated. Absent = drawn placeholder."
+        },
+        "placement": {
+          "type": "string",
+          "enum": [
+            "left_column",
+            "band",
+            "right_column",
+            "shelf",
+            "pair",
+            "none"
+          ],
+          "default": "left_column"
+        },
+        "images": {
+          "type": "array",
+          "maxItems": 4,
+          "items": {
+            "type": "string"
+          },
+          "description": "band/shelf placements: 3\u20134 organs or foods in a row"
+        },
+        "feather": {
+          "type": "boolean"
+        },
+        "bleed": {
+          "type": "boolean"
+        },
+        "alt": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "zoom": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "x",
+            "y",
+            "r"
+          ],
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "r": {
+              "type": "number"
+            },
+            "image": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "data_block": {
+      "$ref": "#/$defs/block"
+    },
+    "secondary_block": {
+      "$ref": "#/$defs/block",
+      "description": "Optional small companion (e.g. funnel + timeline, dotmatrix + stat_tile)."
+    },
+    "source_strip": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "maxLength": 36
+      },
+      "description": "Mono uppercase fragments under the data block: journal+year, design, N/population."
+    },
+    "evidence_boundary": {
+      "type": "string",
+      "maxLength": 230
+    },
+    "context_tiles": {
+      "type": "array",
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "lead"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "lead": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "icon": {
+            "type": "string"
+          },
+          "kb": {
+            "type": "string",
+            "description": "id of the context/kb.json entry this tile copies verbatim (E105)."
+          }
+        }
+      }
+    },
+    "takeaway": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "highlight",
+        "tone"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "maxLength": 170
+        },
+        "highlight": {
+          "type": "string",
+          "maxLength": 80,
+          "description": "Exact substring of text to color."
+        },
+        "tone": {
+          "type": "string",
+          "enum": [
+            "action",
+            "caution",
+            "caveat"
+          ],
+          "description": "action=green, caution=red, caveat=amber."
+        },
+        "strength": {
+          "type": "string",
+          "enum": [
+            "observation",
+            "association",
+            "mechanism",
+            "recommendation"
+          ],
+          "description": "How strong a claim the takeaway makes. Audited against the design cap (L3) and forces tone (E46)."
+        }
+      }
+    },
+    "citation": {
+      "type": "string",
+      "maxLength": 90,
+      "description": "e.g. 'Morales et al., Exp Physiol 2026 \u00b7 PMID 39705060'"
+    },
+    "citation_line2": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "e.g. 'randomized crossover \u00b7 N = 30 \u00b7 evening OGTT'"
+    },
+    "byline": {
+      "type": "string"
+    },
+    "planner_note": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Why the block differs from the planner's choice, when it does (Lp)."
+    },
+    "headline_candidates": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text",
+          "payoff"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 95
+          },
+          "payoff": {
+            "type": "string",
+            "maxLength": 50
+          }
+        }
+      },
+      "description": "Runner-up headlines (best-of-N, E9); the renderer's --variants shows them side by side."
+    },
+    "tone": {
+      "type": "string",
+      "enum": [
+        "trial",
+        "observational",
+        "mechanism"
+      ],
+      "description": "Eyebrow colour family; derived from facts.design when absent."
+    },
+    "hero2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "prompt"
+      ],
+      "properties": {
+        "subject": {
+          "type": "string",
+          "maxLength": 60,
+          "description": "e.g. 'sagittal brain with hippocampus highlighted'"
+        },
+        "prompt": {
+          "type": "string",
+          "maxLength": 400,
+          "description": "Image-model prompt. Physical description only. Textbook watercolor anatomical illustration, off-white background, NO text or labels in the image."
+        },
+        "labels": {
+          "type": "array",
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": [
+              "text",
+              "x",
+              "y"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "text": {
+                "type": "string",
+                "maxLength": 28
+              },
+              "x": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "y": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "lx": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "ly": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          },
+          "description": "Leader-line labels drawn in HTML over the image, at fractional coordinates."
+        },
+        "image": {
+          "type": "string",
+          "description": "Path/URL once generated. Absent = drawn placeholder."
+        },
+        "placement": {
+          "type": "string",
+          "enum": [
+            "left_column",
+            "band",
+            "right_column",
+            "shelf",
+            "pair",
+            "none"
+          ],
+          "default": "left_column"
+        },
+        "images": {
+          "type": "array",
+          "maxItems": 4,
+          "items": {
+            "type": "string"
+          },
+          "description": "band/shelf placements: 3\u20134 organs or foods in a row"
+        },
+        "feather": {
+          "type": "boolean"
+        },
+        "bleed": {
+          "type": "boolean"
+        },
+        "alt": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "zoom": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "x",
+            "y",
+            "r"
+          ],
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "r": {
+              "type": "number"
+            },
+            "image": {
+              "type": "string"
+            }
+          }
+        },
+        "beside": {
+          "type": "boolean"
+        }
+      },
+      "description": "Optional second hero for a two-hero layout."
+    },
+    "certainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Code-owned (editorial/certainty.py). Shown as a chip on the front; reasons go on the permalink page.",
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "high",
+            "moderate",
+            "low",
+            "very_low"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 24
+        }
+      }
+    }
+  },
+  "$defs": {
+    "block": {
+      "description": "Discriminated on `type`. Every numeric value references a facts.outcomes index via `ref` so the audit can cross-check.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/b_stat_row"
+        },
+        {
+          "$ref": "#/$defs/b_stat_tiles"
+        },
+        {
+          "$ref": "#/$defs/b_bar_h"
+        },
+        {
+          "$ref": "#/$defs/b_bar_v"
+        },
+        {
+          "$ref": "#/$defs/b_stacked_100"
+        },
+        {
+          "$ref": "#/$defs/b_line_area"
+        },
+        {
+          "$ref": "#/$defs/b_forest"
+        },
+        {
+          "$ref": "#/$defs/b_funnel"
+        },
+        {
+          "$ref": "#/$defs/b_waffle"
+        },
+        {
+          "$ref": "#/$defs/b_isotype"
+        },
+        {
+          "$ref": "#/$defs/b_dotmatrix"
+        },
+        {
+          "$ref": "#/$defs/b_range_bar"
+        },
+        {
+          "$ref": "#/$defs/b_pathway"
+        },
+        {
+          "$ref": "#/$defs/b_before_after"
+        },
+        {
+          "$ref": "#/$defs/b_state_table"
+        },
+        {
+          "$ref": "#/$defs/b_timeline"
+        }
+      ]
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "value"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "maxLength": 34
+        },
+        "sub": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "value": {
+          "type": "number"
+        },
+        "display": {
+          "type": "string",
+          "maxLength": 16,
+          "description": "Formatted value as shown, e.g. '\u221246%', '36.4%', '+0.31'"
+        },
+        "ref": {
+          "type": "integer",
+          "description": "index into facts.outcomes"
+        },
+        "highlight": {
+          "type": "boolean"
+        },
+        "ci": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "color": {
+          "type": "string"
+        },
+        "semantic": {
+          "type": "string",
+          "enum": [
+            "result",
+            "parameter",
+            "caution"
+          ],
+          "description": "stat_tiles top-border colour"
+        }
+      }
+    },
+    "b_stat_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "stat_row"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/$defs/item"
+          }
+        },
+        "icons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "optional organ/subject image per item"
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        }
+      }
+    },
+    "b_stat_tiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "stat_tiles"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/item"
+          }
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        },
+        "not_measured": {
+          "type": "string",
+          "maxLength": 60,
+          "description": "dim strike-through row: the thing a reader assumes was measured (renderer #87)"
+        }
+      }
+    },
+    "b_bar_h": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "bar_h"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/item"
+          }
+        },
+        "diverging": {
+          "type": "boolean"
+        },
+        "axis_max": {
+          "type": "number"
+        },
+        "axis_label": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        }
+      }
+    },
+    "b_bar_v": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "bar_v"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "$ref": "#/$defs/item"
+          }
+        },
+        "axis_label": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "delta_note": {
+          "type": "string",
+          "maxLength": 24,
+          "description": "e.g. '5 points lower', 'About 60% lower' drawn between first and highlighted bar"
+        },
+        "x_label": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "cylinder",
+            "cube",
+            "flat"
+          ]
+        },
+        "delta_between": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "which two bars the \u0394 bracket joins"
+        }
+      }
+    },
+    "b_stacked_100": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title",
+        "categories",
+        "rows"
+      ],
+      "properties": {
+        "type": {
+          "const": "stacked_100"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "categories": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "string",
+            "maxLength": 24
+          }
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": [
+              "label",
+              "values"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "maxLength": 24
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "ref": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        }
+      }
+    },
+    "b_line_area": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title",
+        "series"
+      ],
+      "properties": {
+        "type": {
+          "const": "line_area"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "series": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "label",
+              "points"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "maxLength": 24
+              },
+              "points": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "ref": {
+                "type": "integer"
+              },
+              "color": {
+                "type": "string"
+              },
+              "refs": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                },
+                "description": "one facts.outcomes index per point (same order as points)"
+              },
+              "ci": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "description": "one [lo, hi] per point, from facts.outcomes[refs[k]].ci"
+              }
+            }
+          }
+        },
+        "x_label": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "y_label": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "x_ticks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "annotate_peak": {
+          "type": "boolean"
+        },
+        "fill_between": {
+          "type": "boolean"
+        },
+        "illustrative": {
+          "type": "boolean",
+          "description": "Required true when the series has \u22642 measured points (E19); prints 'curve shape illustrative' in subtitle"
+        },
+        "sparkline": {
+          "type": "boolean",
+          "description": "Planner flag for a series with \u22642 measured points: draw small beside the stat pair (E19)."
+        },
+        "measured_x": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "x values that were actually measured; they get point markers (renderer #37)"
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        }
+      }
+    },
+    "b_forest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "forest"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 70
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/item"
+          }
+        },
+        "null_value": {
+          "type": "number",
+          "default": 0
+        },
+        "axis_min": {
+          "type": "number"
+        },
+        "axis_max": {
+          "type": "number"
+        },
+        "footnote": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        },
+        "scale": {
+          "type": "string",
+          "enum": [
+            "linear",
+            "log"
+          ],
+          "default": "linear",
+          "description": "log for ratio estimates (null 1)"
+        }
+      }
+    },
+    "b_funnel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "funnel"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/item"
+          }
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        }
+      }
+    },
+    "b_waffle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title",
+        "total",
+        "hit"
+      ],
+      "properties": {
+        "type": {
+          "const": "waffle"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "total": {
+          "type": "integer"
+        },
+        "hit": {
+          "type": "integer"
+        },
+        "hit_label": {
+          "type": "string",
+          "maxLength": 44
+        },
+        "miss_label": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "ref": {
+          "type": "integer"
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        }
+      }
+    },
+    "b_isotype": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "rows"
+      ],
+      "properties": {
+        "type": {
+          "const": "isotype"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/item"
+          }
+        },
+        "unit_label": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        }
+      }
+    },
+    "b_dotmatrix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "dotmatrix"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/item"
+          }
+        },
+        "dot_scale": {
+          "type": "integer",
+          "default": 1,
+          "description": "dots = value / dot_scale"
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        }
+      }
+    },
+    "b_range_bar": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "min",
+        "max",
+        "threshold"
+      ],
+      "properties": {
+        "type": {
+          "const": "range_bar"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "threshold": {
+          "type": "number"
+        },
+        "threshold_label": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "below_label": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "above_label": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "ref": {
+          "type": "integer"
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        },
+        "unit": {
+          "type": "string",
+          "maxLength": 12
+        }
+      }
+    },
+    "b_pathway": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title",
+        "steps"
+      ],
+      "properties": {
+        "type": {
+          "const": "pathway"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": [
+              "label"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "maxLength": 60
+              },
+              "icon": {
+                "type": "string"
+              },
+              "value": {
+                "type": "number"
+              },
+              "display": {
+                "type": "string",
+                "maxLength": 16
+              },
+              "ref": {
+                "type": "integer",
+                "description": "index into facts.outcomes for the number in this step's label"
+              }
+            }
+          }
+        },
+        "inhibitor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "label",
+            "after_step"
+          ],
+          "properties": {
+            "label": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "after_step": {
+              "type": "integer"
+            }
+          }
+        },
+        "branches": {
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "title",
+              "steps"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "type": "string",
+                "maxLength": 30
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 30
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "b_before_after": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title",
+        "before_label",
+        "after_label",
+        "rows"
+      ],
+      "properties": {
+        "type": {
+          "const": "before_after"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "before_label": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "after_label": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": [
+              "item",
+              "before",
+              "after",
+              "delta"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "item": {
+                "type": "string",
+                "maxLength": 24
+              },
+              "before": {
+                "type": "string",
+                "maxLength": 20
+              },
+              "after": {
+                "type": "string",
+                "maxLength": 20
+              },
+              "delta": {
+                "type": "string",
+                "maxLength": 12
+              },
+              "ref": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "n": {
+          "type": "integer",
+          "description": "'N = \u2026' mono line under the block title (renderer #83); defaults to facts.n on the primary block"
+        }
+      }
+    },
+    "b_state_table": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title",
+        "states"
+      ],
+      "properties": {
+        "type": {
+          "const": "state_table"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "states": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": [
+              "label",
+              "result",
+              "tone"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "maxLength": 30
+              },
+              "result": {
+                "type": "string",
+                "maxLength": 24
+              },
+              "tone": {
+                "type": "string",
+                "enum": [
+                  "good",
+                  "bad",
+                  "neutral"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "b_timeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "points"
+      ],
+      "properties": {
+        "type": {
+          "const": "timeline"
+        },
+        "points": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 5,
+          "items": {
+            "type": "string",
+            "maxLength": 18
+          }
+        },
+        "bracket": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from",
+            "to",
+            "label"
+          ],
+          "properties": {
+            "from": {
+              "type": "integer"
+            },
+            "to": {
+              "type": "integer"
+            },
+            "label": {
+              "type": "string",
+              "maxLength": 30
+            }
+          }
+        }
+      }
+    }
+  }
+}
