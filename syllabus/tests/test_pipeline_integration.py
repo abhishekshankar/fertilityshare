@@ -30,6 +30,15 @@ def _make_mock_content_response():
                     "content": "Ask your RE: What treatment options are right for me?",
                 },
             ],
+            "quiz": [
+                {
+                    "question": f"Q{i}?",
+                    "options": ["a", "b"],
+                    "correct_index": 0,
+                    "explanation": "e",
+                }
+                for i in range(2)
+            ],
         }
     )
 
@@ -81,6 +90,7 @@ def test_pipeline_with_dict_intake_mocked(
     for mod in spec.modules:
         for lesson in mod.lessons:
             assert len(lesson.blocks) >= 1
+            assert lesson.quiz and len(lesson.quiz.questions) >= 2
             compliance_blocks = [
                 b for b in lesson.blocks if b.type == ContentBlockType.compliance_note
             ]

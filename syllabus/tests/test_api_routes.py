@@ -97,14 +97,35 @@ async def test_get_course_requires_auth():
 
 async def test_post_generate_returns_job_id_with_auth(mock_user):
     """POST /v1/generate with valid auth returns 200 and job_id."""
+    from contextlib import asynccontextmanager
+
     from syllabus.api.deps import get_current_user_allowed
 
     async def override_user():
         return mock_user
 
+    mock_session = AsyncMock()
+    mock_course = MagicMock()
+    mock_course.id = uuid.uuid4()
+
+    async def mock_refresh(obj):
+        obj.id = mock_course.id
+
+    mock_session.add = MagicMock()
+    mock_session.commit = AsyncMock()
+    mock_session.refresh = mock_refresh
+    mock_session.get = AsyncMock(return_value=mock_course)
+
+    @asynccontextmanager
+    async def mock_session_factory():
+        yield mock_session
+
     app.dependency_overrides[get_current_user_allowed] = override_user
     try:
-        with patch("syllabus.api.routes.generate._run_job", new_callable=AsyncMock):
+        with (
+            patch("syllabus.api.routes.generate._run_job", new_callable=AsyncMock),
+            patch("syllabus.api.routes.generate.async_session_factory", mock_session_factory),
+        ):
             async with AsyncClient(
                 transport=ASGITransport(app=app),
                 base_url="http://test",

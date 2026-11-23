@@ -1,7 +1,11 @@
 """ResearchNode: RAG retrieval per lesson with stub fallback (PRD T-013)."""
 
+import logging
+
 from syllabus.models.schemas import ModuleOutline
 from syllabus.rag.store import query_facts
+
+logger = logging.getLogger(__name__)
 
 
 def run_research_stub(outline: list[ModuleOutline]) -> tuple[dict[str, str], dict[str, list[dict]]]:
@@ -33,11 +37,36 @@ def run_research(
                 research[str(lesson.id)] = facts_str
                 citations[str(lesson.id)] = cites
             except Exception:
+                logger.warning(
+                    "RAG query failed for lesson %s (%s), using stub fallback",
+                    lesson.id,
+                    lesson.title,
+                    exc_info=True,
+                )
                 research[str(lesson.id)] = (
                     "Key concepts and evidence-based points for this topic (RAG fallback)."
                 )
                 citations[str(lesson.id)] = []
     return research, citations
+
+
+def _build_intake_context(parsed: object) -> str:
+    """Build intake context string from parsed intake (object or dict)."""
+    if not parsed:
+        return ""
+    if hasattr(parsed, "journey_stage"):
+        ctx = f"Journey: {parsed.journey_stage}. Diagnosis: {parsed.diagnosis or 'Not specified'}. Level: {parsed.level}."
+        target = getattr(parsed, "target_end_state", "")
+        if target:
+            ctx = f"LEARNER OBJECTIVE: {target}\n\n{ctx}"
+        return ctx
+    if isinstance(parsed, dict):
+        ctx = f"Journey: {parsed.get('journey_stage', '')}. Diagnosis: {parsed.get('diagnosis') or 'Not specified'}."
+        target = parsed.get("target_end_state")
+        if target:
+            ctx = f"LEARNER OBJECTIVE: {target}\n\n{ctx}"
+        return ctx
+    return ""
 
 
 def research_node(state: dict) -> dict:
@@ -47,16 +76,11 @@ def research_node(state: dict) -> dict:
         return {"error": "Missing outline"}
     if state.get("error"):
         return {}
-    parsed = state.get("parsed_intake")
-    intake_context = ""
-    if parsed:
-        if hasattr(parsed, "journey_stage"):
-            intake_context = f"Journey: {parsed.journey_stage}. Diagnosis: {parsed.diagnosis or 'Not specified'}. Level: {parsed.level}."
-        elif isinstance(parsed, dict):
-            intake_context = f"Journey: {parsed.get('journey_stage', '')}. Diagnosis: {parsed.get('diagnosis') or 'Not specified'}."
+    intake_context = _build_intake_context(state.get("parsed_intake"))
     try:
         research, research_citations = run_research(outline, intake_context)
         return {"research": research, "research_citations": research_citations, "error": None}
-    except Exception:
+    except Exception as e:
+        logger.warning("run_research failed, using stub fallback: %s", e, exc_info=True)
         research, research_citations = run_research_stub(outline)
-        return {"research": research, "research_citations": research_citations, "error": None}
+        return {"research": research, "research_citations": research_citations, "error": str(e)}

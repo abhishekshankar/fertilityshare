@@ -47,6 +47,9 @@ class Course(Base):
     title: Mapped[str] = mapped_column(Text, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now)
     job_id: Mapped[str | None] = mapped_column(Text, nullable=True, index=True)
+    generation_status: Mapped[str] = mapped_column(
+        Text, nullable=False, default="complete", server_default="complete"
+    )
 
     user = relationship("User", back_populates="courses")
     progress = relationship("Progress", back_populates="course")

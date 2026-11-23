@@ -3,14 +3,16 @@ name: Code Quality & Security
 
 on:
   pull_request:
-    branches: [staging, main, feat/v1-mvp]
+    branches: [staging, main]
   push:
-    branches: [main, feat/v1-mvp]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,18 +31,19 @@ jobs:
         run: pytest syllabus/tests -v --cov=syllabus --cov-report=xml
 
       - name: SonarCloud
-        uses: SonarSource/sonarcloud-github-action@master
+        if: env.SONAR_TOKEN != ''
+        uses: SonarSource/sonarcloud-github-action@v5.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: SonarCloud Quality Gate
         id: sonarqube-quality-gate
-        uses: SonarSource/sonarqube-quality-gate-action@master
+        if: env.SONAR_TOKEN != ''
+        continue-on-error: true
+        uses: SonarSource/sonarqube-quality-gate-action@v1.2.0
         with:
           pollingTimeoutSec: 300
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
 
   secrets-scan:

@@ -4,8 +4,8 @@ set -e
 # Run migrations (DATABASE_URL must be set)
 alembic upgrade head
 
-# Build RAG index at first run if OPENAI_API_KEY is set and data/rag has content
-if [ -n "$OPENAI_API_KEY" ] && [ -d /app/data/rag ]; then
+# Build RAG index at first run if OPENAI_API_KEY is set (and not a placeholder) and data/rag has content
+if [ -n "$OPENAI_API_KEY" ] && [ -d /app/data/rag ] && ! echo "$OPENAI_API_KEY" | grep -qi "REPLACE"; then
   count=$(find /app/data/rag -maxdepth 1 -type f \( -name '*.txt' -o -name '*.md' \) 2>/dev/null | wc -l)
   if [ "$count" -gt 0 ]; then
     if [ ! -d "$RAG_INDEX_PATH" ] || [ -z "$(ls -A $RAG_INDEX_PATH 2>/dev/null)" ]; then

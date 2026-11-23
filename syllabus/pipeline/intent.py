@@ -1,11 +1,13 @@
-"""IntentNode: parse raw intake into structured ParsedIntake (PRD T-001)."""
+"""IntentNode: parse raw intake into structured ParsedIntake (PRD T-001, Addendum P1/P2)."""
 
+import json
 import os
 import re
 
 from langchain_openai import ChatOpenAI
 
 from syllabus.models.schemas import ParsedIntake
+from syllabus.pipeline.prompts import PEDAGOGY_PREAMBLE
 
 
 # Sanitize to reduce prompt injection (PRD 3.3 edge cases)
@@ -23,16 +25,18 @@ def _parse_from_dict(data: dict) -> ParsedIntake:
     level = (data.get("level") or "beginner").lower()
     if level not in ("beginner", "intermediate", "advanced"):
         level = "beginner"
+    target_end_state = _sanitize(str(data.get("target_end_state", "")), 200)
     return ParsedIntake(
         journey_stage=_sanitize(str(data.get("journey_stage", "")), 500),
         diagnosis=_sanitize(str(data.get("diagnosis") or ""), 200) or None,
         confusion=_sanitize(str(data.get("confusion", "")), 1000),
         level=level,
+        target_end_state=target_end_state,
     )
 
 
 def _parse_from_text(text: str, llm: ChatOpenAI | None = None) -> ParsedIntake:
-    """Use LLM to extract structured intake from free text."""
+    """Use LLM to extract structured intake from free text (P2: includes target_end_state)."""
     text = _sanitize(text, 2000)
     if not llm:
         llm = ChatOpenAI(
@@ -40,12 +44,15 @@ def _parse_from_text(text: str, llm: ChatOpenAI | None = None) -> ParsedIntake:
             temperature=0,
             api_key=os.environ.get("OPENAI_API_KEY"),
         )
-    prompt = f"""You are a fertility education intake parser. Extract structured fields from the following patient message.
-Output ONLY valid JSON with exactly these keys: journey_stage, diagnosis (string or null), confusion, level.
+    prompt = f"""{PEDAGOGY_PREAMBLE}
+
+You are a fertility education intake parser. Extract structured fields from the following patient message.
+Output ONLY valid JSON with exactly these keys: journey_stage, diagnosis (string or null), confusion, level, target_end_state.
 - journey_stage: one of: "Newly diagnosed", "Preparing for first IUI", "Preparing for first IVF", "After failed cycle / veteran", "Considering egg freezing", "Partner supporting someone", "I don't know yet"
 - diagnosis: e.g. "PCOS", "low AMH", "MFI", "unexplained", or null if unknown
 - confusion: their main question or confusion in their words (short)
 - level: one of "beginner", "intermediate", "advanced"
+- target_end_state: one sentence (under 50 words) describing what the learner will be able to do or understand by the end of this course. Example: "By the end of this course, you will be able to explain your IVF protocol options to your partner and ask informed questions at your next RE consultation."
 
 Patient message:
 {text}
@@ -53,15 +60,14 @@ Patient message:
 JSON:"""
     response = llm.invoke(prompt)
     content = response.content.strip()
-    # Extract JSON (handle markdown code block)
     if "```" in content:
         content = content.split("```")[1]
         if content.startswith("json"):
             content = content[4:]
     content = content.strip()
-    import json
-
     data = json.loads(content)
+    # Ensure target_end_state is set from LLM output
+    data["target_end_state"] = _sanitize(str(data.get("target_end_state", "")), 200)
     return _parse_from_dict(data)
 
 

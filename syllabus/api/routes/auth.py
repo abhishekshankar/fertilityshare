@@ -1,5 +1,6 @@
 """Auth routes: register, login, me, Google OAuth."""
 
+import logging
 import os
 import secrets
 from typing import Annotated
@@ -16,6 +17,7 @@ from syllabus.api.deps import get_current_user, get_db
 from syllabus.db.models import User
 
 router = APIRouter(prefix="/v1", tags=["auth"])
+logger = logging.getLogger(__name__)
 
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "")
 GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", "")
@@ -100,6 +102,14 @@ async def me(
     return MeResponse(id=str(user.id), email=user.email, invite_allowed=user.invite_allowed)
 
 
+@router.get("/auth/google/status")
+async def auth_google_status() -> dict:
+    """Return whether Google OAuth is configured (for frontend to show/hide or explain the button)."""
+    configured = bool(GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET)
+    redirect_uri = f"{os.environ.get('API_URL', 'http://127.0.0.1:8000')}/v1/auth/google/callback"
+    return {"configured": configured, "redirect_uri": redirect_uri if configured else None}
+
+
 @router.get("/auth/google", responses={503: {"description": "Google OAuth not configured"}})
 async def auth_google() -> RedirectResponse:
     """Redirect to Google OAuth consent screen."""
@@ -118,31 +128,8 @@ async def auth_google() -> RedirectResponse:
     return RedirectResponse(url=url)
 
 
-def _debug_log(payload: dict) -> None:
-    import json
-    log_path = "/Users/abhi/Documents/GitHub/fertilityshare/.cursor/debug-41ee7a.log"
-    try:
-        with open(log_path, "a") as f:
-            f.write(json.dumps({"sessionId": "41ee7a", "timestamp": __import__("time").time() * 1000, **payload}) + "\n")
-    except Exception:
-        pass
-
-
-@router.get("/auth/google/callback")
-async def auth_google_callback(
-    session: Annotated[AsyncSession, Depends(get_db)],
-    code: str | None = None,
-    state: str | None = None,
-    error: str | None = None,
-) -> RedirectResponse:
-    """Exchange code for tokens, get user info, create/link user, redirect to frontend with token."""
-    # #region agent log
-    _debug_log({"location": "auth.py:google_callback:entry", "message": "google_callback_entry", "data": {"has_error": bool(error), "has_code": bool(code), "frontend_url": FRONTEND_URL}, "hypothesisId": "H1"})
-    # #endregion
-    if error or not code:
-        _debug_log({"location": "auth.py:google_callback", "message": "redirect_login_access_denied", "data": {}, "hypothesisId": "H1"})
-        return RedirectResponse(url=f"{FRONTEND_URL}/login?error=access_denied")
-    redirect_uri = f"{os.environ.get('API_URL', 'http://127.0.0.1:8000')}/v1/auth/google/callback"
+async def _exchange_google_token(code: str, redirect_uri: str) -> str | None:
+    """Exchange authorization code for access token. Returns token or None on failure."""
     async with httpx.AsyncClient() as client:
         token_resp = await client.post(
             "https://oauth2.googleapis.com/token",
@@ -156,50 +143,80 @@ async def auth_google_callback(
             headers={"Content-Type": "application/x-www-form-urlencoded"},
         )
     if token_resp.status_code != 200:
-        _debug_log({"location": "auth.py:google_callback", "message": "redirect_login_token_exchange_failed", "data": {"status": token_resp.status_code}, "hypothesisId": "H1"})
-        return RedirectResponse(url=f"{FRONTEND_URL}/login?error=token_exchange_failed")
-    token_data = token_resp.json()
-    access_token = token_data.get("access_token")
+        logger.warning("OAuth token exchange failed: status=%d", token_resp.status_code)
+        return None
+    access_token = token_resp.json().get("access_token")
     if not access_token:
-        _debug_log({"location": "auth.py:google_callback", "message": "redirect_login_no_token", "data": {}, "hypothesisId": "H1"})
-        return RedirectResponse(url=f"{FRONTEND_URL}/login?error=no_token")
+        logger.warning("OAuth callback: no access_token in response")
+        return None
+    return access_token
+
+
+async def _fetch_google_userinfo(access_token: str) -> dict | None:
+    """Fetch Google userinfo. Returns dict or None on failure."""
     async with httpx.AsyncClient() as client:
         user_resp = await client.get(
             "https://www.googleapis.com/oauth2/v2/userinfo",
             headers={"Authorization": f"Bearer {access_token}"},
         )
     if user_resp.status_code != 200:
-        _debug_log({"location": "auth.py:google_callback", "message": "redirect_login_userinfo_failed", "data": {"status": user_resp.status_code}, "hypothesisId": "H1"})
+        logger.warning("OAuth userinfo request failed: status=%d", user_resp.status_code)
+        return None
+    return user_resp.json()
+
+
+async def _find_or_create_oauth_user(session: AsyncSession, google_id: str, email: str) -> User:
+    """Find existing user by google_id or email, or create a new one."""
+    result = await session.execute(select(User).where(User.google_id == google_id))
+    user = result.scalars().first()
+    if user:
+        user.invite_allowed = user.email.lower() in _allowed_emails()
+        await session.commit()
+        return user
+    result = await session.execute(select(User).where(User.email == email))
+    user = result.scalars().first()
+    if user:
+        user.google_id = google_id
+        user.invite_allowed = email.lower() in _allowed_emails()
+        await session.commit()
+        await session.refresh(user)
+        return user
+    user = User(
+        email=email,
+        google_id=google_id,
+        invite_allowed=email.lower() in _allowed_emails(),
+    )
+    session.add(user)
+    await session.commit()
+    await session.refresh(user)
+    return user
+
+
+@router.get("/auth/google/callback")
+async def auth_google_callback(
+    session: Annotated[AsyncSession, Depends(get_db)],
+    code: str | None = None,
+    state: str | None = None,
+    error: str | None = None,
+) -> RedirectResponse:
+    """Exchange code for tokens, get user info, create/link user, redirect to frontend with token."""
+    if error or not code:
+        logger.info(
+            "OAuth callback: access denied (has_error=%s, has_code=%s)", bool(error), bool(code)
+        )
+        return RedirectResponse(url=f"{FRONTEND_URL}/login?error=access_denied")
+    redirect_uri = f"{os.environ.get('API_URL', 'http://127.0.0.1:8000')}/v1/auth/google/callback"
+    access_token = await _exchange_google_token(code, redirect_uri)
+    if access_token is None:
+        return RedirectResponse(url=f"{FRONTEND_URL}/login?error=token_exchange_failed")
+    userinfo = await _fetch_google_userinfo(access_token)
+    if userinfo is None:
         return RedirectResponse(url=f"{FRONTEND_URL}/login?error=userinfo_failed")
-    userinfo = user_resp.json()
     google_id = userinfo.get("id")
     email = userinfo.get("email")
     if not google_id or not email:
-        _debug_log({"location": "auth.py:google_callback", "message": "redirect_login_missing_profile", "data": {}, "hypothesisId": "H1"})
+        logger.warning("OAuth callback: missing google_id or email in userinfo")
         return RedirectResponse(url=f"{FRONTEND_URL}/login?error=missing_profile")
-    result = await session.execute(select(User).where(User.google_id == google_id))
-    user = result.scalars().first()
-    if not user:
-        result = await session.execute(select(User).where(User.email == email))
-        user = result.scalars().first()
-        if user:
-            user.google_id = google_id
-            user.invite_allowed = email.lower() in _allowed_emails()
-            await session.commit()
-            await session.refresh(user)
-        else:
-            user = User(
-                email=email,
-                google_id=google_id,
-                invite_allowed=email.lower() in _allowed_emails(),
-            )
-            session.add(user)
-            await session.commit()
-            await session.refresh(user)
-    else:
-        user.invite_allowed = user.email.lower() in _allowed_emails()
-        await session.commit()
+    user = await _find_or_create_oauth_user(session, google_id, email)
     token = create_access_token({"sub": str(user.id), "email": user.email})
-    success_url = f"{FRONTEND_URL}/auth/callback?token={token}"
-    _debug_log({"location": "auth.py:google_callback", "message": "redirect_success", "data": {"redirect_url_prefix": success_url[:80]}, "hypothesisId": "H1"})
-    return RedirectResponse(url=success_url)
+    return RedirectResponse(url=f"{FRONTEND_URL}/auth/callback?token={token}")

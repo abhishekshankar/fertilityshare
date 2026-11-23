@@ -1,0 +1,1005 @@
+{
+  "id": "3aab8d20-3d32-4961-8d19-89183416d10e",
+  "title": "Your fertility learning course",
+  "intake": {
+    "journey_stage": "trying to conceive",
+    "diagnosis": null,
+    "confusion": "timing, tracking and when to seek help",
+    "level": "beginner",
+    "target_end_state": "Track cycles confidently and know when to see a specialist."
+  },
+  "modules": [
+    {
+      "id": "e494c5f0-0f55-496e-b7ea-64ef81c17551",
+      "title": "Understanding Your Menstrual Cycle",
+      "objective": "Learn the basics of the menstrual cycle to build a foundation for tracking.",
+      "lessons": [
+        {
+          "id": "678f6c6a-da6c-4a79-b9c5-ac271fd38a0b",
+          "title": "Menstrual Cycle Phases",
+          "objective": "Identify and understand the different phases of the menstrual cycle.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "The menstrual cycle is a series of natural changes in hormone production and the structures of the uterus and ovaries. It is divided into four main phases: menstrual, follicular, ovulation, and luteal. Each phase plays a crucial role in preparing the body for a potential pregnancy.",
+              "citations": [
+                {
+                  "source": "PubMed:41737015",
+                  "snippet": "ts like BMI, WHR, \nand MUAC. In addition, shorter menstrual cycles due to high BFP were also \nassociated with an increased risk of endometriosis.\n\n\u00a9 2026 Milla et al.\n\nDOI: 10.2147/IJWH.S582542\nPMCID: PMC12927785"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "re and after the menopause transition to understand their health \nliteracy, barriers to healthcare management, and desired resources to improve \ntheir health and well-being.\nDESIGN: This was a convergent-parallel mixed-methods study.\nMETHODS: Twenty-four participants completed semi-structured interv"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ystic ovary syndrome (PCOS) is a serious, \nlong-lasting condition, but we don\u2019t know much about what women with PCOS go \nthrough, especially during menopause. This study looked at women\u2019s experiences \nwith PCOS before and after menopause to understand: 1) What they know about \ntheir condition, 2) Wh"
+                },
+                {
+                  "source": "PubMed:41803932",
+                  "snippet": "ulation and detailed \ncounselling with explicit written consent, prior to the initiation of cycles, \nbecomes crucial to prevent this crisis.\n\nDOI: 10.20529/IJME.2025.091"
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "The menstrual phase begins on the first day of your period and lasts about 3 to 7 days. During this time, the lining of the uterus sheds through the vagina. This phase marks the start of a new cycle.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "Next is the follicular phase, which overlaps with menstruation. It starts on the first day of your period and ends with ovulation. The pituitary gland releases follicle-stimulating hormone (FSH), which stimulates the ovaries to produce follicles. Each follicle contains an egg, and typically, one follicle will mature into an egg ready for ovulation.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "Ovulation is the release of a mature egg from the surface of the ovary. This usually occurs midway through the cycle, around day 14 in a 28-day cycle. The egg travels down the fallopian tube, where it may encounter sperm and become fertilized.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "The luteal phase follows ovulation and lasts about 14 days. The ruptured follicle forms a structure called the corpus luteum, which secretes progesterone to thicken the uterine lining, preparing it for a fertilized egg. If pregnancy does not occur, the corpus luteum degenerates, leading to a drop in progesterone and the start of menstruation.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Imagine your cycle as a carefully choreographed dance. Each phase has its own steps and timing, working in harmony to create the possibility of pregnancy. For example, if the luteal phase is too short, it might not give enough time for an embryo to implant, which could be a reason to consult a specialist.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Reflect on your own cycle. Can you identify the different phases based on your symptoms or calendar tracking? Consider how understanding these phases might help you communicate more effectively with your healthcare provider.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "At your next appointment, consider asking your reproductive endocrinologist: 'How can I better track my cycle phases?', 'What signs should I look for that indicate a potential issue with my cycle?', 'When is it appropriate to seek further testing or intervention?'",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "The menstrual cycle has four main phases: menstrual, follicular, ovulation, and luteal.",
+            "Each phase has distinct physiological changes and roles in fertility.",
+            "Understanding these phases helps in tracking cycles and knowing when to seek specialist advice."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the main role of the follicular phase?",
+                "options": [
+                  "To shed the uterine lining",
+                  "To prepare the egg for ovulation",
+                  "To release progesterone",
+                  "To maintain the uterine lining"
+                ],
+                "correct_index": 1,
+                "explanation": "The follicular phase involves the maturation of follicles in the ovaries, preparing an egg for ovulation."
+              },
+              {
+                "question": "Which phase of the menstrual cycle involves the release of a mature egg?",
+                "options": [
+                  "Menstrual phase",
+                  "Follicular phase",
+                  "Ovulation",
+                  "Luteal phase"
+                ],
+                "correct_index": 2,
+                "explanation": "Ovulation is the phase where a mature egg is released from the ovary."
+              },
+              {
+                "question": "What happens during the luteal phase if pregnancy does not occur?",
+                "options": [
+                  "The uterine lining thickens further",
+                  "The corpus luteum degenerates",
+                  "The egg is fertilized",
+                  "The uterine lining sheds"
+                ],
+                "correct_index": 1,
+                "explanation": "If pregnancy does not occur, the corpus luteum degenerates, leading to a drop in progesterone and the start of menstruation."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "710b056c-ff84-4d6b-bacb-e4051a50f454",
+          "title": "Hormonal Changes Throughout the Cycle",
+          "objective": "Understand the hormonal changes that occur during each phase of the menstrual cycle.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Hormones play a crucial role in regulating the menstrual cycle. The main hormones involved are estrogen, progesterone, luteinizing hormone (LH), and follicle-stimulating hormone (FSH). These hormones fluctuate in predictable patterns during the cycle, influencing ovulation and menstruation.",
+              "citations": [
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ystic ovary syndrome (PCOS) is a serious, \nlong-lasting condition, but we don\u2019t know much about what women with PCOS go \nthrough, especially during menopause. This study looked at women\u2019s experiences \nwith PCOS before and after menopause to understand: 1) What they know about \ntheir condition, 2) Wh"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "re and after the menopause transition to understand their health \nliteracy, barriers to healthcare management, and desired resources to improve \ntheir health and well-being.\nDESIGN: This was a convergent-parallel mixed-methods study.\nMETHODS: Twenty-four participants completed semi-structured interv"
+                },
+                {
+                  "source": "PubMed:41737015",
+                  "snippet": "ts like BMI, WHR, \nand MUAC. In addition, shorter menstrual cycles due to high BFP were also \nassociated with an increased risk of endometriosis.\n\n\u00a9 2026 Milla et al.\n\nDOI: 10.2147/IJWH.S582542\nPMCID: PMC12927785"
+                },
+                {
+                  "source": "PubMed:41751922",
+                  "snippet": "ty levels. All women knew how PCOS affected their ability to \nhave children but weren\u2019t confident in managing their symptoms. Few understood \nthat PCOS increases risk for other health problems. Younger women looked for \nhelp with symptoms but were unhappy with their doctors\u2019 knowledge and care. \nOld"
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "The menstrual cycle is divided into phases: the follicular phase, ovulation, and the luteal phase. During the follicular phase, FSH stimulates the growth of follicles in the ovaries, and estrogen levels rise, thickening the uterine lining. Ovulation occurs mid-cycle, triggered by a surge in LH. In the luteal phase, progesterone levels increase to prepare the uterus for a potential pregnancy.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "For instance, if you're tracking your cycle, you might notice that your basal body temperature rises slightly after ovulation due to increased progesterone. This can be a useful indicator if you're trying to conceive.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Let's check your understanding: What are the main hormones involved in the menstrual cycle, and what role does each play? Try to recall their functions before moving on.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Consider asking your reproductive endocrinologist: How do my hormone levels compare to typical patterns? Are there specific signs I should watch for in my cycle that might indicate a need for further evaluation?",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "Hormones fluctuate throughout the menstrual cycle.",
+            "Each phase of the cycle has distinct hormonal changes.",
+            "Understanding these changes helps in tracking cycles effectively."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "Which hormone is responsible for triggering ovulation?",
+                "options": [
+                  "Estrogen",
+                  "Progesterone",
+                  "Luteinizing Hormone (LH)",
+                  "Follicle-Stimulating Hormone (FSH)"
+                ],
+                "correct_index": 2,
+                "explanation": "Luteinizing Hormone (LH) surges mid-cycle to trigger ovulation."
+              },
+              {
+                "question": "During which phase of the menstrual cycle does progesterone play a significant role?",
+                "options": [
+                  "Follicular phase",
+                  "Ovulation",
+                  "Luteal phase",
+                  "Menstrual phase"
+                ],
+                "correct_index": 2,
+                "explanation": "Progesterone levels increase during the luteal phase to prepare the uterus for pregnancy."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "a2c1ec56-9f4d-42c6-9b69-37105e84c9cc",
+          "title": "Signs of Ovulation",
+          "objective": "Learn to recognize the physical signs of ovulation.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Ovulation is a crucial part of the menstrual cycle when an egg is released from the ovary. This typically occurs around the middle of your cycle. Recognizing the signs of ovulation can help you track your cycle more accurately and understand your fertility window.",
+              "citations": [
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "Conflict of interest statement: There are no conflicts of interest.\n\n\n15. BMJ Open. 2026 Jan 28;16(1):e111265. doi: 10.1136/bmjopen-2025-111265.\n\nComparing ovulation induction strategies for unexplained infertility: protocol \nfor a systematic review and network meta-analysis.\n\nMehta P(1), Jajodia S("
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "(COS) affects pregnancy outcomes in patients with \npolycystic ovary syndrome (PCOS) undergoing assisted reproductive technology \n(ART) and to explore methods for identifying high-risk patients for early \nintervention. In a retrospective case-control analysis of 786 PCOS cycles, an \nearly LH surge wa"
+                },
+                {
+                  "source": "PubMed:41805952",
+                  "snippet": "4. J Assist Reprod Genet. 2026 Mar 6. doi: 10.1007/s10815-026-03828-y. Online\nahead  of print.\n\nOutcomes from a trainee-run ovulation induction program at a large urban safety \nnet hospital.\n\nKelly AG(1)(2), Stein G(3)(4), Linfield R(4), Parra CM(5), Weidenbaum EM(5), \nShaw J(5), Cascante SD(5), Bla"
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "explanation",
+              "content": "Physical signs of ovulation can include changes in cervical mucus, a slight rise in basal body temperature, and mild pelvic or abdominal pain known as mittelschmerz. Cervical mucus often becomes clearer and more stretchy, resembling egg whites, which is a sign that ovulation is near.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you're tracking your cycle and notice your cervical mucus has become clear and stretchy. You also observe a slight increase in your basal body temperature over the past few days. These are indicators that you might be ovulating.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about your last cycle. Did you notice any changes in your cervical mucus or experience any mild abdominal discomfort? Write down any observations you made and compare them to the signs of ovulation we've discussed.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "At your next appointment, you might want to ask your reproductive endocrinologist: 'What are the most reliable signs of ovulation for me?' and 'How can I better track these signs to understand my cycle?'",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "Ovulation is a key phase in the menstrual cycle when an egg is released.",
+            "Physical signs of ovulation can help you track your cycle.",
+            "Recognizing ovulation signs can guide you on when to seek specialist advice."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is a common physical sign of ovulation?",
+                "options": [
+                  "Clear and stretchy cervical mucus",
+                  "Constant high temperature",
+                  "Severe abdominal pain",
+                  "No cervical mucus"
+                ],
+                "correct_index": 0,
+                "explanation": "Clear and stretchy cervical mucus is a common sign of ovulation, indicating high fertility."
+              },
+              {
+                "question": "Why is it important to recognize signs of ovulation?",
+                "options": [
+                  "To predict menstrual cramps",
+                  "To understand your fertility window",
+                  "To avoid all physical activity",
+                  "To determine your blood type"
+                ],
+                "correct_index": 1,
+                "explanation": "Recognizing signs of ovulation helps you understand your fertility window, which is crucial for conception."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "7736f095-6633-4752-a487-bb601645d623",
+      "title": "Cycle Tracking Techniques",
+      "objective": "Develop skills to track your menstrual cycle accurately.",
+      "lessons": [
+        {
+          "id": "245f06c1-fa1a-478c-b020-4722cbec0276",
+          "title": "Basal Body Temperature Charting",
+          "objective": "Learn how to chart basal body temperature to identify ovulation.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Basal body temperature (BBT) charting is a simple and effective way to track your ovulation. By recording your temperature each morning, you can identify the slight rise that occurs after ovulation. This can help you understand your cycle better and identify your fertile window.",
+              "citations": [
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41730845",
+                  "snippet": "7, \nQ2: 2.97-3.78, Q3: 3.78-4.87, Q4: \u2265 4.87) and as a continuous variable. Logistic \nregression models estimated odds ratios (ORs) and 95% confidence intervals (CIs) \nfor ovulation, conception, clinical pregnancy, and live birth, adjusting for \ninterventions, age, systolic and diastolic blood press"
+                },
+                {
+                  "source": "PubMed:41775049",
+                  "snippet": "ulatory trigger or if they had conventional insemination.\nEXPOSURE: Patients with a documented decrease of at least 1 pg/mL in serum \nestradiol on any of the four days prior to ovulatory trigger. The referent group \nexperienced a consistent rise in serum estradiol each day before trigger.\nMAIN OUTCO"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "Conflict of interest statement: There are no conflicts of interest.\n\n\n15. BMJ Open. 2026 Jan 28;16(1):e111265. doi: 10.1136/bmjopen-2025-111265.\n\nComparing ovulation induction strategies for unexplained infertility: protocol \nfor a systematic review and network meta-analysis.\n\nMehta P(1), Jajodia S("
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "cology, JSS Medical College, Mysuru, Karnataka, India \nhlkalabharathi@jssuni.edu.in.\n\nINTRODUCTION: Unexplained infertility affects about 30% of couples seeking help \nfor infertility, yet the optimal ovulation induction strategy remains largely \nunclear. Letrozole, clomiphene citrate and gonadotropi"
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you start charting your BBT on the first day of your menstrual cycle. Each morning, before getting out of bed, you take your temperature with a basal thermometer and record it on a chart. Around mid-cycle, you notice a slight increase in temperature, which remains elevated until your next period. This temperature shift indicates that ovulation has occurred.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Try charting your BBT for one month. Use a basal thermometer and record your temperature at the same time each morning. Look for a pattern of low temperatures followed by a sustained rise. This exercise will help you become familiar with your body's ovulation signals.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on your first month of BBT charting. Did you notice a temperature shift? How did it align with other ovulation signs you may have observed? Consider how this information can help you plan for future cycles.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist (RE), consider asking: 'How can BBT charting complement other fertility tracking methods?', 'What should I do if my BBT chart does not show a clear temperature shift?', and 'Are there specific conditions that might affect my BBT readings?'",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "Basal body temperature (BBT) charting helps identify ovulation.",
+            "BBT should be measured at the same time each morning before getting out of bed.",
+            "A slight temperature rise after ovulation indicates the fertile window has passed."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the primary purpose of charting basal body temperature?",
+                "options": [
+                  "To predict the exact day of ovulation",
+                  "To identify the temperature shift after ovulation",
+                  "To determine the length of the menstrual cycle",
+                  "To monitor daily hormone levels"
+                ],
+                "correct_index": 1,
+                "explanation": "BBT charting is used to identify the slight temperature rise that occurs after ovulation, indicating the fertile window has passed."
+              },
+              {
+                "question": "When should you measure your basal body temperature?",
+                "options": [
+                  "At any time during the day",
+                  "Before going to bed",
+                  "At the same time each morning before getting out of bed",
+                  "Only during the fertile window"
+                ],
+                "correct_index": 2,
+                "explanation": "BBT should be measured at the same time each morning before getting out of bed for accurate tracking."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "dc81969b-9d54-40c5-8d61-7ebeee53fb89",
+          "title": "Cervical Mucus Monitoring",
+          "objective": "Understand how to monitor cervical mucus as a fertility indicator.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Cervical mucus is a fluid secreted by the cervix, and its characteristics change throughout your menstrual cycle. During your fertile window, cervical mucus becomes clear, stretchy, and similar to egg whites. This type of mucus helps sperm swim more easily to meet the egg.",
+              "citations": [
+                {
+                  "source": "PubMed:41682732",
+                  "snippet": "Chronic endometritis (CE) is defined as a persistent, mild inflammation of the \nendometrium induced by intrauterine bacterial infection. CE has been associated \nwith infertility in patients with recurrent in vitro fertilization (IVF) \nfailure. We report an unusual case of bacterial co-colonization o"
+                },
+                {
+                  "source": "PubMed:41682732",
+                  "snippet": "Chronic endometritis (CE) is defined as a persistent, mild inflammation of the \nendometrium induced by intrauterine bacterial infection. CE has been associated \nwith infertility in patients with recurrent in vitro fertilization (IVF) \nfailure. We report an unusual case of bacterial co-colonization o"
+                },
+                {
+                  "source": "PubMed:41776814",
+                  "snippet": "artment of ObGyn, McGill University, 845 Sherbrooke St W, Montreal, \nQuebec H3A 0G4 Canada.\n(11)EGA Institute for Women's Health, Faculty of Population Health Science, \nUniversity College London, London, WC1E 6HX, UK.\n\nOBJECTIVE: This study evaluated whether consecutive ejaculate (CE) strategies \nim"
+                },
+                {
+                  "source": "PubMed:41749048",
+                  "snippet": "d patient characteristics. Higher \npregnancy rates are observed when endometrial thickness is within 6-10\u2009mm, \npost-wash total motile sperm count is \u22655-10 million, and gonadotropin-based \nstimulation protocols are used. Additionally, maintaining a healthy BMI, \nensuring adequate micronutrient intake"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Imagine your cervical mucus as a traffic signal for sperm. When it's dry or sticky, it's like a red light, indicating less fertile days. When it's creamy, it's a yellow light, suggesting you're getting closer to ovulation. When it's clear and stretchy, it's a green light, signaling peak fertility.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Let's practice identifying cervical mucus. Over the next week, observe and note the changes in your cervical mucus daily. Look for changes in texture, color, and consistency. This practice will help you recognize patterns and identify your fertile window.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "reflection",
+              "content": "Think about how tracking cervical mucus fits into your overall fertility tracking strategy. How might this information complement what you've learned from basal body temperature charting and ovulation predictor kits?",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "Consider asking your reproductive endocrinologist: 'How can cervical mucus monitoring complement other fertility tracking methods I'm using?' and 'Are there any signs in my cervical mucus that should prompt a visit to a specialist?'",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "Cervical mucus changes throughout the menstrual cycle and can indicate fertility.",
+            "Monitoring cervical mucus involves observing its texture, color, and consistency.",
+            "Understanding these changes can help identify the most fertile days."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What does clear and stretchy cervical mucus indicate?",
+                "options": [
+                  "Low fertility",
+                  "High fertility",
+                  "Menstruation",
+                  "Ovulation has passed"
+                ],
+                "correct_index": 1,
+                "explanation": "Clear and stretchy cervical mucus is a sign of high fertility, typically occurring around ovulation."
+              },
+              {
+                "question": "Which characteristic of cervical mucus suggests that ovulation is approaching?",
+                "options": [
+                  "Dry and sticky",
+                  "Creamy and white",
+                  "Clear and stretchy",
+                  "Thick and clumpy"
+                ],
+                "correct_index": 2,
+                "explanation": "Clear and stretchy cervical mucus indicates that ovulation is approaching and you are in your most fertile phase."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "b7242fde-2ca1-42c4-926c-2471ea6b9fa5",
+          "title": "Using Ovulation Predictor Kits",
+          "objective": "Learn how to use ovulation predictor kits effectively.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Ovulation Predictor Kits (OPKs) are tools that help you identify the most fertile days in your cycle by detecting a surge in luteinizing hormone (LH). This hormone increases 24-36 hours before ovulation, signaling your peak fertility window. Using OPKs can help you time intercourse more effectively when trying to conceive.",
+              "citations": [
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "(COS) affects pregnancy outcomes in patients with \npolycystic ovary syndrome (PCOS) undergoing assisted reproductive technology \n(ART) and to explore methods for identifying high-risk patients for early \nintervention. In a retrospective case-control analysis of 786 PCOS cycles, an \nearly LH surge wa"
+                },
+                {
+                  "source": "PubMed:41809679",
+                  "snippet": "GROUND: Over 2.5 million cycles in vitro fertilization (IVF) are conducted \nannually, and numbers are expected to rise with the aging population. The \ncontrolled ovarian stimulation (COS) process, key to IVF success, is inherently \ncomplex. Given advances in artificial intelligence (AI), this study "
+                },
+                {
+                  "source": "PubMed:41806594",
+                  "snippet": "rithm to \npredict the rate of clinical pregnancy.\nPATIENTS AND METHODS: A single-center retrospective analysis was performed on \n1183 treatment cycles of patients undergoing IVF/ICSI-ET at Hangzhou Women's \nHospital, covering the period from April 2018 to March 2023. All cases were \ncategorized into"
+                }
+              ],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "example",
+              "content": "Imagine your cycle is 28 days long. You would start using an OPK around day 10 or 11. When the test shows a positive result, it means your LH levels are high, and ovulation is likely to occur within the next day or two. This is the optimal time to try for conception.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "exercise",
+              "content": "Consider your own cycle length. If your cycle is 30 days, when would you start using an OPK? Calculate the day and think about how you would incorporate this into your routine. This practice helps you prepare for real-life application.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on how using OPKs could change your approach to tracking fertility. What challenges might you face, and how could you overcome them? Consider factors like remembering to test at the same time each day and interpreting results.",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you see your reproductive endocrinologist (RE), consider asking: 'When should I start using an OPK in my cycle?' 'Are there any specific brands you recommend?' 'How should I interpret the results if I have irregular cycles?'",
+              "citations": [],
+              "emotional_sensitivity_level": "low"
+            }
+          ],
+          "key_takeaways": [
+            "Ovulation Predictor Kits (OPKs) help identify your fertile window.",
+            "OPKs detect the surge in luteinizing hormone (LH) before ovulation.",
+            "Proper timing and usage of OPKs can improve conception chances."
+          ],
+          "knowledge_type": "procedural",
+          "emotional_sensitivity_level": "low",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What does an Ovulation Predictor Kit (OPK) detect?",
+                "options": [
+                  "Luteinizing hormone (LH) surge",
+                  "Progesterone levels",
+                  "Estrogen levels",
+                  "Follicle-stimulating hormone (FSH)"
+                ],
+                "correct_index": 0,
+                "explanation": "OPKs detect the surge in luteinizing hormone (LH), which occurs just before ovulation."
+              },
+              {
+                "question": "When is the best time to start using an OPK if you have a 28-day cycle?",
+                "options": [
+                  "Day 1",
+                  "Day 10",
+                  "Day 20",
+                  "Day 28"
+                ],
+                "correct_index": 1,
+                "explanation": "For a 28-day cycle, you should start using an OPK around day 10 to catch the LH surge before ovulation."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "a8672200-712d-4e26-8c16-19e9789a1889",
+      "title": "Optimizing Conception",
+      "objective": "Apply cycle tracking knowledge to optimize chances of conception.",
+      "lessons": [
+        {
+          "id": "da698c18-622b-4505-beaa-9882419d402a",
+          "title": "Timing Intercourse for Conception",
+          "objective": "Learn how to time intercourse based on cycle tracking data.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "Timing intercourse around ovulation increases the chances of conception. Ovulation is when an egg is released from the ovary, typically occurring midway through your menstrual cycle. Knowing when you ovulate can help you plan the best time for intercourse.",
+              "citations": [
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                },
+                {
+                  "source": "PubMed:41806594",
+                  "snippet": "rithm to \npredict the rate of clinical pregnancy.\nPATIENTS AND METHODS: A single-center retrospective analysis was performed on \n1183 treatment cycles of patients undergoing IVF/ICSI-ET at Hangzhou Women's \nHospital, covering the period from April 2018 to March 2023. All cases were \ncategorized into"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "(COS) affects pregnancy outcomes in patients with \npolycystic ovary syndrome (PCOS) undergoing assisted reproductive technology \n(ART) and to explore methods for identifying high-risk patients for early \nintervention. In a retrospective case-control analysis of 786 PCOS cycles, an \nearly LH surge wa"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "Conflict of interest statement: There are no conflicts of interest.\n\n\n15. BMJ Open. 2026 Jan 28;16(1):e111265. doi: 10.1136/bmjopen-2025-111265.\n\nComparing ovulation induction strategies for unexplained infertility: protocol \nfor a systematic review and network meta-analysis.\n\nMehta P(1), Jajodia S("
+                },
+                {
+                  "source": "PubMed:41803932",
+                  "snippet": "ulation and detailed \ncounselling with explicit written consent, prior to the initiation of cycles, \nbecomes crucial to prevent this crisis.\n\nDOI: 10.20529/IJME.2025.091"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Consider a 28-day cycle: ovulation usually happens around day 14. Intercourse during days 12-16 can maximize the chances of sperm meeting the egg. If your cycle is longer or shorter, adjust these days accordingly.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about your last few menstrual cycles. Write down the length of each cycle and identify any patterns. Based on this, estimate your ovulation day and plan the optimal days for intercourse. This practice helps in understanding your body's rhythm.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on how tracking your cycle has impacted your understanding of your fertility. Do you feel more confident in predicting ovulation? Consider any challenges you've faced and how you might address them moving forward.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "At your next appointment, consider asking your reproductive endocrinologist: 'How can I accurately track my ovulation?', 'What should I do if my cycles are irregular?', and 'When should I consider further fertility evaluation?'",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Understanding your cycle helps in timing intercourse for conception.",
+            "Ovulation is the key time for conception; track it accurately.",
+            "Consult a specialist if conception doesn't occur after several cycles."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "When is the best time to have intercourse to increase the chances of conception?",
+                "options": [
+                  "During menstruation",
+                  "A few days before and after ovulation",
+                  "Any time during the cycle",
+                  "Only on the day of ovulation"
+                ],
+                "correct_index": 1,
+                "explanation": "Intercourse a few days before and after ovulation increases the chances of sperm meeting the egg."
+              },
+              {
+                "question": "What is a common sign that ovulation is occurring?",
+                "options": [
+                  "Increased appetite",
+                  "Breast tenderness",
+                  "Change in cervical mucus",
+                  "Mood swings"
+                ],
+                "correct_index": 2,
+                "explanation": "A change in cervical mucus, becoming clear and stretchy, is a common sign of ovulation."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "7748a2f5-83da-490d-9c55-80a91ba8e12f",
+          "title": "Lifestyle Factors Affecting Fertility",
+          "objective": "Understand lifestyle factors that can impact fertility and conception.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "When you're trying to conceive, lifestyle factors can play a significant role in your fertility. While age and certain medical conditions are known to affect reproductive potential, choices like smoking, alcohol consumption, caffeine intake, exercise, and managing stress are also crucial. Understanding these factors can empower you to make informed decisions that may improve your chances of conception.",
+              "citations": [
+                {
+                  "source": "PubMed:41736759",
+                  "snippet": "lifestyle factors, such as \nsmoking, alcohol consumption, caffeine intake, exercise, psychological stress \nand drug abuse. While advanced age and some medical conditions undeniably lower \nreproductive potential, modifiable lifestyle choices also play a vital role. \nEarly diagnosis, prompt and approp"
+                },
+                {
+                  "source": "PubMed:41746699",
+                  "snippet": "on, \nUK.\n(5)Centre for Epidemiology and Biostatistics, Melbourne School of Population and \nGlobal Health, The University of Melbourne, Parkville, Victoria, Australia.\n(6)Cancer Epidemiology Division, Cancer Council Victoria, Melbourne, Victoria, \nAustralia.\n\nINTRODUCTION: Infertility is a common rep"
+                },
+                {
+                  "source": "PubMed:41712245",
+                  "snippet": "t of a total \ncohort of 62201 infertile couples.\nRESULTS: Among 5465 UI couples, 3400 achieved a live birth (cumulative live \nbirth rate\u2009=\u200962.2%). Multivariate logistic regression indicated the key negative \npredictors included: female age \u2265\u200935\u2009years (odds ratio [OR]: 0.63; 95% \nconfidence interval "
+                },
+                {
+                  "source": "PubMed:41746699",
+                  "snippet": ".26)], or low birthweight [RR: 1.04; 95% CI (0.80 to 1.34)].\nCONCLUSIONS: In this large cohort of women in Australian, initial associations \nbetween fertility problems and adverse pregnancy outcomes were attenuated after \nadjustment for key health and lifestyle factors. The absence of associations i"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Consider Sarah, who has been trying to conceive for a year. She smokes occasionally and enjoys a glass of wine most evenings. After learning about the impact of lifestyle on fertility, she decides to quit smoking and limits her alcohol intake. Within a few months, she notices improvements in her overall health and eventually conceives.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Reflect on your current lifestyle. Are there any habits you think might be affecting your fertility? Write down one or two changes you could make to potentially improve your reproductive health. Remember, small steps can lead to significant changes over time.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Think about how stress affects your daily life. What are some ways you currently manage stress? Consider incorporating new stress-reduction techniques, such as mindfulness or yoga, into your routine to support your fertility journey.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "At your next appointment, consider asking your reproductive endocrinologist: 'How might my current lifestyle choices be impacting my fertility?' and 'Are there specific lifestyle changes you recommend for someone in my situation?' These questions can help guide your journey and ensure you receive personalized advice.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Lifestyle factors like smoking, alcohol, and stress can impact fertility.",
+            "Understanding modifiable factors helps optimize fertility outcomes.",
+            "Early diagnosis and lifestyle adjustments can enhance conception chances."
+          ],
+          "knowledge_type": "declarative",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "Which of the following lifestyle factors can negatively impact fertility?",
+                "options": [
+                  "Smoking",
+                  "Regular exercise",
+                  "Adequate sleep",
+                  "Balanced diet"
+                ],
+                "correct_index": 0,
+                "explanation": "Smoking is a known factor that can reduce fertility and affect reproductive health."
+              },
+              {
+                "question": "Why is it important to manage stress when trying to conceive?",
+                "options": [
+                  "Stress has no impact on fertility",
+                  "Stress can delay ovulation",
+                  "Stress can improve fertility",
+                  "Stress only affects men"
+                ],
+                "correct_index": 1,
+                "explanation": "High stress levels can interfere with the hormonal balance necessary for ovulation, potentially delaying the process."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "446eaf4b-e408-4451-ad8d-48f217fea3dd",
+      "title": "Knowing When to Seek Help",
+      "objective": "Recognize when it is appropriate to consult a fertility specialist.",
+      "lessons": [
+        {
+          "id": "ffcfe6a9-757e-472e-8cb3-d289dd6d0af2",
+          "title": "Identifying Potential Fertility Issues",
+          "objective": "Learn to identify signs that may indicate a fertility issue.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "When trying to conceive, it's important to be aware of potential signs that might indicate a fertility issue. These can include irregular menstrual cycles, absence of menstruation, or cycles that are consistently shorter than 21 days or longer than 35 days. Understanding these signs can help you decide when it might be time to consult a specialist.",
+              "citations": [
+                {
+                  "source": "PubMed:41736759",
+                  "snippet": "lifestyle factors, such as \nsmoking, alcohol consumption, caffeine intake, exercise, psychological stress \nand drug abuse. While advanced age and some medical conditions undeniably lower \nreproductive potential, modifiable lifestyle choices also play a vital role. \nEarly diagnosis, prompt and approp"
+                },
+                {
+                  "source": "PubMed:41746699",
+                  "snippet": "12. Acta Obstet Gynecol Scand. 2026 Feb 26. doi: 10.1111/aogs.70178. Online ahead\nof  print.\n\nAssociation between history of fertility problems and pregnancy and birth \ncomplications: A longitudinal population-based cohort study.\n\nTully CA(1)(2), Schoenaker D(3)(4), Pacella-Ince L(1)(2), Hodge AM(5)"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41746699",
+                  "snippet": "on, \nUK.\n(5)Centre for Epidemiology and Biostatistics, Melbourne School of Population and \nGlobal Health, The University of Melbourne, Parkville, Victoria, Australia.\n(6)Cancer Epidemiology Division, Cancer Council Victoria, Melbourne, Victoria, \nAustralia.\n\nINTRODUCTION: Infertility is a common rep"
+                },
+                {
+                  "source": "PubMed:41702641",
+                  "snippet": "6 cycles. Among them, model 2 demonstrated optimal \nperformance, with prediction feasible as early as COS day 0 and an AUC of 0.713. \nThe findings indicate that an early LH surge may compromise ART outcomes in \nspecific PCOS subgroups, and the proposed predictive models could aid clinicians \nin iden"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you've been tracking your cycles for several months. You've noticed that your periods are irregular, sometimes skipping a month entirely. This inconsistency might be a signal to explore further with a healthcare provider.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Think about your own cycle tracking. Have you noticed any patterns or irregularities? Write down any observations, such as cycle length or symptoms, that seem unusual. This can be a helpful starting point for a conversation with a specialist.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on your lifestyle choices. Are there any habits, such as smoking or high caffeine intake, that you might consider adjusting to support your fertility goals? Small changes can sometimes make a big difference.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you see your reproductive endocrinologist, consider asking: 'Based on my cycle tracking, are there any concerns you see?' 'How might my lifestyle choices be impacting my fertility?' 'What steps should I take next if we suspect a fertility issue?'",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Recognize signs that may indicate a fertility issue.",
+            "Understand when to consider seeing a fertility specialist.",
+            "Lifestyle choices can impact fertility and should be considered."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What cycle characteristic might indicate a potential fertility issue?",
+                "options": [
+                  "Consistently regular cycles",
+                  "Cycles shorter than 21 days or longer than 35 days",
+                  "Having a cycle exactly every 28 days",
+                  "Experiencing mild cramps during menstruation"
+                ],
+                "correct_index": 1,
+                "explanation": "Cycles that are consistently shorter than 21 days or longer than 35 days can be a sign of a fertility issue."
+              },
+              {
+                "question": "Which lifestyle factor can impact fertility?",
+                "options": [
+                  "Reading before bed",
+                  "Caffeine intake",
+                  "Wearing comfortable clothing",
+                  "Listening to music"
+                ],
+                "correct_index": 1,
+                "explanation": "High caffeine intake is one of the lifestyle factors that can impact fertility."
+              }
+            ],
+            "reflection": null
+          }
+        },
+        {
+          "id": "066fedbc-5c55-42fb-8c05-411c864c8706",
+          "title": "Preparing for a Specialist Consultation",
+          "objective": "Understand what to ask your reproductive endocrinologist during a consultation.",
+          "blocks": [
+            {
+              "type": "explanation",
+              "content": "As you embark on your journey to conceive, you may find yourself considering a consultation with a reproductive endocrinologist (RE). This specialist can provide valuable insights and treatments tailored to your unique situation. Understanding what to expect and how to prepare for this meeting can help you make the most of your consultation.",
+              "citations": [
+                {
+                  "source": "PubMed:41730489",
+                  "snippet": "ystic ovary \nsyndrome (PCOS) or high ovarian reserve. Sequential protocols combining early \nletrozole with late-onset recombinant FSH (rFSH) have been proposed to enhance \nefficiency while reducing medication requirements. However, real-world \ncomparative data adjusting for baseline differences are "
+                },
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "Conflict of interest statement: The authors declare that they have no commercial \nor financial relationships that could be construed as a potential conflict of \ninterest.\n\n\n13. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letr"
+                },
+                {
+                  "source": "PubMed:41719147",
+                  "snippet": "18. Clin Exp Reprod Med. 2026 Feb 19. doi: 10.5653/cerm.2025.08480. Online ahead\nof  print.\n\nEfficacy of stepwise extended letrozole treatment in patients with resistant \npolycystic ovary syndrome undergoing intrauterine insemination: A 7-year \nretrospective cohort study.\n\nSrinivasan V(1).\n\nAuthor i"
+                },
+                {
+                  "source": "PubMed:41624660",
+                  "snippet": "infertility.\nMETHODS AND ANALYSIS: Parallel-group randomised controlled trials (RCTs), \nincluding women aged 18-40 years with unexplained infertility, will be eligible. \nInterventions include letrozole, clomiphene citrate, gonadotropins, combination \nregimens and expectant management/ placebo, with "
+                },
+                {
+                  "source": "PubMed:41710150",
+                  "snippet": "S). However, in women who are resistant to \nstandard LE therapy, alternative ovulation induction regimens require further \nexploration. This study evaluated the efficacy of a novel protocol for stepwise \nextended LE treatment in patients with anovulatory PCOS undergoing intrauterine \ninsemination wh"
+                }
+              ],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "example",
+              "content": "Imagine you've been trying to conceive for over a year without success. You've tracked your cycles, noticed irregularities, and have decided it's time to see a specialist. During your consultation, the RE might ask about your menstrual cycle history, any symptoms you've noticed, and previous fertility tests or treatments. They may also discuss potential treatment options, such as medications or assisted reproductive technologies.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "exercise",
+              "content": "Take a moment to jot down any questions or concerns you have about your fertility journey. Consider what information would help you feel more confident moving forward. For example, you might ask about the success rates of different treatments or the potential side effects of medications.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "reflection",
+              "content": "Reflect on your journey so far. What have you learned about your body and your cycles? How do you feel about seeking help from a specialist? Understanding your feelings and experiences can help guide your conversation with the RE.",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            },
+            {
+              "type": "compliance_note",
+              "content": "When you meet with your reproductive endocrinologist, consider asking: What are the potential causes of my fertility challenges? What diagnostic tests do you recommend? What treatment options are available, and what are their success rates?",
+              "citations": [],
+              "emotional_sensitivity_level": "medium"
+            }
+          ],
+          "key_takeaways": [
+            "Understand the role of a reproductive endocrinologist in fertility treatment.",
+            "Prepare questions to ask during your consultation.",
+            "Recognize when it's time to seek specialized help."
+          ],
+          "knowledge_type": "conditional",
+          "emotional_sensitivity_level": "medium",
+          "flashcards": [],
+          "quiz": {
+            "questions": [
+              {
+                "question": "What is the primary role of a reproductive endocrinologist?",
+                "options": [
+                  "To provide general health advice.",
+                  "To specialize in diagnosing and treating fertility issues.",
+                  "To offer nutritional counseling.",
+                  "To perform routine physical exams."
+                ],
+                "correct_index": 1,
+                "explanation": "A reproductive endocrinologist specializes in diagnosing and treating fertility issues."
+              },
+              {
+                "question": "Why is it important to prepare questions before your consultation with a reproductive endocrinologist?",
+                "options": [
+                  "To impress the doctor with your knowledge.",
+                  "To ensure you cover all your concerns and get the most out of the consultation.",
+                  "To avoid discussing sensitive topics.",
+                  "To speed up the consultation process."
+                ],
+                "correct_index": 1,
+                "explanation": "Preparing questions helps ensure you address all your concerns and make the most of your time with the specialist."
+              }
+            ],
+            "reflection": null
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-11-13T17:14:54.489940Z",
+    "pipeline_version": "0.1.0",
+    "model_versions": {}
+  }
+}

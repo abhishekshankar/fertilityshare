@@ -48,6 +48,7 @@ def index_directory(path: str, extensions: tuple[str, ...] = (".txt", ".md")) ->
     documents = []
     for ext in extensions:
         for f in root.rglob(f"*{ext}"):
+            # Only OSError is caught; non-OS errors (e.g. decoding) intentionally surface
             try:
                 text = f.read_text(encoding="utf-8", errors="replace")
                 source_id = str(f.relative_to(root))
@@ -62,6 +63,7 @@ def index_file(file_path: str, source_id: str | None = None) -> int:
     path = Path(file_path)
     if not path.is_file():
         return 0
+    # Only OSError is caught; non-OS errors (e.g. decoding) intentionally surface
     try:
         text = path.read_text(encoding="utf-8", errors="replace")
         sid = source_id or path.name

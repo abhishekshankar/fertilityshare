@@ -1,5 +1,6 @@
 """Fetch PubMed abstracts and index them into the RAG vector store (PRD T-012)."""
 
+import logging
 import time
 from typing import Any
 
@@ -7,12 +8,17 @@ import httpx
 
 from syllabus.rag.index import index_documents
 
-BASE_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
-# Rate limit: 3 requests/sec without API key
-REQUEST_DELAY = 0.34
+logger = logging.getLogger(__name__)
 
-# V1 target ~500 docs: DEFAULT_MAX_PER_QUERY × len(DEFAULT_QUERIES) ≈ 500 chunks
-DEFAULT_MAX_PER_QUERY = 50
+BASE_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
+# NCBI rate limit: 3 requests/sec without API key; use conservative delay to avoid 429
+REQUEST_DELAY = 0.5
+DELAY_BETWEEN_QUERIES = 1.0
+MAX_RETRIES_429 = 5
+RETRY_BACKOFF = 2.0
+
+# V1 target ~500 docs: DEFAULT_MAX_PER_QUERY × len(DEFAULT_QUERIES); lower per-query to avoid 429
+DEFAULT_MAX_PER_QUERY = 25
 
 # Default fertility-related queries for V1 (ASRM/PubMed scope)
 DEFAULT_QUERIES = [
@@ -29,9 +35,43 @@ DEFAULT_QUERIES = [
 ]
 
 
+def _request_with_429_retry(
+    client: httpx.Client,
+    method: str,
+    url: str,
+    **kwargs: Any,
+) -> httpx.Response:
+    """Get with retries on 429 (rate limit)."""
+    last_exc: Exception | None = None
+    for attempt in range(MAX_RETRIES_429):
+        r = client.request(method, url, **kwargs)
+        if r.status_code != 429:
+            r.raise_for_status()
+            return r
+        last_exc = httpx.HTTPStatusError(
+            "429 Too Many Requests",
+            request=r.request,
+            response=r,
+        )
+        wait = RETRY_BACKOFF**attempt
+        logger.warning(
+            "PubMed 429 rate limit; waiting %.1fs before retry %d/%d",
+            wait,
+            attempt + 1,
+            MAX_RETRIES_429,
+        )
+        time.sleep(wait)
+    if last_exc:
+        raise last_exc
+    raise httpx.HTTPStatusError("429", request=None, response=None)  # type: ignore
+
+
 def _esearch(query: str, retmax: int, client: httpx.Client) -> list[str]:
     """Return list of PMIDs for the query."""
-    r = client.get(
+    time.sleep(REQUEST_DELAY)
+    r = _request_with_429_retry(
+        client,
+        "GET",
         f"{BASE_URL}/esearch.fcgi",
         params={
             "db": "pubmed",
@@ -41,30 +81,63 @@ def _esearch(query: str, retmax: int, client: httpx.Client) -> list[str]:
         },
         timeout=30.0,
     )
-    r.raise_for_status()
     data: dict[str, Any] = r.json()
     id_list = data.get("esearchresult", {}).get("idlist") or []
     return id_list
 
 
+def _parse_article_abstract(article) -> tuple[str, str] | None:
+    """Extract (source_id, abstract_text) from a PubmedArticle XML element, or None if unusable."""
+    pmid_el = article.find(".//PMID")
+    if pmid_el is None or not (pmid_el.text or "").strip():
+        return None
+    pmid = pmid_el.text.strip()
+    parts = []
+    for at in article.findall(".//AbstractText"):
+        text = "".join(at.itertext()).strip()
+        if not text:
+            continue
+        label = at.get("Label")
+        parts.append(f"{label}: {text}" if label else text)
+    if not parts:
+        return None
+    return (f"PubMed:{pmid}", "\n".join(parts))
+
+
 def _efetch_abstracts(pmids: list[str], client: httpx.Client) -> list[tuple[str, str]]:
-    """Fetch abstracts for PMIDs. Returns list of (source_id, text)."""
+    """Fetch abstracts for PMIDs via XML for robust parsing. Returns list of (source_id, text)."""
     if not pmids:
         return []
     time.sleep(REQUEST_DELAY)
-    r = client.get(
+    r = _request_with_429_retry(
+        client,
+        "GET",
         f"{BASE_URL}/efetch.fcgi",
         params={
             "db": "pubmed",
             "id": ",".join(pmids),
             "rettype": "abstract",
-            "retmode": "text",
+            "retmode": "xml",
         },
         timeout=60.0,
     )
-    r.raise_for_status()
-    text = r.text
-    # efetch retmode=text returns blocks starting with "PMID: 12345" or similar
+    import xml.etree.ElementTree as ET
+
+    try:
+        root = ET.fromstring(r.text)
+    except ET.ParseError:
+        logger.warning("Failed to parse PubMed XML response; falling back to text splitting")
+        return _efetch_abstracts_text_fallback(r.text)
+    out: list[tuple[str, str]] = []
+    for article in root.iter("PubmedArticle"):
+        result = _parse_article_abstract(article)
+        if result:
+            out.append(result)
+    return out
+
+
+def _efetch_abstracts_text_fallback(text: str) -> list[tuple[str, str]]:
+    """Fallback text-based parsing when XML is unavailable."""
     out: list[tuple[str, str]] = []
     blocks = text.split("PMID:")
     for block in blocks:
@@ -73,13 +146,12 @@ def _efetch_abstracts(pmids: list[str], client: httpx.Client) -> list[tuple[str,
             continue
         lines = block.splitlines()
         first = lines[0].strip()
-        # First line is the number (and possibly more); rest is title/abstract
         pmid = first.split()[0] if first else ""
         if not pmid or not pmid.isdigit():
             continue
         body = "\n".join(lines[1:]).strip() if len(lines) > 1 else ""
         if not body:
-            body = first
+            continue
         out.append((f"PubMed:{pmid}", body))
     return out
 
@@ -116,9 +188,19 @@ def index_pubmed(
     queries = queries or DEFAULT_QUERIES
     documents: list[tuple[str, str]] = []
     with httpx.Client() as client:
-        for q in queries:
-            docs = fetch_abstracts_for_query(q, max_per_query, client=client)
-            documents.extend(docs)
+        for i, q in enumerate(queries):
+            if i > 0:
+                time.sleep(DELAY_BETWEEN_QUERIES)
+            try:
+                docs = fetch_abstracts_for_query(q, max_per_query, client=client)
+                documents.extend(docs)
+            except httpx.HTTPError as exc:
+                logger.warning(
+                    "Failed to fetch PubMed abstracts for query %r: %s",
+                    q,
+                    exc,
+                )
+                continue
     if not documents:
         return 0
     return index_documents(documents)

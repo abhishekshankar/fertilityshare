@@ -11,12 +11,12 @@ This folder holds **ASRM and other fertility reference content** for the RAG vec
    Optional: `-n 50` (max per query), `-q "IVF" -q "PCOS"` (custom queries).
 
 2. **ASRM / local documents**:
-   - Add `.txt` or `.md` files under `data/rag/` (or any directory).
+   - Add `.txt` or `.md` files under `data/rag/sources/` (or any dedicated content directory).
    - Run:
    ```bash
-   python -m syllabus index-rag data/rag
+   python -m syllabus index-rag data/rag/sources
    ```
-   All `.txt`/`.md` under the path are chunked, embedded, and added to the same Chroma collection.
+   All `.txt`/`.md` under that content path are chunked, embedded, and added to the same Chroma collection.
 
 ## V1 scale
 

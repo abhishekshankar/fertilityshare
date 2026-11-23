@@ -55,6 +55,29 @@ def test_parse_outline_response_missing_lesson_fields_default_empty():
     assert len(result) == 1
     assert result[0].lessons[0].title == "L1"
     assert result[0].lessons[0].objective == ""
+    assert result[0].lessons[0].knowledge_type == "declarative"
+
+
+def test_parse_outline_response_includes_knowledge_type():
+    content = """{"modules": [{"title": "M1", "objective": "O1", "lessons": [
+        {"title": "L1", "objective": "O1", "knowledge_type": "procedural"},
+        {"title": "L2", "objective": "O2", "knowledge_type": "conditional"}
+    ]}]}"""
+    result = _parse_outline_response(content)
+    assert result[0].lessons[0].knowledge_type == "procedural"
+    assert result[0].lessons[1].knowledge_type == "conditional"
+    assert result[0].lessons[0].emotional_sensitivity_level == "low"
+    assert result[0].lessons[1].emotional_sensitivity_level == "low"
+
+
+def test_parse_outline_response_includes_emotional_sensitivity_level():
+    content = """{"modules": [{"title": "M1", "objective": "O1", "lessons": [
+        {"title": "L1", "objective": "O1", "emotional_sensitivity_level": "high"},
+        {"title": "L2", "objective": "O2", "emotional_sensitivity_level": "medium"}
+    ]}]}"""
+    result = _parse_outline_response(content)
+    assert result[0].lessons[0].emotional_sensitivity_level == "high"
+    assert result[0].lessons[1].emotional_sensitivity_level == "medium"
 
 
 def test_run_outline_mocked_llm():
