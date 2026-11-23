@@ -1,0 +1,1488 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "Facts",
+ "description": "Typed, quote-proven facts extracted from one paper. Numbers are numbers. Every outcome carries the statistic as printed (raw_stat), a derived value, and a verbatim quote that contains the printed digits. Field meanings: backlog/FACTS_FIELDS.md.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "design",
+  "population",
+  "n",
+  "exposure",
+  "outcomes",
+  "sources"
+ ],
+ "properties": {
+  "design": {
+   "type": "string",
+   "enum": [
+    "rct",
+    "crossover",
+    "cluster_rct",
+    "pilot",
+    "cohort",
+    "case_control",
+    "cross_sectional",
+    "records_review",
+    "meta_analysis",
+    "mechanistic",
+    "animal",
+    "cell",
+    "review",
+    "mendelian_randomization",
+    "network_meta_analysis",
+    "factorial_rct"
+   ]
+  },
+  "design_evidence": {
+   "$ref": "#/$defs/evidence",
+   "description": "Methods quote that states the design."
+  },
+  "blinding": {
+   "type": "string",
+   "enum": [
+    "none",
+    "single",
+    "double",
+    "triple",
+    "open_label",
+    "analyst_only",
+    "not_reported"
+   ]
+  },
+  "registration": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "type": "string",
+     "maxLength": 30,
+     "description": "NCT / ISRCTN / ACTRN / other registry id as printed"
+    },
+    "registry": {
+     "type": "string",
+     "maxLength": 40
+    },
+    "preregistered": {
+     "type": "boolean",
+     "description": "true only if the paper says registration preceded enrolment"
+    },
+    "evidence": {
+     "$ref": "#/$defs/evidence"
+    },
+    "id_as_printed": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "id_repaired": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "population": {
+   "type": "string",
+   "maxLength": 80
+  },
+  "population_detail": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "age_mean": {
+     "type": "number"
+    },
+    "age_sd": {
+     "type": "number"
+    },
+    "age_median": {
+     "type": "number"
+    },
+    "age_range": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "sex_split": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "female_n": {
+       "type": "integer"
+      },
+      "male_n": {
+       "type": "integer"
+      },
+      "female_pct": {
+       "type": "number"
+      }
+     }
+    },
+    "country": {
+     "type": "string",
+     "maxLength": 60
+    },
+    "setting": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "evidence": {
+     "$ref": "#/$defs/evidence"
+    }
+   }
+  },
+  "health_status": {
+   "type": "string",
+   "maxLength": 100,
+   "description": "e.g. 'adults without diabetes', 'patients with stage 3 CKD'"
+  },
+  "n": {
+   "type": "integer",
+   "minimum": 1,
+   "description": "analysed N when known, else total enrolled"
+  },
+  "n_evidence": {
+   "$ref": "#/$defs/evidence",
+   "description": "Methods quote that states N."
+  },
+  "n_randomized": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "n_analyzed": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "attrition": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "n_lost": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "percent": {
+     "type": "number"
+    },
+    "computed": {
+     "type": "boolean"
+    }
+   }
+  },
+  "groups": {
+   "type": "array",
+   "maxItems": 12,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "name"
+    ],
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "n": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "role": {
+      "type": "string",
+      "enum": [
+       "intervention",
+       "control",
+       "comparator",
+       "exposure_level",
+       "subgroup",
+       "all"
+      ]
+     },
+     "description": {
+      "type": "string",
+      "maxLength": 120
+     },
+     "evidence": {
+      "$ref": "#/$defs/evidence"
+     }
+    }
+   }
+  },
+  "species": {
+   "type": "string",
+   "enum": [
+    "human",
+    "mouse",
+    "rat",
+    "cell",
+    "mixed",
+    "other"
+   ],
+   "default": "human"
+  },
+  "species_detail": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "strain": {
+     "type": "string",
+     "maxLength": 40
+    },
+    "sex": {
+     "type": "string",
+     "enum": [
+      "male",
+      "female",
+      "both",
+      "not_reported"
+     ]
+    },
+    "age": {
+     "type": "string",
+     "maxLength": 40
+    }
+   }
+  },
+  "cell_line": {
+   "type": "string",
+   "maxLength": 40
+  },
+  "follow_up": {
+   "type": "string",
+   "maxLength": 40
+  },
+  "follow_up_detail": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "median": {
+     "type": "number"
+    },
+    "mean": {
+     "type": "number"
+    },
+    "range": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "unit": {
+     "type": "string",
+     "enum": [
+      "days",
+      "weeks",
+      "months",
+      "years",
+      "hours",
+      "minutes"
+     ]
+    },
+    "evidence": {
+     "$ref": "#/$defs/evidence"
+    }
+   }
+  },
+  "exposure": {
+   "type": "string",
+   "maxLength": 100,
+   "description": "Intervention or exposure, with dose/duration."
+  },
+  "exposure_detail": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "dose": {
+     "type": "string",
+     "maxLength": 60
+    },
+    "frequency": {
+     "type": "string",
+     "maxLength": 60
+    },
+    "duration": {
+     "type": "string",
+     "maxLength": 60
+    },
+    "timing": {
+     "type": "string",
+     "maxLength": 60
+    },
+    "evidence": {
+     "$ref": "#/$defs/evidence"
+    }
+   }
+  },
+  "exposure_measure": {
+   "type": "string",
+   "enum": [
+    "self_report",
+    "device_estimated",
+    "lab_measured",
+    "records",
+    "assigned",
+    "not_reported"
+   ]
+  },
+  "analysis_model": {
+   "type": "string",
+   "maxLength": 200
+  },
+  "covariates": {
+   "type": "array",
+   "maxItems": 20,
+   "items": {
+    "type": "string",
+    "maxLength": 40
+   }
+  },
+  "multiplicity": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "tested": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "significant": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "correction": {
+     "type": "string",
+     "maxLength": 40
+    }
+   }
+  },
+  "measured_not_measured": {
+   "type": "string",
+   "maxLength": 160,
+   "description": "What was measured vs what a reader might assume was measured (e.g. 'synthesis rate measured; breakdown and muscle mass not measured')."
+  },
+  "experiments": {
+   "type": "array",
+   "maxItems": 8,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "name"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "maxLength": 12
+     },
+     "name": {
+      "type": "string",
+      "maxLength": 80
+     },
+     "design": {
+      "type": "string"
+     },
+     "species": {
+      "type": "string"
+     },
+     "n": {
+      "type": "integer"
+     },
+     "evidence": {
+      "$ref": "#/$defs/evidence"
+     }
+    }
+   }
+  },
+  "outcomes": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 40,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "name",
+     "kind",
+     "value",
+     "evidence"
+    ],
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "kind": {
+      "type": "string",
+      "enum": [
+       "relative_change",
+       "absolute_change",
+       "ratio",
+       "hazard_or_odds",
+       "count",
+       "of_total",
+       "level",
+       "coefficient",
+       "series",
+       "distribution",
+       "threshold",
+       "qualitative"
+      ]
+     },
+     "value": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": "Derived number used downstream. null only for kind=qualitative."
+     },
+     "unit": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "'%' for relative, 'pp' for percentage points"
+     },
+     "raw_stat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "type",
+       "value"
+      ],
+      "properties": {
+       "type": {
+        "type": "string",
+        "enum": [
+         "HR",
+         "OR",
+         "RR",
+         "IRR",
+         "MD",
+         "SMD",
+         "beta",
+         "percent",
+         "pp",
+         "count",
+         "mean",
+         "median",
+         "rate",
+         "ratio",
+         "slope",
+         "correlation",
+         "other"
+        ]
+       },
+       "value": {
+        "type": "number",
+        "description": "exactly as printed"
+       },
+       "unit": {
+        "type": "string",
+        "maxLength": 20
+       },
+       "conversion": {
+        "type": "string",
+        "maxLength": 80,
+        "description": "how value was derived from raw_stat, e.g. '(HR-1)*100'"
+       }
+      }
+     },
+     "per": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "scale of the effect, e.g. 'per 47.6 min', 'per 5 pp', 'per SD'"
+     },
+     "primary": {
+      "type": "boolean"
+     },
+     "ci": {
+      "type": "array",
+      "items": {
+       "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+     },
+     "ci_level": {
+      "type": "number"
+     },
+     "p": {
+      "type": "number"
+     },
+     "p_text": {
+      "type": "string",
+      "maxLength": 12,
+      "description": "as printed when inexact, e.g. '<0.001'"
+     },
+     "significant": {
+      "type": "boolean",
+      "description": "only if stated or p given; never inferred"
+     },
+     "central": {
+      "type": "string",
+      "enum": [
+       "mean",
+       "median"
+      ]
+     },
+     "baseline": {
+      "type": "number"
+     },
+     "follow_up_value": {
+      "type": "number"
+     },
+     "absolute": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "value": {
+        "type": "number"
+       },
+       "unit": {
+        "type": "string",
+        "maxLength": 20
+       }
+      }
+     },
+     "relative": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "value": {
+        "type": "number"
+       },
+       "unit": {
+        "type": "string",
+        "maxLength": 20
+       }
+      }
+     },
+     "group_stats": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "group",
+        "value"
+       ],
+       "properties": {
+        "group": {
+         "type": "string",
+         "maxLength": 40
+        },
+        "n": {
+         "type": "integer"
+        },
+        "central": {
+         "type": "string",
+         "enum": [
+          "mean",
+          "median"
+         ]
+        },
+        "value": {
+         "type": "number"
+        },
+        "spread_type": {
+         "type": "string",
+         "enum": [
+          "sd",
+          "se",
+          "iqr",
+          "ci",
+          "range"
+         ]
+        },
+        "spread": {
+         "type": "array",
+         "items": {
+          "type": "number"
+         },
+         "minItems": 1,
+         "maxItems": 2
+        },
+        "unit": {
+         "type": "string",
+         "maxLength": 20
+        },
+        "evidence": {
+         "$ref": "#/$defs/evidence"
+        }
+       }
+      }
+     },
+     "comparator": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "total": {
+      "type": "integer",
+      "description": "denominator for kind=of_total"
+     },
+     "rate_denominator": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "value": {
+        "type": "number"
+       },
+       "unit": {
+        "type": "string",
+        "maxLength": 30
+       }
+      }
+     },
+     "series": {
+      "type": "array",
+      "items": {
+       "type": "array",
+       "items": {
+        "type": "number"
+       },
+       "minItems": 2,
+       "maxItems": 2
+      },
+      "description": "for kind=series: [x, y] pairs, measured points only"
+     },
+     "series_kind": {
+      "type": "string",
+      "enum": [
+       "time",
+       "dose",
+       "age",
+       "other"
+      ]
+     },
+     "series_evidence": {
+      "type": "array",
+      "items": {
+       "$ref": "#/$defs/evidence"
+      },
+      "description": "one per series point, same order; quote or table_ref"
+     },
+     "x_unit": {
+      "type": "string",
+      "maxLength": 20
+     },
+     "categories": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "maxLength": 40
+      },
+      "description": "for kind=distribution"
+     },
+     "shares": {
+      "type": "array",
+      "items": {
+       "type": "number"
+      },
+      "description": "for kind=distribution: percentages, sum 100"
+     },
+     "group": {
+      "type": "string",
+      "maxLength": 30
+     },
+     "subgroup": {
+      "type": "boolean"
+     },
+     "interaction_p": {
+      "type": "number"
+     },
+     "direction": {
+      "type": "string",
+      "enum": [
+       "up",
+       "down",
+       "none"
+      ]
+     },
+     "surrogate": {
+      "type": "boolean"
+     },
+     "precision": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6,
+      "description": "decimals as printed"
+     },
+     "unit_conversion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "value": {
+        "type": "number"
+       },
+       "unit": {
+        "type": "string",
+        "maxLength": 20
+       },
+       "factor": {
+        "type": "number"
+       }
+      }
+     },
+     "null_result": {
+      "type": "boolean"
+     },
+     "experiment": {
+      "type": "string",
+      "maxLength": 12
+     },
+     "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+     },
+     "evidence": {
+      "$ref": "#/$defs/evidence"
+     },
+     "derivation": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "how value was computed from printed numbers, in code (extract.effects.derive); shown in math.md"
+     },
+     "headline_eligible": {
+      "type": "boolean",
+      "description": "set in code: false when the CI crosses null, p >= 0.05, or the result is null. Downstream must not lead with an ineligible number."
+     },
+     "adjustment_model": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "which adjustment model this value was read from"
+     },
+     "table_ref": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "table:<label>:<row>:<col> of the cell the value was read from"
+     },
+     "measure": {
+      "type": "string",
+      "enum": [
+       "HR",
+       "OR",
+       "RR",
+       "RD",
+       "IRR",
+       "MD",
+       "SMD",
+       "beta",
+       "proportion",
+       "rate",
+       "mean",
+       "median",
+       "rank",
+       "sucra",
+       "correlation",
+       "other"
+      ],
+      "description": "Optional. The statistic the value is, when it is an effect estimate."
+     },
+     "role": {
+      "type": "string",
+      "enum": [
+       "primary",
+       "secondary",
+       "subgroup",
+       "sensitivity",
+       "safety",
+       "mediation_total",
+       "mediation_direct",
+       "mediation_indirect",
+       "mr_estimate",
+       "nma_comparison",
+       "nma_rank",
+       "dose_point",
+       "interaction",
+       "descriptive",
+       "mediation_share"
+      ],
+      "description": "Optional. What the number is for in the paper's analysis. 'primary' must agree with primary:true."
+     },
+     "source_kind": {
+      "type": "string",
+      "enum": [
+       "text",
+       "table",
+       "figure",
+       "supplement"
+      ],
+      "description": "Where the number was read. figure = read from a plot (lower confidence until text/table confirms)."
+     },
+     "events": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional. Event counts per arm for binary outcomes: [events, total]. Enables NNT, fragility, absolute risk.",
+      "properties": {
+       "intervention": {
+        "type": "array",
+        "items": {
+         "type": "number"
+        },
+        "minItems": 2,
+        "maxItems": 2
+       },
+       "control": {
+        "type": "array",
+        "items": {
+         "type": "number"
+        },
+        "minItems": 2,
+        "maxItems": 2
+       }
+      }
+     },
+     "mediator": {
+      "type": "string",
+      "maxLength": 80
+     },
+     "share_mediated": {
+      "type": "number",
+      "description": "Proportion of the total effect explained by the mediator, 0-1."
+     },
+     "instrument": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "MR: the genetic instrument (e.g. '28 SNPs for serum magnesium')."
+     },
+     "rank": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "value": {
+        "type": "number"
+       },
+       "of": {
+        "type": "integer"
+       },
+       "sucra": {
+        "type": "number"
+       }
+      }
+     },
+     "dose": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Dose-response point: the exposure level this value belongs to.",
+      "properties": {
+       "value": {
+        "type": "number"
+       },
+       "unit": {
+        "type": "string",
+        "maxLength": 30
+       }
+      }
+     },
+     "timepoint": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "When the outcome was measured, e.g. '12 weeks', 'median 7.1 years'."
+     },
+     "population_subset": {
+      "type": "string",
+      "maxLength": 80
+     },
+     "method": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "estimator: IVW, MR-Egger, weighted median, KHB, ..."
+     },
+     "adjusted": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "enum": [
+       "adjusted",
+       "unadjusted",
+       "crude",
+       null
+      ],
+      "description": "whether this estimate is adjusted for covariates, as the paper labels it"
+     },
+     "analysis_status": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "enum": [
+       "prespecified",
+       "post_hoc",
+       "exploratory",
+       null
+      ],
+      "description": "the paper's own label for this analysis; null if it does not say"
+     },
+     "significant_derived": {
+      "type": "boolean"
+     },
+     "direction_raw": {
+      "type": "string",
+      "enum": [
+       "up",
+       "down",
+       "none"
+      ]
+     }
+    }
+   }
+  },
+  "mechanism_steps": {
+   "type": "array",
+   "maxItems": 5,
+   "items": {
+    "type": "string",
+    "maxLength": 60
+   }
+  },
+  "limits": {
+   "type": "array",
+   "maxItems": 6,
+   "items": {
+    "type": "string",
+    "maxLength": 100
+   },
+   "description": "Limitations stated by the authors or evident from design."
+  },
+  "limits_evidence": {
+   "type": "array",
+   "maxItems": 6,
+   "items": {
+    "$ref": "#/$defs/evidence"
+   },
+   "description": "verbatim author sentences, parallel to limits[] where available"
+  },
+  "funding": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "text": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "coi": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "industry": {
+     "type": "boolean"
+    },
+    "evidence": {
+     "$ref": "#/$defs/evidence"
+    }
+   }
+  },
+  "status": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "retracted": {
+     "type": "boolean"
+    },
+    "corrected": {
+     "type": "boolean"
+    },
+    "expression_of_concern": {
+     "type": "boolean"
+    },
+    "notice_pmid": {
+     "type": "string"
+    },
+    "checked": {
+     "type": "string",
+     "description": "ISO date of the check"
+    },
+    "source": {
+     "type": "string"
+    },
+    "updates": {
+     "type": [
+      "array",
+      "null"
+     ]
+    },
+    "notice_doi": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "domain": {
+   "type": "string",
+   "maxLength": 30,
+   "description": "topic area, e.g. nutrition, sleep, exercise, cardiology"
+  },
+  "not_found": {
+   "type": "array",
+   "maxItems": 20,
+   "items": {
+    "type": "string",
+    "maxLength": 80
+   },
+   "description": "fields the extractor looked for and could not find — instead of guesses"
+  },
+  "provenance": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "model": {
+     "type": "string"
+    },
+    "model_fast": {
+     "type": "string"
+    },
+    "prompt_version": {
+     "type": "string"
+    },
+    "date": {
+     "type": "string"
+    },
+    "source_hash": {
+     "type": "string"
+    },
+    "passes": {
+     "type": "integer"
+    },
+    "self_consistency": {
+     "type": "boolean"
+    },
+    "abstract_disagreements": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "card_id": {
+     "type": "string",
+     "description": "content address: sha256(source_hash + schema_version + template_version)[:16]"
+    },
+    "schema_version": {
+     "type": "string"
+    },
+    "template_version": {
+     "type": "string"
+    },
+    "verify_model": {
+     "type": "string"
+    },
+    "review": {
+     "type": "object",
+     "additionalProperties": true,
+     "description": "Code-owned (review/apply.py): {version, applied_at, reviewer, decisions, edits}"
+    }
+   }
+  },
+  "sources": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 4,
+   "items": {
+    "$ref": "#/$defs/source"
+   }
+  },
+  "design_mesh": {
+   "type": "string",
+   "description": "design voted by PubMed publication types / MeSH (extract.clients.design_from_mesh); compare with design"
+  },
+  "registry": {
+   "type": "object",
+   "additionalProperties": true,
+   "description": "Optional. Filled by extract/registry.py from the trial registry, not by the LLM extractor. See backlog/FACTS_FIELDS.md.",
+   "properties": {
+    "status": {
+     "type": "string"
+    },
+    "registry": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "id": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "url": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "registered_date": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "first_posted_date": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "start_date": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "enrollment": {
+     "type": [
+      "integer",
+      "string",
+      "null"
+     ]
+    },
+    "enrollment_type": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "registered_primary": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "measure": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "timeframe": {
+        "type": [
+         "string",
+         "null"
+        ]
+       }
+      }
+     }
+    },
+    "reported_primary": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "paper_primary_sentence": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "match": {
+     "enum": [
+      "match",
+      "partial",
+      "mismatch",
+      "unknown"
+     ]
+    },
+    "match_note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "match_pairs": {
+     "type": "array"
+    },
+    "reported_coverage": {
+     "type": "array"
+    },
+    "retrospective": {
+     "type": [
+      "boolean",
+      "null"
+     ]
+    },
+    "history": {
+     "type": "object"
+    },
+    "error": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "adjustment_model": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "name",
+    "quote"
+   ],
+   "description": "The adjustment model the paper designates as main, when its tables offer several (Model 1..N, crude/adjusted). Required by E110 when adjustment_models_offered has ≥2 entries.",
+   "properties": {
+    "name": {
+     "type": "string",
+     "maxLength": 60,
+     "description": "row label as printed, e.g. 'Model 1'"
+    },
+    "quote": {
+     "type": "string",
+     "maxLength": 900,
+     "description": "verbatim methods sentence that defines the main model"
+    },
+    "section": {
+     "type": "string"
+    },
+    "covariates": {
+     "type": "string",
+     "maxLength": 300
+    }
+   }
+  },
+  "adjustment_models_offered": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "maxLength": 60
+   },
+   "description": "model row labels the source table offers for the same outcome (from extract/table_first.py)"
+  },
+  "design_detail": {
+   "type": "object",
+   "additionalProperties": true,
+   "description": "Optional, model-filled. Design-specific details the design registry (results/designs.py) asks for: e.g. MR {instruments, exposure_gwas, outcome_gwas, methods}, NMA {treatments, trials, network}, factorial {factors}, dose_response {model, knots}, crossover {washout, periods}."
+  },
+  "coverage": {
+   "type": "object",
+   "additionalProperties": true,
+   "description": "Code-owned (docmodel/). What of the paper was read: source, full_text, abstract_only, tables, supplements_found, supplements_read, figures_read."
+  },
+  "primary_selection": {
+   "type": "object",
+   "additionalProperties": true,
+   "description": "Code-owned (judge/). chosen (outcome index|null), confidence, basis (registry|protocol|stated|position|none), candidates[], registry_match, flag."
+  },
+  "computed": {
+   "type": "array",
+   "description": "Code-owned (honest/). Numbers the paper did not print, derived in code. Each: kind, outcome_idx, value, ci, unit, text, inputs, formula, assumptions, missing.",
+   "items": {
+    "type": "object",
+    "additionalProperties": true
+   }
+  },
+  "dual": {
+   "type": "object",
+   "additionalProperties": true,
+   "description": "Code-owned (judge/dual.py). Two independent extractions compared: families, status agree|disagree|single, disagreements[]."
+  },
+  "baseline_risk": {
+   "type": "object",
+   "additionalProperties": false,
+   "description": "Reference-group cumulative risk at a stated time, as printed in the paper (or cited from an external source). Lets honest/ put HR/RR/OR in absolute terms.",
+   "properties": {
+    "value": {
+     "type": "number",
+     "exclusiveMinimum": 0,
+     "exclusiveMaximum": 1,
+     "description": "proportion, e.g. 0.081"
+    },
+    "time": {
+     "type": "array",
+     "prefixItems": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string"
+      }
+     ],
+     "minItems": 2,
+     "maxItems": 2,
+     "description": "[8, \"years\"]"
+    },
+    "group": {
+     "type": "string",
+     "maxLength": 60
+    },
+    "outcome_idx": {
+     "type": "array",
+     "items": {
+      "type": "integer"
+     }
+    },
+    "source": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "evidence": {
+     "$ref": "#/$defs/evidence"
+    }
+   }
+  },
+  "gate_record": {
+   "type": "object"
+  },
+  "n_derived": {
+   "type": [
+    "object",
+    "boolean",
+    "null"
+   ]
+  },
+  "n_enrolled": {
+   "type": [
+    "integer",
+    "null"
+   ],
+   "description": "people enrolled/screened-in as printed, distinct from randomised and analysed"
+  },
+  "n_unit": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "enum": [
+    "person",
+    "animal",
+    "cage",
+    "litter",
+    "sample",
+    "other",
+    null
+   ]
+  }
+ },
+ "$defs": {
+  "evidence": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "source_index",
+    "quote"
+   ],
+   "properties": {
+    "source_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "quote": {
+     "type": "string",
+     "maxLength": 240,
+     "description": "verbatim, <= 30 words, contains the digits as printed"
+    },
+    "location": {
+     "type": "string",
+     "maxLength": 40,
+     "description": "page:line anchor, e.g. 'p4:l12'"
+    },
+    "section": {
+     "type": "string",
+     "enum": [
+      "title",
+      "abstract",
+      "introduction",
+      "methods",
+      "results",
+      "discussion",
+      "tables",
+      "figures",
+      "limitations",
+      "funding",
+      "references",
+      "supplementary",
+      "other"
+     ]
+    },
+    "table_ref": {
+     "type": "string",
+     "maxLength": 80,
+     "description": "'table:<id>:<row>:<col>' when the number is a table cell"
+    },
+    "headers": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "row": {
+       "type": "string",
+       "maxLength": 60
+      },
+      "col": {
+       "type": "string",
+       "maxLength": 60
+      }
+     }
+    },
+    "score": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1,
+     "description": "L0 verification score, set by extract.verify"
+    }
+   }
+  },
+  "source": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "short"
+   ],
+   "properties": {
+    "short": {
+     "type": "string",
+     "maxLength": 60
+    },
+    "title": {
+     "type": "string"
+    },
+    "authors": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "journal": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "year": {
+     "type": "integer"
+    },
+    "doi": {
+     "type": "string"
+    },
+    "pmid": {
+     "type": "string"
+    },
+    "pmcid": {
+     "type": "string"
+    },
+    "url": {
+     "type": "string"
+    },
+    "kind": {
+     "type": "string",
+     "enum": [
+      "full_text",
+      "abstract",
+      "supplement",
+      "other"
+     ]
+    },
+    "citation": {
+     "type": "string",
+     "maxLength": 160,
+     "description": "footer citation rendered from PubMed metadata by code, never by a model: 'Morales A et al. Exp Physiol. 2026. PMID 39705060'"
+    }
+   }
+  }
+ },
+ "$comment": "2026-10-24 cluster build: added design_detail, coverage, primary_selection, computed, dual; outcome measure/role/source_kind/events/mediator/share_mediated/instrument/rank/dose/timepoint/population_subset."
+}

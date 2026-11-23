@@ -1,6 +1,9 @@
 """Unit tests for ContentNode (_parse_blocks, run_content_for_lesson, run_content, content_node)."""
 
+import json
 from unittest.mock import MagicMock, patch
+
+import pytest
 
 from syllabus.models.schemas import (
     Citation,
@@ -95,12 +98,146 @@ def test_parse_blocks_compliance_note_moved_to_end():
     assert blocks[-1].content == "Ask RE first"
 
 
+_Q = {"question": "Q?", "options": ["a", "b", "c"], "correct_index": 1, "explanation": "Because."}
+
+
+def _resp(quiz, blocks=None):
+    return json.dumps(
+        {
+            "key_takeaways": ["T"],
+            "blocks": blocks
+            or [
+                {"type": "explanation", "content": "Body."},
+                {"type": "compliance_note", "content": "Ask your RE."},
+            ],
+            "quiz": quiz,
+        }
+    )
+
+
+_PARSED = ParsedIntake(journey_stage="x", diagnosis=None, confusion="y", level="beginner")
+
+
+def _llm(*contents):
+    llm = MagicMock()
+    llm.invoke.side_effect = [MagicMock(content=c) for c in contents]
+    return llm
+
+
+@pytest.mark.parametrize("es", ["low", "medium"])
+def test_lesson_gets_valid_quiz(es):
+    lo = LessonOutline(title="L", objective="O", emotional_sensitivity_level=es)
+    llm = _llm(_resp([_Q, _Q]))
+    lesson = run_content_for_lesson(lo, "f", _PARSED, llm=llm)
+    assert lesson.quiz is not None and len(lesson.quiz.questions) == 2
+    q = lesson.quiz.questions[0]
+    assert q.correct_index == 1 and q.explanation
+
+
+def test_high_sensitivity_gets_reflection_and_no_quiz():
+    lo = LessonOutline(title="L", objective="O", emotional_sensitivity_level="high")
+    blocks = [
+        {"type": "reflection", "content": "Sit with this."},
+        {"type": "compliance_note", "content": "Ask your RE."},
+    ]
+    llm = _llm(_resp([_Q, _Q], blocks))
+    lesson = run_content_for_lesson(lo, "f", _PARSED, llm=llm)
+    assert any(b.type == ContentBlockType.reflection for b in lesson.blocks)
+    assert lesson.quiz is None
+    assert llm.invoke.call_count == 1
+
+
+def test_high_sensitivity_without_quiz_key_does_not_retry():
+    lo = LessonOutline(title="L", objective="O", emotional_sensitivity_level="high")
+    llm = _llm(_resp(None))
+    assert run_content_for_lesson(lo, "f", _PARSED, llm=llm).quiz is None
+    assert llm.invoke.call_count == 1
+
+
+@pytest.mark.parametrize("field", ["question", "explanation"])
+@pytest.mark.parametrize("bad_val", [{"a": 1}, ["x"]])
+def test_non_string_question_or_explanation_dropped(field, bad_val):
+    bad = {**_Q, field: bad_val}
+    lesson = run_content_for_lesson(
+        LessonOutline(title="L", objective="O"), "f", _PARSED, llm=_llm(_resp([bad, _Q, _Q]))
+    )
+    assert len(lesson.quiz.questions) == 2
+
+
+def _no_blocks(quiz):
+    return json.dumps({"key_takeaways": ["T"], "blocks": [], "quiz": quiz})
+
+
+@pytest.mark.parametrize("es", ["low", "high"])
+def test_missing_blocks_retries_then_succeeds(es):
+    lo = LessonOutline(title="L", objective="O", emotional_sensitivity_level=es)
+    llm = _llm(_no_blocks([_Q, _Q]), _resp([_Q, _Q]))
+    lesson = run_content_for_lesson(lo, "f", _PARSED, llm=llm)
+    assert llm.invoke.call_count == 2
+    assert any(b.type == ContentBlockType.explanation for b in lesson.blocks)
+
+
+@pytest.mark.parametrize("es", ["low", "high"])
+def test_missing_blocks_after_retry_raises_naming_lesson(es):
+    lo = LessonOutline(title="L", objective="O", emotional_sensitivity_level=es)
+    llm = _llm(_no_blocks([_Q, _Q]), _no_blocks([_Q, _Q]))
+    with pytest.raises(ValueError, match=str(lo.id)):
+        run_content_for_lesson(lo, "f", _PARSED, llm=llm)
+
+
+_ONLY_COMPLIANCE = [{"type": "compliance_note", "content": "Ask your RE."}]
+_BLANK_BODY = [
+    {"type": "explanation", "content": "   "},
+    {"type": "compliance_note", "content": "Ask your RE."},
+]
+
+
+_ALIASED_COMPLIANCE = [{"type": "Compliance Note", "content": "Ask your RE."}]
+
+
+@pytest.mark.parametrize("bad_blocks", [_ONLY_COMPLIANCE, _BLANK_BODY, _ALIASED_COMPLIANCE])
+def test_compliance_only_or_blank_body_is_not_a_body(bad_blocks):
+    lo = LessonOutline(title="L", objective="O")
+    llm = _llm(_resp([_Q, _Q], blocks=bad_blocks), _resp([_Q, _Q], blocks=bad_blocks))
+    with pytest.raises(ValueError, match=str(lo.id)):
+        run_content_for_lesson(lo, "f", _PARSED, llm=llm)
+    assert llm.invoke.call_count == 2
+
+
+def test_invalid_questions_dropped():
+    bad = [
+        {**_Q, "correct_index": 5},
+        {**_Q, "options": ["only"]},
+        {**_Q, "explanation": ""},
+        "junk",
+    ]
+    lesson = run_content_for_lesson(
+        LessonOutline(title="L", objective="O"), "f", _PARSED, llm=_llm(_resp(bad + [_Q, _Q]))
+    )
+    assert len(lesson.quiz.questions) == 2
+
+
+def test_quiz_retry_once_then_succeed():
+    llm = _llm(_resp([_Q]), _resp([_Q, _Q]))
+    lesson = run_content_for_lesson(LessonOutline(title="L", objective="O"), "f", _PARSED, llm=llm)
+    assert llm.invoke.call_count == 2
+    assert len(lesson.quiz.questions) == 2
+
+
+def test_quiz_missing_after_retry_raises_naming_lesson():
+    lo = LessonOutline(title="L", objective="O")
+    llm = _llm(_resp(None), _resp([_Q]))
+    with pytest.raises(ValueError, match=str(lo.id)):
+        run_content_for_lesson(lo, "f", _PARSED, llm=llm)
+    assert llm.invoke.call_count == 2
+
+
 def test_run_content_for_lesson_mocked_llm():
     mock_llm = MagicMock()
     mock_llm.invoke.return_value.content = """{"key_takeaways": ["Takeaway 1"], "blocks": [
         {"type": "explanation", "content": "Lesson body."},
         {"type": "compliance_note", "content": "What should I ask my RE?"}
-    ]}"""
+    ], "quiz": [%s, %s]}""" % (json.dumps(_Q), json.dumps(_Q))
     lesson_out = LessonOutline(title="IVF basics", objective="Understand protocol")
     parsed = ParsedIntake(
         journey_stage="Newly diagnosed",
@@ -123,7 +260,7 @@ def test_run_content_for_lesson_with_citations():
     mock_llm.invoke.return_value.content = """{"key_takeaways": ["T1"], "blocks": [
         {"type": "explanation", "content": "Lesson body."},
         {"type": "compliance_note", "content": "Ask your RE."}
-    ]}"""
+    ], "quiz": [%s, %s]}""" % (json.dumps(_Q), json.dumps(_Q))
     lesson_out = LessonOutline(title="IVF basics", objective="Understand protocol")
     parsed = ParsedIntake(
         journey_stage="Newly diagnosed",
@@ -251,3 +388,21 @@ def test_content_node_run_content_raises():
         result = content_node(state)
     assert result.get("error") == "LLM failed"
     assert result.get("modules") is None
+
+
+def test_malformed_fenced_json_counts_as_failed_attempt_and_retries():
+    bad = '```json\n{"quiz": [oops not json}\n```'
+    llm = _llm(bad, _resp([_Q, _Q]))
+    lesson = run_content_for_lesson(LessonOutline(title="L", objective="O"), "f", _PARSED, llm=llm)
+    assert llm.invoke.call_count == 2
+    assert len(lesson.quiz.questions) == 2
+
+
+@pytest.mark.parametrize("bad_option", [None, ""])
+def test_non_string_or_empty_option_drops_question(bad_option):
+    bad = {**_Q, "options": ["a", bad_option, "c"]}
+    lesson = run_content_for_lesson(
+        LessonOutline(title="L", objective="O"), "f", _PARSED, llm=_llm(_resp([bad, _Q, _Q]))
+    )
+    assert len(lesson.quiz.questions) == 2
+    assert all("None" not in q.options and "" not in q.options for q in lesson.quiz.questions)

@@ -1,0 +1,7 @@
+anthropic>=0.40.0
+jinja2>=3.1
+markupsafe>=2.1
+pypdf>=4.0
+playwright>=1.44
+Pillow>=10.0  # optional: legibility check, trim cache
+pytesseract>=0.3  # optional: L2 legibility gate

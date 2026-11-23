@@ -1,0 +1,160 @@
+{
+  "facts": {
+    "design": "rct",
+    "population": "women undergoing frozen embryo transfer",
+    "n": 1024,
+    "species": "human",
+    "exposure": "progesterone start 5 days vs 6 days before single blastocyst transfer",
+    "measured_not_measured": "clinical pregnancy rate measured; singleton vs twin rate not measured; live birth from ongoing pregnancy not independently adjudicated",
+    "domain": "fertility",
+    "outcomes": [
+      {
+        "name": "clinical pregnancy rate, day 5",
+        "kind": "of_total",
+        "value": 52,
+        "total": 100,
+        "unit": "%",
+        "direction": "up",
+        "primary": true,
+        "evidence": {
+          "source_index": 0,
+          "quote": "TRANSCRIBED FROM CORPUS — verify against paper"
+        }
+      },
+      {
+        "name": "clinical pregnancy rate, day 6",
+        "kind": "of_total",
+        "value": 44,
+        "total": 100,
+        "unit": "%",
+        "direction": "up",
+        "comparator": "day 5",
+        "evidence": {
+          "source_index": 0,
+          "quote": "TRANSCRIBED FROM CORPUS — verify against paper"
+        }
+      },
+      {
+        "name": "relative difference",
+        "kind": "relative_change",
+        "value": 18,
+        "unit": "%",
+        "direction": "up",
+        "comparator": "day 6",
+        "primary": false,
+        "evidence": {
+          "source_index": 0,
+          "quote": "TRANSCRIBED FROM CORPUS — verify against paper"
+        }
+      },
+      {
+        "name": "absolute difference",
+        "kind": "absolute_change",
+        "value": 8,
+        "unit": "pp",
+        "direction": "up",
+        "baseline": 44,
+        "comparator": "day 6 arm",
+        "primary": false,
+        "evidence": {
+          "source_index": 0,
+          "quote": "TRANSCRIBED FROM CORPUS — verify against paper"
+        }
+      }
+    ],
+    "limits": "single centre; natural cycle FET not included; day 6 blastocysts excluded",
+    "measured_not_measured": "clinical pregnancy measured; live birth rate not adjudicated independently"
+  },
+  "card": {
+    "aspect": "4:5",
+    "eyebrow": "TRIAL RESULT · 1,024 CYCLES",
+    "headline": {
+      "text": "Starting progesterone one day earlier raised the clinical pregnancy rate from 44% to 52%.",
+      "payoff": "raised the clinical pregnancy rate from 44% to 52%."
+    },
+    "dek": "1,024 frozen single-blastocyst transfers, randomized. Day 5 start: 52%. Day 6 start: 44%. Protocol was otherwise identical.",
+    "beats": [
+      {
+        "lead": "Timing is the mechanism.",
+        "detail": "The window of implantation opens roughly five days after progesterone begins.",
+        "color": "amber",
+        "role": "how"
+      },
+      {
+        "lead": "One day, one controlled variable.",
+        "detail": "All other protocol steps were identical between groups.",
+        "color": "green",
+        "role": "what"
+      },
+      {
+        "lead": "Blastocyst quality was matched.",
+        "detail": "Day 5 blastocysts only; day 6 blastocysts were excluded from both arms.",
+        "color": "red",
+        "role": "limit"
+      }
+    ],
+    "beats_placement": "under_dek",
+    "hero": {
+      "subject": "a human blastocyst entering the uterine cavity with the endometrium highlighted",
+      "placement": "left_column",
+      "prompt": "Textbook watercolor illustration, off-white background: a cross-section of the uterine cavity with a single blastocyst descending toward a thickened, receptive endometrium. The endometrium rendered in warm pink layers. No text, no labels, no numbers.",
+      "image": null
+    },
+    "data_block": {
+      "type": "stat_tiles",
+      "title": "Clinical pregnancy rate by progesterone start day",
+      "subtitle": "% · N = 1,024 cycles · RCT",
+      "items": [
+        {
+          "label": "Day 5 start",
+          "value": 52,
+          "display": "52%",
+          "highlight": true,
+          "semantic": "result",
+          "ref": 0
+        },
+        {
+          "label": "Day 6 start",
+          "value": 44,
+          "display": "44%",
+          "semantic": "result",
+          "ref": 1
+        }
+      ]
+    },
+    "secondary_block": {
+      "type": "stat_tiles",
+      "items": [
+        {
+          "label": "Cycles randomized",
+          "value": 1024,
+          "display": "1,024",
+          "semantic": "parameter"
+        },
+        {
+          "label": "Difference",
+          "value": 8,
+          "display": "8 pp",
+          "highlight": true,
+          "semantic": "result",
+          "ref": 3
+        }
+      ]
+    },
+    "source_strip": [
+      "Fertility & Sterility",
+      "RCT",
+      "N = 1,024 cycles",
+      "single blastocyst FET"
+    ],
+    "evidence_boundary": "Women undergoing frozen single blastocyst transfer at one centre. Day 6 blastocysts and natural cycle FET were excluded. The day-5 advantage may not apply to day 6 blastocysts.",
+    "takeaway": {
+      "text": "Ask whether a day-5 start is possible. The implantation window is narrow.",
+      "highlight": "Ask whether a day-5 start is possible",
+      "tone": "action",
+      "strength": "recommendation"
+    },
+    "citation": "Frozen embryo transfer RCT · Fertility & Sterility",
+    "citation_line2": "RCT · N = 1,024 · single blastocyst FET"
+  }
+}

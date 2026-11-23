@@ -271,6 +271,29 @@ def index_pubmed_cmd(
     typer.echo(f"Indexed {n} chunks from PubMed.")
 
 
+@app.command("export-cog")
+def export_cog_cmd(course_json: Path, slug: str, out_dir: Path) -> None:
+    """Export a CourseSpec JSON as a Cogtraining course package (draft)."""
+    from syllabus.export.cog import export_cog
+    from syllabus.models.schemas import CourseSpec
+
+    try:
+        spec = CourseSpec.model_validate_json(course_json.read_text())
+    except (OSError, ValueError) as e:  # missing file, bad JSON, or ValidationError
+        typer.echo(f"Error: cannot read course spec {course_json}: {e}", err=True)
+        raise typer.Exit(1) from e
+    try:
+        files = export_cog(spec, slug)
+    except ValueError as e:
+        typer.echo(f"Error: {e}", err=True)
+        raise typer.Exit(1) from e
+    target = out_dir / slug
+    target.mkdir(parents=True, exist_ok=True)
+    for name, text in files.items():
+        (target / name).write_text(text)
+    typer.echo(f"wrote {target}")
+
+
 def main() -> None:
     app()
 

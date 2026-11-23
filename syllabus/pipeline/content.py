@@ -15,6 +15,8 @@ from syllabus.models.schemas import (
     Module,
     ModuleOutline,
     ParsedIntake,
+    Quiz,
+    QuizQuestion,
 )
 from syllabus.pipeline.prompts import PEDAGOGY_PREAMBLE, learner_objective_line
 
@@ -34,10 +36,13 @@ def _extract_json(content: str) -> dict:
             part = part.strip()
             if part.startswith("json"):
                 part = part[4:].strip()
-            if part.startswith("{"):
-                return json.loads(part)
-            if part.startswith("["):
-                return {"blocks": json.loads(part)}
+            try:
+                if part.startswith("{"):
+                    return json.loads(part)
+                if part.startswith("["):
+                    return {"blocks": json.loads(part)}
+            except json.JSONDecodeError:
+                continue  # malformed fenced JSON: treat as unparseable so callers retry
         return {}
     try:
         data = json.loads(content)
@@ -99,6 +104,38 @@ def _parse_blocks(
     return blocks, key_takeaways
 
 
+def _parse_quiz(raw) -> Quiz:
+    """Build a Quiz from the LLM's "quiz" list, dropping malformed questions."""
+    questions = []
+    for q in raw if isinstance(raw, list) else []:
+        if not isinstance(q, dict):
+            continue
+        opts, idx = q.get("options"), q.get("correct_index")
+        text, expl = q.get("question"), q.get("explanation")
+        if not isinstance(text, str) or not isinstance(expl, str):
+            continue
+        text, expl = text.strip(), expl.strip()
+        if (
+            text
+            and expl
+            and isinstance(opts, list)
+            and len(opts) >= 2
+            and isinstance(idx, int)
+            and not isinstance(idx, bool)
+            and 0 <= idx < len(opts)
+            and all(isinstance(o, str) and o.strip() for o in opts)
+        ):
+            questions.append(
+                QuizQuestion(
+                    question=text,
+                    options=opts,
+                    correct_index=idx,
+                    explanation=expl,
+                )
+            )
+    return Quiz(questions=questions)
+
+
 def run_content_for_lesson(
     lesson_outline: LessonOutline,
     research_facts: str,
@@ -127,7 +164,7 @@ def run_content_for_lesson(
     }.get(kt, "Use explanation, example, and exercise blocks.")
     # Format selection (F-011): high emotional sensitivity → reflection instead of quiz-style exercise
     if es_level == "high":
-        kt_instruction += " This lesson is emotionally sensitive: use a reflection block instead of a recall-style exercise; no quiz-style questions. End with supportive, patient-first framing."
+        kt_instruction += " This lesson is emotionally sensitive: use a reflection block instead of a recall-style exercise; do not write quiz questions. End with supportive, patient-first framing."
     adjacent_text = ""
     if adjacent_lessons:
         adjacent_text = (
@@ -138,7 +175,7 @@ def run_content_for_lesson(
         adjacent_text += "\n"
     prompt = f"""{PEDAGOGY_PREAMBLE}
 
-You are a fertility education content writer. Your role is only to write this one lesson's content. Do not decide quiz/format placement; only write blocks. Write as a warm, knowledgeable friend who has been through IVF and understands the science. Accessible but intelligent; no jargon without explanation. For exercise blocks: be a tutor checking understanding, supportive not evaluative. For the compliance_note block: write as a caring nurse explaining what to bring up at the next appointment — empowering, not alarming.
+You are a fertility education content writer. Your role is only to write this one lesson's content. Do not decide format placement; write blocks plus the quiz. Write as a warm, knowledgeable friend who has been through IVF and understands the science. Accessible but intelligent; no jargon without explanation. For exercise blocks: be a tutor checking understanding, supportive not evaluative. For the compliance_note block: write as a caring nurse explaining what to bring up at the next appointment — empowering, not alarming.
 
 {objective_line}Before writing this lesson, reason through the following steps. Include your reasoning in <thinking>...</thinking> tags (they will be stripped from output):
 1. What is the learner's objective for this course?
@@ -158,16 +195,42 @@ Emotional sensitivity for this lesson: {es_level}.
 Context: Patient journey stage: {parsed.journey_stage}. Diagnosis: {parsed.diagnosis or "Not specified"}. Level: {parsed.level}.
 Key facts to ground the lesson: {research_facts}
 {adjacent_text}
-Output ONLY valid JSON with two keys: "key_takeaways" (array of 3-5 short strings, one line each, to display at TOP of lesson) and "blocks" (array of blocks). Each block: {{ "type": "...", "content": "...", optional "emotional_sensitivity_level": "low"|"medium"|"high" }}.
+Output ONLY valid JSON with three keys: "key_takeaways" (array of 3-5 short strings, one line each, to display at TOP of lesson), "blocks" (array of blocks), and "quiz" (array of 2-3 knowledge-check questions; use [] for emotionally sensitive "high" lessons). Each block: {{ "type": "...", "content": "...", optional "emotional_sensitivity_level": "low"|"medium"|"high" }}.
 Block types: explanation, example, exercise, reflection, compliance_note.
 - key_takeaways: 3-5 bullet-style takeaways that prime recall before the learner reads the full lesson.
 - Use 2-5 explanation/example/exercise/reflection blocks for the lesson body.
 - You MUST include exactly one block with type "compliance_note" at the END. Its content must be 1-3 questions the patient can ask their RE. Never give prescriptive medical advice.
+- quiz: 2-3 multiple-choice questions, each {{ "question": "...", "options": ["...", "..."] (3-4 options), "correct_index": 0-based index of the right option, "explanation": "one or two sentences why" }}. Questions test understanding of this lesson only. For emotionally sensitive (high) lessons, output "quiz": [] (no quiz).
+- Never write first-person assistant sign-offs or offers of help (e.g. \"I'm here to help!\", \"Let me know if you have questions\"); write as course content, not a chat reply.
 - Content: clear, warm, medically accurate, non-prescriptive.
 
 JSON:"""
-    response = llm.invoke(prompt)
-    raw_content = _strip_thinking(response.content)
+    # Body blocks always required. Quiz (>=2 valid questions; export needs 6+ per course) is
+    # required except for high-sensitivity lessons, which get a reflection and no quiz (F-011).
+    needs_quiz = es_level != "high"
+    quiz = None
+    for _ in range(2):
+        response = llm.invoke(prompt)
+        raw_content = _strip_thinking(response.content)
+        data = _extract_json(raw_content)
+        raw_blocks = data.get("blocks")
+        has_blocks = isinstance(raw_blocks, list) and any(
+            isinstance(b, dict)
+            and isinstance(b.get("content"), str)
+            and b["content"].strip()
+            and isinstance(b.get("type") or "", str)
+            and _to_content_block(b, es_level).type != ContentBlockType.compliance_note
+            for b in raw_blocks
+        )
+        if needs_quiz:
+            quiz = _parse_quiz(data.get("quiz"))
+        if has_blocks and (not needs_quiz or len(quiz.questions) >= 2):
+            break
+    else:
+        raise ValueError(
+            f"Lesson {lesson_outline.id} ({lesson_outline.title}): LLM returned no body blocks"
+            " or <2 valid quiz questions after retry"
+        )
     blocks, key_takeaways = _parse_blocks(raw_content, default_emotional_sensitivity=es_level)
     if citations and blocks:
         cite_models = [
@@ -182,10 +245,6 @@ JSON:"""
                 emotional_sensitivity_level=first.emotional_sensitivity_level,
             )
         ] + blocks[1:]
-    # Format selection (F-011): no quiz for high emotional sensitivity
-    quiz = (
-        None  # Quiz generation not yet implemented; when added, set to None when es_level == "high"
-    )
     return Lesson(
         id=lesson_outline.id,
         title=lesson_outline.title,
